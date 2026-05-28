@@ -47,8 +47,13 @@ export default function Home() {
               will scale it.
             </h1>
 
-            <p className="text-xl text-bond-gray mb-10 leading-relaxed max-w-lg font-medium">
-              You trained for years to practice dentistry, not chase marketing. We build predictable patient growth engines for dental clinics across India—delivering <strong>30+ new patient appointments</strong> every month, guaranteed.
+            <p className="text-xl text-bond-gray mb-4 leading-relaxed max-w-lg font-medium">
+              You trained for years to practice dentistry, not chase marketing. We build predictable patient growth engines for dental clinics across India — delivering <strong className="text-bond-navy">30+ new patient appointments every month.</strong> If we don&apos;t hit targets in 60 days, we work free until we do.
+            </p>
+
+            {/* Micro disclaimer — visible but not distracting */}
+            <p className="text-[11px] text-bond-gray/50 mb-8 max-w-md leading-relaxed">
+              ∗ Results subject to minimum ad spend of ₹5,000/month and active onboarding participation. Guarantee applies to qualified clinic engagements only.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 items-start z-10 relative">
