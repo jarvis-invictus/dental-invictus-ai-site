@@ -56,9 +56,9 @@ export default function Navbar() {
                             {link.name}
                         </Link>
                     ))}
-                    <a href={siteConfig.urls.booking} target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/919156467641?text=Hi%20Sahil,%20I'd%20like%20to%20know%20more%20about%20patient%20growth%20for%20my%20dental%20clinic." target="_blank" rel="noopener noreferrer">
                         <Button variant="lime" size="sm">
-                            Book Strategy
+                            WhatsApp Us
                         </Button>
                     </a>
                 </div>
@@ -85,8 +85,8 @@ export default function Navbar() {
                             {link.name}
                         </Link>
                     ))}
-                    <a href={siteConfig.urls.booking} target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)}>
-                        <Button variant="lime" className="w-full">Book Strategy</Button>
+                    <a href="https://wa.me/919156467641?text=Hi%20Sahil,%20I'd%20like%20to%20know%20more%20about%20patient%20growth%20for%20my%20dental%20clinic." target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)}>
+                        <Button variant="lime" className="w-full">WhatsApp Us</Button>
                     </a>
                 </div>
             )}

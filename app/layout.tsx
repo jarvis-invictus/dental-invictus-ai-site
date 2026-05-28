@@ -13,23 +13,21 @@ const SITE_URL = "https://invictus-ai.in";
 export const metadata: Metadata = {
   // ── Core SEO ──
   title: {
-    default: "Invictus AI | Enterprise-Grade AI. Startup Speed.",
+    default: "Invictus AI | Patient Growth System for Dental Clinics",
     template: "%s | Invictus AI",
   },
   description:
-    "Custom AI automation, intelligent agents, and digital infrastructure for modern businesses. We build AI chatbots, workflow automation, and enterprise systems that deliver 300% ROI.",
+    "We help dental clinics get more patients through websites, Meta ads, and reputation management. WhatsApp us for a free clinic audit.",
   keywords: [
-    "AI automation",
-    "AI agency",
-    "intelligent agents",
-    "AI chatbots",
-    "business automation",
-    "enterprise AI",
-    "custom AI solutions",
-    "AI consulting",
-    "workflow automation",
-    "digital transformation",
-    "AI development India",
+    "dental clinic marketing India",
+    "dental clinic website",
+    "Google reviews dental clinic",
+    "Meta ads dental clinic",
+    "patient growth dental",
+    "dental clinic SEO India",
+    "reputation management dental",
+    "dental marketing agency India",
+    "new patients dental clinic",
     "Invictus AI",
   ],
   authors: [{ name: "Invictus AI" }],
@@ -58,15 +56,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: SITE_URL,
     siteName: "Invictus AI",
-    title: "Invictus AI | Enterprise-Grade AI. Startup Speed.",
+    title: "Invictus AI | Patient Growth System for Dental Clinics",
     description:
-      "Custom AI automation, intelligent agents, and digital infrastructure for modern businesses.",
+      "We help dental clinics get more patients through websites, Meta ads, and reputation management. WhatsApp us for a free clinic audit.",
     images: [
       {
-        url: `${SITE_URL}/og-image.png`, // ← Create a 1200×630 OG image
+        url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Invictus AI - Enterprise-Grade AI Solutions",
+        alt: "Invictus AI - Patient Growth for Dental Clinics",
       },
     ],
   },
@@ -74,9 +72,9 @@ export const metadata: Metadata = {
   // ── Twitter Card ──
   twitter: {
     card: "summary_large_image",
-    title: "Invictus AI | Enterprise-Grade AI. Startup Speed.",
+    title: "Invictus AI | Patient Growth System for Dental Clinics",
     description:
-      "Custom AI automation, intelligent agents, and digital infrastructure for modern businesses.",
+      "We help dental clinics get more patients through websites, Meta ads, and reputation management. WhatsApp us for a free clinic audit.",
     images: [`${SITE_URL}/og-image.png`],
     // creator: "@invictusai", // ← Add your Twitter handle when ready
   },
@@ -101,41 +99,42 @@ const jsonLd = {
   url: SITE_URL,
   logo: `${SITE_URL}/logo.png`,
   description:
-    "Custom AI automation, intelligent agents, and digital infrastructure for modern businesses.",
+    "Patient growth system for dental clinics — websites, Meta ads, and Google reputation management.",
   foundingDate: "2024",
   sameAs: [
-    // "https://www.linkedin.com/company/invictusai",  // ← Add your socials
-    // "https://twitter.com/invictusai",
+    // "https://www.linkedin.com/company/invictusai",
     // "https://www.instagram.com/invictusai",
   ],
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "sales",
-    url: "https://api.leadconnectorhq.com/widget/booking/ueskMJ9Ug4gjlImoO5RB",
-    availableLanguage: ["English", "Hindi"],
+    telephone: "+91-91564-67641",
+    availableLanguage: ["English", "Hindi", "Marathi"],
   },
   address: {
     "@type": "PostalAddress",
+    addressLocality: "Pune",
+    addressRegion: "Maharashtra",
     addressCountry: "IN",
   },
   offers: {
     "@type": "AggregateOffer",
-    description: "AI Automation & Digital Infrastructure Services",
+    description: "Patient Growth Services for Dental Clinics",
     offers: [
       {
         "@type": "Offer",
-        name: "AI Chatbots & Virtual Agents",
-        description: "24/7 intelligent customer engagement",
+        name: "Clinic Website",
+        description: "Conversion-focused dental clinic websites that turn local search into booked appointments",
       },
       {
         "@type": "Offer",
-        name: "Workflow Automation",
-        description: "End-to-end business process automation",
+        name: "Meta Ads + Content",
+        description: "Hyper-local Instagram and Facebook campaigns for dental clinics",
       },
       {
         "@type": "Offer",
-        name: "Custom AI Solutions",
-        description: "Enterprise-grade AI systems tailored to your business",
+        name: "Reputation Management",
+        description: "Automated Google review generation for dental clinics",
       },
     ],
   },

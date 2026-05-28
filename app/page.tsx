@@ -48,7 +48,7 @@ export default function Home() {
             </h1>
 
             <p className="text-xl text-bond-gray mb-10 leading-relaxed max-w-lg font-medium">
-              You trained for years to practice dentistry, not chase marketing. We build predictable patient growth engines for BDS clinics in Maharashtra—delivering <strong>30+ new patient appointments</strong> every month, guaranteed.
+              You trained for years to practice dentistry, not chase marketing. We build predictable patient growth engines for dental clinics across India—delivering <strong>30+ new patient appointments</strong> every month, guaranteed.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 items-start z-10 relative">
@@ -167,7 +167,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center text-2xl md:text-3xl font-bold text-bond-navy mb-16 max-w-3xl mx-auto leading-snug"
           >
-            Every dental clinic owner in Maharashtra faces these three problems.
+            Every dental clinic owner across India faces these three problems.
           </motion.p>
 
           {/* 3 Pain-Point Cards */}
@@ -845,7 +845,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center text-lg text-bond-gray font-medium mb-16 max-w-2xl mx-auto"
           >
-            Dental clinic owners across Maharashtra who made the shift from random to reliable.
+            Dental clinic owners across India who made the shift from random to reliable.
           </motion.p>
 
           {/* Stats bar */}
@@ -1146,7 +1146,7 @@ export default function Home() {
                 <span className="text-white font-black text-lg tracking-tight">Invictus AI</span>
               </div>
               <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
-                Digital growth for dental clinics in Maharashtra. Website, Meta Ads, and reputation — one system, one team, predictable results.
+                Digital growth for dental clinics across India. Website, Meta Ads, and reputation — one system, one team, predictable results.
               </p>
             </div>
 
@@ -1199,9 +1199,9 @@ export default function Home() {
 
           {/* Bottom bar */}
           <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-xs">
-            <p>© 2025 Invictus AI. Built for dental clinics across Maharashtra.</p>
+            <p>© 2026 Invictus AI. Built for dental clinics across India.</p>
             <div className="flex gap-6">
-              <a href="https://invictusai.tech" target="_blank" rel="noopener noreferrer" className="hover:text-bond-lime transition-colors">invictusai.tech</a>
+              <a href="https://invictusai.site" target="_blank" rel="noopener noreferrer" className="hover:text-bond-lime transition-colors">invictusai.site</a>
               <a href="https://invictus-ai.in" target="_blank" rel="noopener noreferrer" className="hover:text-bond-lime transition-colors">invictus-ai.in</a>
             </div>
           </div>
