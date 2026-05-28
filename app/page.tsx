@@ -631,22 +631,67 @@ export default function Home() {
 
           </div>
 
-          {/* Add-ons footnote */}
+          {/* Add-ons Banner Card */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-12 bg-white rounded-2xl border border-slate-100 p-6 shadow-sticker flex flex-wrap gap-6 items-center justify-between"
+            className="mt-12 bg-bond-navy rounded-3xl overflow-hidden shadow-2xl"
           >
-            <div>
-              <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-1">Optional Add-ons</div>
-              <p className="text-bond-navy font-medium text-sm">Extra ad creative set • Campaign landing page • Monthly SEO optimization</p>
+            {/* Banner header */}
+            <div className="flex items-center justify-between px-8 pt-7 pb-5 border-b border-white/10">
+              <div>
+                <div className="text-xs font-bold uppercase tracking-widest text-bond-lime mb-1">Optional Add-ons</div>
+                <p className="text-white font-bold text-lg">Bolt these onto any package. Priced separately.</p>
+              </div>
+              <div className="hidden sm:block bg-bond-lime/10 border border-bond-lime/20 rounded-xl px-4 py-2">
+                <span className="text-bond-lime text-xs font-bold uppercase tracking-wider">à la carte</span>
+              </div>
             </div>
-            <div className="flex gap-6 text-sm text-bond-gray font-medium flex-wrap">
-              <span>Ad creative set: <strong className="text-bond-navy">₹1,500 – ₹2,500</strong></span>
-              <span>Landing page: <strong className="text-bond-navy">₹3,000 – ₹5,000</strong></span>
-              <span>SEO/month: <strong className="text-bond-navy">₹2,000 – ₹3,000</strong></span>
+
+            {/* 3 Add-on tiles */}
+            <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
+
+              {/* Tile 1 — Ad Creative Set */}
+              <div className="p-7 group hover:bg-white/5 transition-colors">
+                <div className="w-10 h-10 bg-bond-lime/10 border border-bond-lime/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-bond-lime" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+                  </svg>
+                </div>
+                <h4 className="text-white font-bold mb-1">Ad Creative Set</h4>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">5 custom ad creatives — static + reel thumbnail — designed for your clinic's campaign.</p>
+                <div className="text-bond-lime font-black text-xl">₹1,500 <span className="text-slate-400 text-sm font-normal">– ₹2,500</span></div>
+                <div className="text-slate-500 text-xs mt-0.5">per set</div>
+              </div>
+
+              {/* Tile 2 — Campaign Landing Page */}
+              <div className="p-7 group hover:bg-white/5 transition-colors">
+                <div className="w-10 h-10 bg-bond-lime/10 border border-bond-lime/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-bond-lime" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253" />
+                  </svg>
+                </div>
+                <h4 className="text-white font-bold mb-1">Campaign Landing Page</h4>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">Dedicated conversion page for a specific treatment — teeth whitening, implants, braces — built to capture leads from ads.</p>
+                <div className="text-bond-lime font-black text-xl">₹3,000 <span className="text-slate-400 text-sm font-normal">– ₹5,000</span></div>
+                <div className="text-slate-500 text-xs mt-0.5">one-time</div>
+              </div>
+
+              {/* Tile 3 — Monthly SEO */}
+              <div className="p-7 group hover:bg-white/5 transition-colors">
+                <div className="w-10 h-10 bg-bond-lime/10 border border-bond-lime/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-bond-lime" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                  </svg>
+                </div>
+                <h4 className="text-white font-bold mb-1">Monthly SEO Optimisation</h4>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">On-page optimisation, local keyword targeting, and Google Business Profile updates to grow organic rank every month.</p>
+                <div className="text-bond-lime font-black text-xl">₹2,000 <span className="text-slate-400 text-sm font-normal">– ₹3,000</span></div>
+                <div className="text-slate-500 text-xs mt-0.5">per month</div>
+              </div>
+
             </div>
           </motion.div>
 
