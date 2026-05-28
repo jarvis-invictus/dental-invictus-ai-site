@@ -3,6 +3,8 @@ import { Inter, Nothing_You_Could_Do } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { clsx } from "clsx";
+import PageProgressBar from "@/components/PageProgressBar";
+import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const handwriting = Nothing_You_Could_Do({ weight: "400", subsets: ["latin"], variable: "--font-handwriting" });
@@ -92,52 +94,69 @@ export const metadata: Metadata = {
 };
 
 // ── JSON-LD Structured Data for Rich Results ──
-const jsonLd = {
+const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Invictus AI",
-  url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
-  description:
-    "Patient growth system for dental clinics — websites, Meta ads, and Google reputation management.",
-  foundingDate: "2024",
-  sameAs: [
-    // "https://www.linkedin.com/company/invictusai",
-    // "https://www.instagram.com/invictusai",
-  ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "sales",
-    telephone: "+91-91564-67641",
-    availableLanguage: ["English", "Hindi", "Marathi"],
-  },
-  address: {
+  "@type": "LocalBusiness",
+  "name": "Invictus AI",
+  "description": "Patient growth system for dental clinics across India. Website, Meta Ads, and reputation management.",
+  "url": "https://invictus-ai.in",
+  "telephone": "+919156467641",
+  "email": "sahil@invictus-ai.in",
+  "address": {
     "@type": "PostalAddress",
-    addressLocality: "Pune",
-    addressRegion: "Maharashtra",
-    addressCountry: "IN",
+    "addressLocality": "Pune",
+    "addressRegion": "Maharashtra",
+    "addressCountry": "IN"
   },
-  offers: {
-    "@type": "AggregateOffer",
-    description: "Patient Growth Services for Dental Clinics",
-    offers: [
-      {
-        "@type": "Offer",
-        name: "Clinic Website",
-        description: "Conversion-focused dental clinic websites that turn local search into booked appointments",
-      },
-      {
-        "@type": "Offer",
-        name: "Meta Ads + Content",
-        description: "Hyper-local Instagram and Facebook campaigns for dental clinics",
-      },
-      {
-        "@type": "Offer",
-        name: "Reputation Management",
-        description: "Automated Google review generation for dental clinics",
-      },
-    ],
-  },
+  "areaServed": "India",
+  "serviceType": "Dental Clinic Digital Marketing"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I get more patients for my dental clinic?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most effective way to get more patients is by installing a complete patient growth system that integrates a high-converting clinic website, targeted hyper-local Meta Ads (Instagram and Facebook), and automated Google review generation to rank at the top of local search results near you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does dental clinic marketing cost in India?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At Invictus AI, dental clinic digital marketing services start from ₹8,000 for a custom, conversion-focused clinic website, ₹8,000/month for hyper-local Meta ads, and ₹3,000/month for automated Google reputation management. Custom plans are fully transparent with no lock-in contracts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get Google reviews for my dental clinic?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our automated reputation management system requests feedback directly from happy patients via WhatsApp or SMS immediately after their visit. This ensures a steady flow of genuine, 5-star Google Business Profile reviews without any manual work from your staff."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best way to advertise a dental clinic on Instagram?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The best way is running hyper-local Instagram and Facebook campaigns targeting a 5km radius around your clinic. These campaigns should feature real, high-credibility patient results, case studies, and treatment-specific offers to attract highly qualified local inquiries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to see results from dental clinic marketing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our complete digital growth system is fully configured and goes live in under 2 weeks. Most clinics begin seeing inquiries in their first month, and we back our results with a 60-day risk-free guarantee: double your inquiries or we work for free until we do."
+      }
+    }
+  ]
 };
 
 export default function RootLayout({
@@ -147,21 +166,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* JSON-LD Structured Data */}
+      {/* LocalBusiness Structured Data */}
       <Script
-        id="json-ld"
+        id="local-business-ld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      {/* FAQ Page Structured Data */}
+      <Script
+        id="faq-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       {/* Google Tag Manager - Head Script */}
       <Script id="gtm-script" strategy="afterInteractive">
         {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TB9SQLN2');`}
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+				})(window,document,'script','dataLayer','GTM-TB9SQLN2');`}
       </Script>
       <body className={clsx(inter.variable, handwriting.variable, "bg-white text-bond-navy antialiased font-sans min-h-screen flex flex-col")}>
+        <PageProgressBar />
+        <WhatsAppFloatingButton />
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe

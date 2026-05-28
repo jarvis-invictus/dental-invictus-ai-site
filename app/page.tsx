@@ -4,8 +4,43 @@ import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 
 import { Button } from "@/components/ui/Button";
-import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, TrendingUp, EyeOff, Clock } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { useInView } from "framer-motion";
+
+interface CountUpProps {
+  from: number;
+  to: number;
+  duration?: number;
+  suffix?: string;
+}
+
+function CountUp({ from, to, duration = 1.5, suffix = "" }: CountUpProps) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true });
+  const [count, setCount] = useState(from);
+
+  useEffect(() => {
+    if (!isInView) return;
+    
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
+      const current = progress * (to - from) + from;
+      setCount(current);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }, [isInView, from, to, duration]);
+
+  const displayValue = to % 1 === 0 ? Math.floor(count) : count.toFixed(1);
+
+  return <span ref={ref}>{displayValue}{suffix}</span>;
+}
 
 // Dynamic imports to prevent SSR issues and async component conflicts
 const Spline = dynamic(() => import("@splinetool/react-spline"), { 
@@ -13,7 +48,51 @@ const Spline = dynamic(() => import("@splinetool/react-spline"), {
   loading: () => <div className="w-full h-full bg-slate-50/5 animate-pulse rounded-3xl" />
 });
 
+const testimonials = [
+  {
+    quote: "Before Invictus AI, I had maybe 8–10 new patients a month, mostly from referrals. Within 60 days of running their Meta ads campaign, I was getting 30+ new enquiries a month. The WhatsApp messages were constant. I had to hire a second receptionist.",
+    name: "Dr. P.K.",
+    clinic: "Dental Clinic Owner, Pune",
+    service: "Meta Ads + Content",
+    rating: 5,
+    initials: "PK",
+    accent: "lime",
+  },
+  {
+    quote: "My Google rating went from 3.8 stars with 12 reviews to 4.9 stars with 80+ reviews in 4 months. I did not do anything — they set up the automated system and patients started leaving reviews on their own. Now I rank above the clinic that has been around for 20 years.",
+    name: "Dr. A.D.",
+    clinic: "Dental Clinic Owner, Nashik",
+    service: "Reputation Management",
+    rating: 5,
+    initials: "AD",
+    accent: "navy",
+  },
+  {
+    quote: "My old website was built by a cousin. It looked terrible on mobile and had no booking option. Sahil rebuilt everything in 10 days — clean design, Google Maps integrated, WhatsApp button. Within the first week the site was live, I got 3 appointment inquiries from Google search.",
+    name: "Dr. S.P.",
+    clinic: "Dental Clinic Owner, Aurangabad",
+    service: "Clinic Website",
+    rating: 5,
+    initials: "SP",
+    accent: "purple",
+  },
+];
+
 export default function Home() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollHeight > 0) {
+        setShowBackToTop(window.scrollY / scrollHeight > 0.5);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <main className="min-h-screen font-sans selection:bg-bond-lime selection:text-bond-navy overflow-x-hidden">
       <Navbar />
@@ -26,39 +105,54 @@ export default function Home() {
         <div className="absolute top-40 left-1/3 w-[300px] h-[300px] bg-bond-lime/20 rounded-full blur-[80px] -z-10 mix-blend-multiply" />
 
         <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center min-h-[600px]">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <div>
             <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0 }}
               whileHover={{ rotate: -2, scale: 1.05 }}
-              className="inline-block bg-bond-lime text-bond-navy px-4 py-1.5 rounded-lg text-sm font-bold mb-8 shadow-sticker transform -rotate-2"
+              className="inline-block bg-bond-lime text-bond-navy px-4 py-1.5 rounded-lg text-sm font-bold mb-8 shadow-sticker transform -rotate-2 cursor-pointer"
             >
               Dental Clinics Only
             </motion.div>
 
-            <h1 className="text-5xl lg:text-6xl font-bold text-bond-navy leading-[1.1] mb-8 tracking-tight text-balance">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-5xl lg:text-6xl font-bold text-bond-navy leading-[1.1] mb-8 tracking-tight text-balance"
+            >
               Word of mouth built your clinic. <br />
               <span className="relative inline-block px-1 mt-1">
                 <span className="relative z-10 text-bond-navy">A system</span>
                 <span className="absolute bottom-1.5 left-0 w-full h-4 bg-bond-cyan/30 -rotate-1 rounded-sm -z-0"></span>
               </span> <br />
               will scale it.
-            </h1>
+            </motion.h1>
 
-            <p className="text-xl text-bond-gray mb-4 leading-relaxed max-w-lg font-medium">
-              You trained for years to practice dentistry, not chase marketing. We build predictable patient growth engines for dental clinics across India — delivering <strong className="text-bond-navy">30+ new patient appointments every month.</strong> If we don&apos;t hit targets in 60 days, we work free until we do.
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <p className="text-xl text-bond-gray mb-4 leading-relaxed max-w-lg font-medium">
+                You trained for years to practice dentistry, not chase marketing. We build complete digital growth systems for dental clinics across India — bringing in <strong className="text-bond-navy">30+ new patients every month, consistently.</strong> If we don&apos;t hit targets in 60 days, we work free until we do.
+              </p>
 
-            {/* Micro disclaimer — visible but not distracting */}
-            <p className="text-[11px] text-bond-gray/50 mb-8 max-w-md leading-relaxed">
-              ∗ Results subject to minimum ad spend of ₹5,000/month and active onboarding participation. Guarantee applies to qualified clinic engagements only.
-            </p>
+              {/* Micro disclaimer — visible but not distracting */}
+              <p className="text-[11px] text-bond-gray/50 mb-8 max-w-md leading-relaxed">
+                ∗ Results subject to minimum ad spend of ₹5,000/month and active onboarding participation. Guarantee applies to qualified clinic engagements only. Free continuation support covers the same agreed service scope for up to 30 additional days.
+              </p>
+            </motion.div>
 
-            <div className="flex flex-col sm:flex-row gap-4 items-start z-10 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 items-start z-10 relative"
+            >
               <a href="https://wa.me/919156467641?text=Hi%20Sahil,%20I'd%20like%20to%20book%20a%20free%20patient%20growth%20audit%20for%20my%20dental%20clinic." target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="shadow-xl shadow-bond-navy/20 flex items-center gap-3 group">
+                <Button size="lg" className="shadow-xl shadow-bond-navy/20 flex items-center gap-3 group animate-whatsapp-pulse">
                   WhatsApp Us
                   <div className="bg-bond-lime text-bond-navy rounded-full p-1 group-hover:rotate-45 transition-transform">
                     <ArrowRight size={18} strokeWidth={3} />
@@ -70,8 +164,18 @@ export default function Home() {
                   See Our Work
                 </Button>
               </a>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            {/* Trust Line */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.8 }}
+              className="mt-4 text-xs font-bold text-bond-gray tracking-wide text-left sm:text-center w-full sm:max-w-[400px] pl-1 opacity-80"
+            >
+              Free 20-min call · No commitment · Response within 2 hours
+            </motion.div>
+          </div>
 
           {/* Right Column: Premium Floating Cards */}
           <div className="relative h-[550px] hidden lg:block w-full">
@@ -130,13 +234,34 @@ export default function Home() {
                 <div className="text-2xl font-black text-bond-navy mb-1 leading-tight">Full Calendar</div>
                 <div className="text-xs text-bond-gray font-bold">Appointment Capacity — The Goal</div>
               </motion.div>
+
+              {/* Float Card 4: Orange Shadow - Setup Time */}
+              <motion.div
+                animate={{ y: [10, -10, 10] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                className="absolute bottom-8 right-16 bg-white p-6 rounded-2xl shadow-sticker-orange border border-slate-100 w-64 z-20"
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="bg-bond-orange/20 p-2 rounded-xl text-bond-orange">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <span className="font-bold text-xs uppercase tracking-wider text-bond-gray">Setup Time</span>
+                </div>
+                <div className="text-3xl font-black text-bond-navy mb-1 leading-tight">Under 2 Weeks</div>
+                <div className="text-xs text-bond-gray font-bold">Go-live speed — The Standard</div>
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Subtle Separator */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
       {/* ── Section 2: Problem ── */}
-      <section className="py-24 px-6 bg-slate-50 relative overflow-hidden">
+      <section id="problems" className="py-24 px-6 bg-slate-50 relative overflow-hidden">
         {/* Dot-grid texture — same pattern as WhoWeAre in reference codebase */}
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -158,7 +283,7 @@ export default function Home() {
               <div className="absolute -top-4 left-1/2 w-32 h-8 bg-white/40 backdrop-blur-sm -translate-x-1/2 rotate-2 shadow-sm border border-white/50 z-20" />
               <div className="bg-bond-lime px-8 py-4 shadow-sticker transform rotate-[-1deg]">
                 <h2 className="text-4xl md:text-5xl font-black uppercase text-bond-navy tracking-tight">
-                  Sound Familiar?
+                  Three Problems Every Dental Clinic Owner Recognises Immediately
                 </h2>
               </div>
             </motion.div>
@@ -187,9 +312,7 @@ export default function Home() {
               className="bond-card bg-white rounded-3xl p-8 shadow-sticker border border-slate-100 group"
             >
               <div className="w-14 h-14 rounded-2xl bg-bond-lime/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <svg className="w-7 h-7 text-bond-navy" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
-                </svg>
+                <TrendingUp className="w-7 h-7 text-bond-navy" strokeWidth={2.5} />
               </div>
               <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-3">Problem 01</div>
               <h3 className="text-xl font-bold text-bond-navy mb-4 leading-snug">
@@ -209,9 +332,7 @@ export default function Home() {
               className="bond-card bg-white rounded-3xl p-8 shadow-sticker-cyan border border-slate-100 group"
             >
               <div className="w-14 h-14 rounded-2xl bg-bond-cyan/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <svg className="w-7 h-7 text-bond-cyan" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
-                </svg>
+                <EyeOff className="w-7 h-7 text-bond-cyan" strokeWidth={2.5} />
               </div>
               <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-3">Problem 02</div>
               <h3 className="text-xl font-bold text-bond-navy mb-4 leading-snug">
@@ -231,9 +352,7 @@ export default function Home() {
               className="bond-card bg-white rounded-3xl p-8 shadow-sticker-purple border border-slate-100 group"
             >
               <div className="w-14 h-14 rounded-2xl bg-bond-purple/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <svg className="w-7 h-7 text-bond-purple" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <Clock className="w-7 h-7 text-bond-purple" strokeWidth={2.5} />
               </div>
               <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-3">Problem 03</div>
               <h3 className="text-xl font-bold text-bond-navy mb-4 leading-snug">
@@ -248,9 +367,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Subtle Separator */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
       {/* ── Section 3: Solution ── */}
-      <section className="py-24 px-6 bg-white relative overflow-hidden">
+      <section id="solution" className="py-24 px-6 bg-white relative overflow-hidden">
         {/* Subtle blobs for depth */}
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-bond-lime/5 rounded-full blur-[80px] -z-10" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-bond-cyan/5 rounded-full blur-[80px] -z-10" />
@@ -268,16 +389,16 @@ export default function Home() {
               {/* Sticker badge */}
               <motion.div
                 whileHover={{ rotate: -2, scale: 1.05 }}
-                className="inline-block bg-bond-lime text-bond-navy px-4 py-1.5 rounded-lg text-sm font-bold mb-8 shadow-sticker transform -rotate-2"
+                className="inline-block bg-bond-lime text-bond-navy px-4 py-1.5 rounded-lg text-sm font-bold mb-8 shadow-sticker transform -rotate-2 cursor-pointer"
               >
                 The Fix
               </motion.div>
 
               <h2 className="text-4xl md:text-5xl font-bold text-bond-navy leading-tight mb-6 tracking-tight">
-                One system. <br />
-                Three services. <br />
+                One System. <br />
+                Three Services. <br />
                 <span className="relative inline-block px-1">
-                  <span className="relative z-10">Complete patient growth.</span>
+                  <span className="relative z-10">Complete Patient Growth.</span>
                   <span className="absolute bottom-1.5 left-0 w-full h-4 bg-bond-cyan/25 -rotate-1 rounded-sm -z-0" />
                 </span>
               </h2>
@@ -317,7 +438,7 @@ export default function Home() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
                   className="flex items-start gap-5 p-5 rounded-2xl bg-bond-lime/10 border border-bond-lime/30 mb-4 group hover:bg-bond-lime/20 transition-colors"
                 >
                   <div className="w-12 h-12 rounded-xl bg-bond-lime flex items-center justify-center shrink-0 shadow-sm group-hover:scale-110 transition-transform">
@@ -331,9 +452,12 @@ export default function Home() {
                   </div>
                 </motion.div>
 
-                {/* Connector line */}
-                <div className="flex justify-center my-1">
-                  <div className="w-0.5 h-6 bg-gradient-to-b from-bond-lime/40 to-bond-cyan/40" />
+                {/* Connected visual arrow 1 */}
+                <div className="flex flex-col items-center justify-center my-1 select-none pointer-events-none">
+                  <div className="w-0.5 h-6 bg-gradient-to-b from-bond-lime/40 to-bond-cyan/40 animate-pulse" />
+                  <svg className="w-3 h-3 text-bond-cyan/50 -mt-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 16L6 10H18L12 16Z" />
+                  </svg>
                 </div>
 
                 {/* Service Pill 2 — Meta Ads */}
@@ -341,7 +465,7 @@ export default function Home() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.5 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
                   className="flex items-start gap-5 p-5 rounded-2xl bg-bond-navy/5 border border-bond-navy/10 mb-4 group hover:bg-bond-navy/10 transition-colors"
                 >
                   <div className="w-12 h-12 rounded-xl bg-bond-navy flex items-center justify-center shrink-0 shadow-sm group-hover:scale-110 transition-transform">
@@ -355,9 +479,12 @@ export default function Home() {
                   </div>
                 </motion.div>
 
-                {/* Connector line */}
-                <div className="flex justify-center my-1">
-                  <div className="w-0.5 h-6 bg-gradient-to-b from-bond-cyan/40 to-bond-purple/40" />
+                {/* Connected visual arrow 2 */}
+                <div className="flex flex-col items-center justify-center my-1 select-none pointer-events-none">
+                  <div className="w-0.5 h-6 bg-gradient-to-b from-bond-cyan/40 to-bond-purple/40 animate-pulse" />
+                  <svg className="w-3 h-3 text-bond-purple/50 -mt-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 16L6 10H18L12 16Z" />
+                  </svg>
                 </div>
 
                 {/* Service Pill 3 — Reputation */}
@@ -365,7 +492,7 @@ export default function Home() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.7 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
                   className="flex items-start gap-5 p-5 rounded-2xl bg-bond-purple/5 border border-bond-purple/20 group hover:bg-bond-purple/10 transition-colors"
                 >
                   <div className="w-12 h-12 rounded-xl bg-bond-purple/15 flex items-center justify-center shrink-0 shadow-sm group-hover:scale-110 transition-transform">
@@ -391,6 +518,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Subtle Separator */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
       {/* ── Section 4: Services + Pricing ── */}
       <section id="services" className="py-24 px-6 bg-slate-50 relative overflow-hidden">
@@ -438,7 +568,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0 }}
-              className="bg-white rounded-3xl shadow-sticker-lime border border-slate-100 overflow-hidden flex flex-col group"
+              className="bg-white rounded-3xl shadow-sticker-lime border border-slate-100 overflow-hidden flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#ccff00] transition-all duration-300"
             >
               {/* Card Header */}
               <div className="bg-bond-lime p-6">
@@ -489,7 +619,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="w-full"
                 >
-                  <Button variant="lime" size="md" className="w-full group-hover:scale-[1.02] transition-transform">
+                  <Button variant="lime" size="md" className="w-full group-hover:scale-105 transition-all duration-300">
                     WhatsApp to Enquire
                   </Button>
                 </a>
@@ -502,10 +632,10 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="bg-bond-navy rounded-3xl shadow-2xl border border-bond-navy/50 overflow-hidden flex flex-col relative group"
+              className="bg-bond-navy rounded-3xl shadow-2xl border border-bond-navy/50 overflow-hidden flex flex-col relative group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#0f172a] transition-all duration-300"
             >
               {/* Most Popular badge */}
-              <div className="absolute top-4 right-4 bg-bond-lime text-bond-navy text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sticker">
+              <div className="absolute top-4 right-4 text-bond-navy text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sticker animate-shimmer">
                 Most Popular
               </div>
 
@@ -519,7 +649,7 @@ export default function Home() {
               {/* Card Body */}
               <div className="p-6 flex flex-col flex-1">
                 <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                  Hyper-local Instagram and Facebook ad campaigns paired with monthly content — reels, posts, and creels — that position your clinic as the trusted name in your area.
+                  Hyper-local Instagram and Facebook ad campaigns paired with monthly content — reels, posts, and carousels — that position your clinic as the trusted name in your area.
                 </p>
 
                 {/* Deliverables */}
@@ -558,7 +688,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="w-full"
                 >
-                  <Button variant="lime" size="md" className="w-full group-hover:scale-[1.02] transition-transform">
+                  <Button variant="lime" size="md" className="w-full group-hover:scale-105 transition-all duration-300">
                     WhatsApp to Enquire
                   </Button>
                 </a>
@@ -571,7 +701,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white rounded-3xl shadow-sticker-cyan border border-slate-100 overflow-hidden flex flex-col group"
+              className="bg-white rounded-3xl shadow-sticker-cyan border border-slate-100 overflow-hidden flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#06b6d4] transition-all duration-300"
             >
               {/* Card Header */}
               <div className="bg-bond-cyan/10 border-b border-bond-cyan/20 p-6">
@@ -622,7 +752,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="w-full"
                 >
-                  <Button variant="primary" size="md" className="w-full group-hover:scale-[1.02] transition-transform">
+                  <Button variant="primary" size="md" className="w-full group-hover:scale-105 transition-all duration-300">
                     WhatsApp to Enquire
                   </Button>
                 </a>
@@ -637,7 +767,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-12 bg-bond-navy rounded-3xl overflow-hidden shadow-2xl"
+            className="mt-12 bg-bond-navy rounded-3xl overflow-hidden shadow-2xl animate-pulse-slow"
           >
             {/* Banner header */}
             <div className="flex items-center justify-between px-8 pt-7 pb-5 border-b border-white/10">
@@ -654,7 +784,7 @@ export default function Home() {
             <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
 
               {/* Tile 1 — Ad Creative Set */}
-              <div className="p-7 group hover:bg-white/5 transition-colors">
+              <div className="p-7 group hover:bg-white/5 transition-colors cursor-pointer">
                 <div className="w-10 h-10 bg-bond-lime/10 border border-bond-lime/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <svg className="w-5 h-5 text-bond-lime" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
@@ -667,7 +797,7 @@ export default function Home() {
               </div>
 
               {/* Tile 2 — Campaign Landing Page */}
-              <div className="p-7 group hover:bg-white/5 transition-colors">
+              <div className="p-7 group hover:bg-white/5 transition-colors cursor-pointer">
                 <div className="w-10 h-10 bg-bond-lime/10 border border-bond-lime/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <svg className="w-5 h-5 text-bond-lime" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253" />
@@ -680,7 +810,7 @@ export default function Home() {
               </div>
 
               {/* Tile 3 — Monthly SEO */}
-              <div className="p-7 group hover:bg-white/5 transition-colors">
+              <div className="p-7 group hover:bg-white/5 transition-colors cursor-pointer">
                 <div className="w-10 h-10 bg-bond-lime/10 border border-bond-lime/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <svg className="w-5 h-5 text-bond-lime" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -698,8 +828,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Subtle Separator */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
       {/* ── Section 5: How We Work ── */}
-      <section className="py-24 px-6 bg-white relative overflow-hidden">
+      <section id="how-it-works" className="py-24 px-6 bg-white relative overflow-hidden">
         {/* Right-side decorative blob */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-bond-lime/5 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-bond-purple/5 rounded-full blur-[100px] pointer-events-none" />
@@ -737,10 +870,10 @@ export default function Home() {
           {/* Timeline — desktop: 5 steps in a row with connector; mobile: vertical stack */}
           <div className="relative">
 
-            {/* Horizontal connector line — desktop only */}
-            <div className="hidden lg:block absolute top-[52px] left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-bond-lime via-bond-cyan to-bond-purple" />
+            {/* Horizontal connector line — desktop only (dashed/dotted z-0 line) */}
+            <div className="hidden lg:block absolute top-[52px] left-[10%] right-[10%] border-t-2 border-dashed border-bond-cyan/30 z-0" />
 
-            <div className="grid lg:grid-cols-5 gap-10 lg:gap-6">
+            <div className="grid lg:grid-cols-5 gap-10 lg:gap-6 relative z-10">
 
               {[
                 {
@@ -753,7 +886,6 @@ export default function Home() {
                   ),
                   title: "Free Discovery Call",
                   body: "We spend 20 minutes understanding your clinic — location, current patient flow, goals, and where you feel stuck.",
-                  delay: 0,
                 },
                 {
                   step: "02",
@@ -765,7 +897,6 @@ export default function Home() {
                   ),
                   title: "Custom Strategy",
                   body: "We send you a tailored growth plan — which services fit your clinic, what to expect in 30, 60, and 90 days, and what it costs.",
-                  delay: 0.1,
                 },
                 {
                   step: "03",
@@ -777,7 +908,6 @@ export default function Home() {
                   ),
                   title: "We Build Your System",
                   body: "Website built, ads set up, reputation automations configured. Full setup in under 2 weeks. You do not touch a thing.",
-                  delay: 0.2,
                 },
                 {
                   step: "04",
@@ -789,7 +919,6 @@ export default function Home() {
                   ),
                   title: "Launch + Run",
                   body: "Everything goes live. Monthly reports keep you informed — impressions, clicks, new leads, review count. Data, not guesswork.",
-                  delay: 0.3,
                 },
                 {
                   step: "05",
@@ -801,19 +930,18 @@ export default function Home() {
                   ),
                   title: "Grow Every Month",
                   body: "Results compound. More reviews → higher Google rank → more organic patients → more ad efficiency. One system, growing on its own.",
-                  delay: 0.4,
                 },
-              ].map(({ step, color, icon, title, body, delay }) => (
+              ].map(({ step, color, icon, title, body }, idx) => (
                 <motion.div
                   key={step}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay }}
-                  className="flex flex-col items-center text-center lg:text-center relative"
+                  transition={{ duration: 0.5, delay: idx * 0.15 }}
+                  className="flex flex-col items-center text-center lg:text-center relative group cursor-pointer transition-all duration-200 hover:-translate-y-1"
                 >
                   {/* Step circle */}
-                  <div className={`w-[104px] h-[104px] rounded-full flex items-center justify-center mb-6 relative shadow-lg border-4 z-10 shrink-0
+                  <div className={`w-[104px] h-[104px] rounded-full flex items-center justify-center mb-6 relative shadow-lg border-4 z-10 shrink-0 group-hover:scale-110 transition-transform duration-200
                     ${color === "lime"    ? "bg-bond-lime border-bond-lime/30" : ""}
                     ${color === "navy"    ? "bg-bond-navy border-bond-navy/30" : ""}
                     ${color === "cyan"    ? "bg-bond-cyan/10 border-bond-cyan/30" : ""}
@@ -821,7 +949,7 @@ export default function Home() {
                   `}>
                     {icon}
                     {/* Step number badge */}
-                    <span className={`absolute -top-2 -right-2 w-7 h-7 rounded-full text-[10px] font-black flex items-center justify-center shadow-md
+                    <span className={`absolute -top-2 -right-2 w-7 h-7 rounded-full text-[10px] font-black flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-200
                       ${color === "lime"   ? "bg-bond-navy text-bond-lime"   : ""}
                       ${color === "navy"   ? "bg-bond-lime text-bond-navy"   : ""}
                       ${color === "cyan"   ? "bg-bond-cyan text-white"       : ""}
@@ -861,8 +989,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Subtle Separator */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
       {/* ── Section 6: Social Proof / Testimonials ── */}
-      <section className="py-24 px-6 bg-slate-50 relative overflow-hidden">
+      <section id="results" className="py-24 px-6 bg-slate-50 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "24px 24px" }}
@@ -907,11 +1038,11 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
           >
             {[
-              { value: "Dental", label: "Only — we don't do general", accent: "lime" },
-              { value: "4.9★", label: "Google rating we target", accent: "navy" },
-              { value: "30+", label: "New patients/month target", accent: "cyan" },
-              { value: "2 wks", label: "Average setup time", accent: "purple" },
-            ].map(({ value, label, accent }, i) => (
+              { value: "Dental", label: "Only — we don't do general", isNumeric: false, accent: "lime" },
+              { value: "4.9★", label: "Google rating we target", isNumeric: true, from: 4.0, to: 4.9, suffix: "★", accent: "navy" },
+              { value: "30+", label: "New patients/month target", isNumeric: true, from: 0, to: 30, suffix: "+", accent: "cyan" },
+              { value: "2 wks", label: "Average setup time", isNumeric: false, accent: "purple" },
+            ].map(({ value, label, isNumeric, from, to, suffix, accent }, i) => (
               <motion.div
                 key={label}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -925,7 +1056,13 @@ export default function Home() {
                   ${accent === "navy"   ? "text-bond-navy"   : ""}
                   ${accent === "cyan"   ? "text-bond-cyan"   : ""}
                   ${accent === "purple" ? "text-bond-purple" : ""}
-                `}>{value}</div>
+                `}>
+                  {isNumeric ? (
+                    <CountUp from={from ?? 0} to={to ?? 0} suffix={suffix} />
+                  ) : (
+                    value
+                  )}
+                </div>
                 <div className="text-xs font-bold uppercase tracking-widest text-bond-gray">{label}</div>
                 <div className={`h-1 w-10 rounded-full mx-auto mt-3
                   ${accent === "lime"   ? "bg-bond-lime"   : ""}
@@ -937,55 +1074,23 @@ export default function Home() {
             ))}
           </motion.div>
 
-          {/* 3 Testimonial Cards */}
-          <div className="grid lg:grid-cols-3 gap-8">
-
-            {[
-              {
-                quote: "Before Invictus AI, I had maybe 8–10 new patients a month, mostly from referrals. Within 60 days of running their Meta ads campaign, I was getting 30+ new enquiries a month. The WhatsApp messages were constant. I had to hire a second receptionist.",
-                name: "Dr. P.K.",
-                clinic: "Dental Clinic Owner, Pune",
-                service: "Meta Ads + Content",
-                rating: 5,
-                initials: "PK",
-                accent: "lime",
-                delay: 0,
-              },
-              {
-                quote: "My Google rating went from 3.8 stars with 12 reviews to 4.9 stars with 80+ reviews in 4 months. I did not do anything — they set up the automated system and patients started leaving reviews on their own. Now I rank above the clinic that has been around for 20 years.",
-                name: "Dr. A.D.",
-                clinic: "Dental Clinic Owner, Nashik",
-                service: "Reputation Management",
-                rating: 5,
-                initials: "AD",
-                accent: "navy",
-                delay: 0.15,
-              },
-              {
-                quote: "My old website was built by a cousin. It looked terrible on mobile and had no booking option. Sahil rebuilt everything in 10 days — clean design, Google Maps integrated, WhatsApp button. Within the first week the site was live, I got 3 appointment inquiries from Google search.",
-                name: "Dr. S.P.",
-                clinic: "Dental Clinic Owner, Aurangabad",
-                service: "Clinic Website",
-                rating: 5,
-                initials: "SP",
-                accent: "purple",
-                delay: 0.3,
-              },
-            ].map(({ quote, name, clinic, service, rating, initials, accent, delay }) => (
+          {/* Testimonial Cards - Grid for Desktop, Swipeable Carousel for Mobile */}
+          
+          {/* Desktop Grid Layout */}
+          <div className="hidden lg:grid lg:grid-cols-3 gap-8">
+            {testimonials.map(({ quote, name, clinic, service, rating, initials, accent }) => (
               <motion.div
                 key={name}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay }}
+                transition={{ duration: 0.5 }}
                 className="bg-white rounded-3xl p-8 shadow-sticker border border-slate-100 flex flex-col relative"
               >
-                {/* Quote mark */}
-                <div className={`text-6xl font-black leading-none mb-4 -mt-2 select-none
-                  ${accent === "lime"   ? "text-bond-lime/50"   : ""}
-                  ${accent === "navy"   ? "text-bond-navy/20"   : ""}
-                  ${accent === "purple" ? "text-bond-purple/20" : ""}
-                `}>&ldquo;</div>
+                {/* Quotation watermark background */}
+                <div className="absolute top-6 right-8 text-8xl font-black text-bond-navy opacity-10 select-none pointer-events-none font-serif leading-none">
+                  &ldquo;
+                </div>
 
                 {/* Stars */}
                 <div className="flex gap-0.5 mb-4">
@@ -1002,19 +1107,15 @@ export default function Home() {
                 </p>
 
                 {/* Service tag */}
-                <div className={`inline-block text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full mb-4 w-fit
-                  ${accent === "lime"   ? "bg-bond-lime/20 text-bond-navy"     : ""}
-                  ${accent === "navy"   ? "bg-bond-navy/10 text-bond-navy"     : ""}
-                  ${accent === "purple" ? "bg-bond-purple/10 text-bond-purple" : ""}
-                `}>{service}</div>
+                <div className="inline-block text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full mb-4 w-fit bg-bond-lime/20 text-bond-navy">
+                  {service}
+                </div>
 
                 {/* Author row */}
                 <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-black shrink-0
-                    ${accent === "lime"   ? "bg-bond-lime text-bond-navy"   : ""}
-                    ${accent === "navy"   ? "bg-bond-navy text-bond-lime"   : ""}
-                    ${accent === "purple" ? "bg-bond-purple text-white"     : ""}
-                  `}>{initials}</div>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-black bg-bond-navy text-white shrink-0">
+                    {initials}
+                  </div>
                   <div>
                     <div className="font-bold text-bond-navy text-sm">{name}</div>
                     <div className="text-xs text-bond-gray">{clinic}</div>
@@ -1023,7 +1124,70 @@ export default function Home() {
 
               </motion.div>
             ))}
+          </div>
 
+          {/* Mobile Testimonial Carousel */}
+          <div className="block lg:hidden relative max-w-md mx-auto h-[460px]">
+            <div className="overflow-hidden relative h-full w-full">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentTestimonial}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white rounded-3xl p-8 shadow-sticker border border-slate-100 flex flex-col h-full absolute inset-0"
+                >
+                  {/* Quotation watermark background */}
+                  <div className="absolute top-6 right-8 text-8xl font-black text-bond-navy opacity-10 select-none pointer-events-none font-serif leading-none">
+                    &ldquo;
+                  </div>
+
+                  {/* Stars */}
+                  <div className="flex gap-0.5 mb-4">
+                    {Array.from({ length: testimonials[currentTestimonial].rating }).map((_, i) => (
+                      <svg key={i} className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+
+                  {/* Quote text */}
+                  <p className="text-bond-gray text-sm leading-relaxed flex-1 mb-6 italic">
+                    &ldquo;{testimonials[currentTestimonial].quote}&rdquo;
+                  </p>
+
+                  {/* Service tag */}
+                  <div className="inline-block text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full mb-4 w-fit bg-bond-lime/20 text-bond-navy">
+                    {testimonials[currentTestimonial].service}
+                  </div>
+
+                  {/* Author row */}
+                  <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-black bg-bond-navy text-white shrink-0">
+                      {testimonials[currentTestimonial].initials}
+                    </div>
+                    <div>
+                      <div className="font-bold text-bond-navy text-sm">{testimonials[currentTestimonial].name}</div>
+                      <div className="text-xs text-bond-gray">{testimonials[currentTestimonial].clinic}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Navigation Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                    currentTestimonial === index ? "bg-bond-navy w-6" : "bg-slate-300"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Trust strip */}
@@ -1060,6 +1224,9 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* Subtle Separator */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
       {/* ── Section 7: Final CTA ── */}
       <section className="py-24 px-6 bg-bond-navy relative overflow-hidden">
@@ -1129,13 +1296,13 @@ export default function Home() {
               rel="noopener noreferrer"
             >
               <motion.div
-                whileHover={{ scale: 1.04, rotate: -1 }}
-                whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-3 bg-bond-lime text-bond-navy px-8 py-4 rounded-xl font-black text-lg shadow-sticker cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-3 bg-bond-lime text-bond-navy px-8 py-4 rounded-xl font-black text-lg shadow-sticker cursor-pointer animate-whatsapp-pulse"
               >
                 {/* WhatsApp icon */}
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.665.989 3.3 1.503 4.94 1.505 5.548 0 10.063-4.515 10.066-10.066.002-2.69-1.047-5.216-2.951-7.121-1.905-1.905-4.43-2.956-7.124-2.959-5.553 0-10.07 4.515-10.074 10.068-.002 1.838.482 3.633 1.403 5.221l-.986 3.6 3.693-.969zm13.125-6.52c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.669.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.199 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z" />
                 </svg>
                 Book Your Free Call
               </motion.div>
@@ -1252,12 +1419,28 @@ export default function Home() {
             <p>© 2026 Invictus AI. Built for dental clinics across India.</p>
             <div className="flex gap-6">
               <a href="https://invictusai.site" target="_blank" rel="noopener noreferrer" className="hover:text-bond-lime transition-colors">invictusai.site</a>
-              <a href="https://invictus-ai.in" target="_blank" rel="noopener noreferrer" className="hover:text-bond-lime transition-colors">invictus-ai.in</a>
             </div>
           </div>
 
         </div>
       </footer>
+
+      {/* Scroll to Top Trigger */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-6 left-6 z-[999] bg-white border border-slate-100 text-bond-navy p-3 rounded-xl shadow-sticker hover:bg-slate-50 transition-colors flex items-center justify-center cursor-pointer font-bold border-2"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+            </svg>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
