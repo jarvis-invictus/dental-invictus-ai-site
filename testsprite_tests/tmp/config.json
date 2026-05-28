@@ -1,0 +1,19 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "loginUser": "sahilbagul7641@gmail.com",
+  "loginPassword": "pass123",
+  "executionArgs": {
+    "projectName": "Claude's website",
+    "projectPath": "/Users/sahilbagul/Desktop/s/Anti-gravity/_sandbox/our website/Claude's website",
+    "testIds": [],
+    "additionalInstruction": "",
+    "envs": {
+      "API_KEY": "sk-user-zhYoxdMkm1GSAtj1eM3h1UOyOGFwQqZyegGF7MfIcvNQ_qdh9G5g48uLU-whpJIcgDmaRGicpeXVctFLBRNjC5tKGu6gchA1Cc5mv9HW-iwtf1Tib3dQYkgjpcz83GP1CWU"
+    }
+  },
+  "serverPort": 55379,
+  "proxy": "http://85d89c5e-fc78-4dcd-a820-fb2fa1563cf0:nSdYkK6ZCLr6gOYIEW5usrLSe3C0eZsz@tun.testsprite.com:8080"
+}

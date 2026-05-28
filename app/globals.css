@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bond-lime: #ccff00;
+  --color-bond-purple: #d946ef;
+  --color-bond-cyan: #06b6d4;
+  --color-bond-orange: #f97316;
+  --color-bond-pink: #ec4899;
+  --color-bond-navy: #0f172a;
+  --color-bond-gray: #64748b;
+
+  --shadow-sticker: 4px 4px 0px 0px rgba(0, 0, 0, 0.1);
+  --shadow-sticker-hover: 8px 8px 0px 0px rgba(0, 0, 0, 0.15);
+  --shadow-sticker-lime: 8px 8px 0px 0px #ccff00;
+  --shadow-sticker-purple: 8px 8px 0px 0px #d946ef;
+  --shadow-sticker-cyan: 8px 8px 0px 0px #06b6d4;
+
+  --font-handwriting: var(--font-handwriting);
+  --font-sans: var(--font-inter);
+}
+
+@layer base {
+  body {
+    /* Clean Light Grid */
+    background-image:
+      linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Vibrant Stickers */
+  .bond-card {
+    background: white;
+    border: 1px solid rgba(15, 23, 42, 0.05);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .bond-card:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  /* Paper Curl Effect for Green Notes */
+  .curl-lime {
+    position: relative;
+    border-bottom-right-radius: 0 !important;
+  }
+
+  .curl-lime::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, transparent 50%, rgba(0, 0, 0, 0.2) 50%);
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 4px;
+    background-color: #b3e600;
+    /* bond-lime darken roughly */
+    box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.1);
+  }
+}

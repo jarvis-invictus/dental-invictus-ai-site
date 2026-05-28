@@ -1,0 +1,76 @@
+{
+    "tech_stack": [
+        "TypeScript",
+        "Next.js",
+        "TailwindCSS",
+        "React"
+    ],
+    "features": [
+        {
+            "name": "Navbar",
+            "description": "Navigation bar component for site navigation.",
+            "files": [
+                "components/Navbar.tsx"
+            ]
+        },
+        {
+            "name": "Hero/Landing",
+            "description": "Main landing page content.",
+            "files": [
+                "app/page.tsx",
+                "app/layout.tsx",
+                "app/globals.css"
+            ]
+        },
+        {
+            "name": "ProcessTimeline",
+            "description": "Component showing the process timeline.",
+            "files": [
+                "components/ProcessTimeline.tsx"
+            ]
+        },
+        {
+            "name": "ServiceExpansion",
+            "description": "Component for expanding service details.",
+            "files": [
+                "components/ServiceExpansion.tsx",
+                "components/ServiceGrid.tsx"
+            ]
+        },
+        {
+            "name": "Testimonials",
+            "description": "Component for displaying client testimonials.",
+            "files": [
+                "components/Testimonials.tsx"
+            ]
+        },
+        {
+            "name": "UseCases",
+            "description": "Component for displaying use cases for the product.",
+            "files": [
+                "components/UseCases.tsx"
+            ]
+        },
+        {
+            "name": "WhoWeAre",
+            "description": "Component for the 'Who We Are' section.",
+            "files": [
+                "components/WhoWeAre.tsx"
+            ]
+        },
+        {
+            "name": "Footer",
+            "description": "Footer component with links and copyright.",
+            "files": [
+                "components/Footer.tsx"
+            ]
+        },
+        {
+            "name": "Utils",
+            "description": "Helper utility functions.",
+            "files": [
+                "lib/utils.ts"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,519 @@
+[
+  {
+    "id": "TC001",
+    "title": "Navbar Fixed Position and Dynamic Transparency",
+    "description": "Verify that the navbar stays fixed at the top during scrolling and its background transparency changes dynamically based on scroll position on desktop and mobile devices.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the homepage on desktop viewport."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the navbar is fixed at the top of the viewport initially."
+      },
+      {
+        "type": "action",
+        "description": "Scroll down the page slowly."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the navbar background transitions from transparent to opaque dynamically."
+      },
+      {
+        "type": "action",
+        "description": "Resize viewport to mobile."
+      },
+      {
+        "type": "action",
+        "description": "Click the hamburger menu to toggle navigation links."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the hamburger menu toggles the navigation drawer open and close correctly."
+      },
+      {
+        "type": "action",
+        "description": "Scroll the mobile view to check the navbar remains fixed."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm navbar remains fixed at the top in mobile view during scrolling."
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Smooth Internal Navigation and External Booking Links",
+    "description": "Ensure clicking internal navigation links scrolls smoothly to correct sections and external CTAs open LeadConnector booking page in new tab without errors.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "On homepage, click each link in the navbar (Who We Are, Services, Use Cases, How We Work, Client Stories, Contact)."
+      },
+      {
+        "type": "assertion",
+        "description": "Each click smoothly scrolls to the corresponding page section with correct positioning."
+      },
+      {
+        "type": "action",
+        "description": "Within the Services section or footer, click on booking call-to-action buttons."
+      },
+      {
+        "type": "assertion",
+        "description": "Each booking CTA opens the LeadConnector booking page in a new browser tab/window."
+      },
+      {
+        "type": "assertion",
+        "description": "No console errors or page load issues occur on external links."
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Hero Section Animation Rendering",
+    "description": "Validate that the animated floating cards, background blobs, headline, taglines, and call-to-action buttons render and animate correctly on desktop, tablet, and mobile devices.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load homepage on desktop, tablet, and mobile viewport sizes."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all animated floating visual elements appear with smooth animations and no visual glitches."
+      },
+      {
+        "type": "assertion",
+        "description": "Check headline, taglines, and call-to-action buttons are visible, correctly styled, and responsive."
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Who We Are Section Animation and Stats",
+    "description": "Verify the 'Who We Are' section includes the animated terminal visual, branded decorative elements and that stats badges animate with spring effect when entering viewport.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Scroll to the 'Who We Are' section on the homepage."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the terminal animation is visible and functional."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify branded decorative elements display correctly."
+      },
+      {
+        "type": "action",
+        "description": "Observe the stats badges as they enter the viewport."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that badges animate in with spring animations as specified."
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Services Grid Display and Modal Functionality",
+    "description": "Ensure all seven service cards display with correct colors, titles, and icons. Clicking service cards or footer service links opens the expansion modal with smooth animation, correct content, and accessibility compliance.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Verify presence of seven service cards with correct titles, colors, and icons on the Services grid."
+      },
+      {
+        "type": "action",
+        "description": "Click each service card."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the detailed Service Expansion modal opens with smooth animations."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify modal content matches challenge, solution, execution plan, and expected outcomes for the selected service."
+      },
+      {
+        "type": "action",
+        "description": "Use keyboard navigation to focus and close the modal using 'Esc' key and close button."
+      },
+      {
+        "type": "assertion",
+        "description": "Modal closes properly and focus is returned to the triggering element."
+      },
+      {
+        "type": "action",
+        "description": "On footer, click service links."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify modal opens with correct content in same manner."
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Service Expansion Modal Responsiveness and Scroll",
+    "description": "Validate the service expansion modal is scrollable on smaller screens, its animations are smooth, and accessibility features such as ARIA labels and keyboard traps function correctly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open a service expansion modal on a small viewport (mobile)."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify modal content is scrollable when it exceeds viewport height."
+      },
+      {
+        "type": "assertion",
+        "description": "Check smooth open and close animations."
+      },
+      {
+        "type": "action",
+        "description": "Use keyboard to navigate inside the modal."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm focus is trapped within modal and ARIA labels describe modal contents."
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Use Cases Tabbed Interface Functionality and Animation",
+    "description": "Check that tabs corresponding to services switch content with smooth animated transitions, pulse indicator on active tab, and correct stats and bullet points are displayed per tab.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Use Cases section."
+      },
+      {
+        "type": "action",
+        "description": "Click each Use Cases tab in turn."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify content updates with smooth animations and no jarring transitions."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm a pulse indicator highlights the active tab."
+      },
+      {
+        "type": "assertion",
+        "description": "Each tab displays correct practical benefits, stats, and bullet points."
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Process Timeline Display and Animation",
+    "description": "Verify the process timeline displays six steps with icons, color-coded correctly, and the horizontal connector line animates properly on desktop screens.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Process Timeline section."
+      },
+      {
+        "type": "assertion",
+        "description": "Check presence of six framework steps with respective icons and distinct colors."
+      },
+      {
+        "type": "assertion",
+        "description": "On desktop view, observe the horizontal connector line animates smoothly."
+      },
+      {
+        "type": "action",
+        "description": "Click the strategy call CTAs within the timeline."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm CTAs open external booking page in new tab."
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Client Stories Carousel Auto-Rotation and Controls",
+    "description": "Validate the client stories carousel auto-rotates every six seconds, pauses on hover, and manual navigation arrows and dots respond correctly with no accessibility issues.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the Client Stories section."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the carousel auto-rotates to the next client every six seconds."
+      },
+      {
+        "type": "action",
+        "description": "Hover the carousel with mouse."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify auto-rotation pauses while hovered."
+      },
+      {
+        "type": "action",
+        "description": "Click the next/previous arrows and pagination dots."
+      },
+      {
+        "type": "assertion",
+        "description": "Carousel responds by navigating to selected client story correctly."
+      },
+      {
+        "type": "action",
+        "description": "Test keyboard keyboard navigation for carousel controls."
+      },
+      {
+        "type": "assertion",
+        "description": "Focus management and ARIA labels are present for accessibility."
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Footer Links and Service Modal Triggering",
+    "description": "Check that footer service links trigger scroll and open corresponding service expansion modals. Contact and legal links navigate correctly or show expected placeholders.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Scroll to page footer."
+      },
+      {
+        "type": "action",
+        "description": "Click each service link in the footer."
+      },
+      {
+        "type": "assertion",
+        "description": "Page scrolls if necessary and the corresponding service modal opens with correct content."
+      },
+      {
+        "type": "action",
+        "description": "Click contact information links (email, phone)."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify correct action is triggered (mailto:, tel:) or a contact page is navigated."
+      },
+      {
+        "type": "action",
+        "description": "Click legal links."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm legal placeholders load or show expected content."
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "SEO Meta Tags, Open Graph, and JSON-LD Validity",
+    "description": "Ensure SEO meta tags, Open Graph tags, and schema.org JSON-LD structured data are present, complete, and valid according to Google standards.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load homepage and inspect page head elements."
+      },
+      {
+        "type": "assertion",
+        "description": "Check presence and correctness of meta title, description, keywords, and robots meta tags."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify Open Graph tags (og:title, og:description, og:image) are present and correctly populated."
+      },
+      {
+        "type": "action",
+        "description": "Validate schema.org JSON-LD structured data using Google Structured Data Testing Tool or Lighthouse."
+      },
+      {
+        "type": "assertion",
+        "description": "No errors reported and all required fields are correctly formatted."
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Sitemap.xml and robots.txt Accessibility",
+    "description": "Verify that sitemap.xml and robots.txt files are publicly accessible and configured properly without disallowing indexation of main pages.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Request /sitemap.xml URL."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm sitemap file is accessible, well-formed XML, lists expected pages."
+      },
+      {
+        "type": "action",
+        "description": "Request /robots.txt URL."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify robots.txt is accessible and does not block critical pages from crawling."
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Page Performance Metrics and No Layout Shifts",
+    "description": "Confirm homepage performance meets Lighthouse metrics with scores ≥ 90, fast contentful paint times, and no cumulative layout shifts during load or interaction.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Run Lighthouse performance audit on homepage."
+      },
+      {
+        "type": "assertion",
+        "description": "Scores in Performance, Accessibility, SEO, and Best Practices categories are 90 or above."
+      },
+      {
+        "type": "assertion",
+        "description": "First and largest contentful paint times are within acceptable fast thresholds."
+      },
+      {
+        "type": "action",
+        "description": "Interact with page elements causing visual changes (e.g., scroll, open modals)."
+      },
+      {
+        "type": "assertion",
+        "description": "No unexpected layout shifts or visual jank observed."
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Accessibility Compliance for Keyboard Navigation and Focus Indicators",
+    "description": "Ensure full keyboard navigation throughout the website, visible focus indicators on interactive controls, proper ARIA labels on modals, tabs, carousel controls, and compliance with color contrast standards.",
+    "category": "accessibility",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate the entire homepage using keyboard only (Tab, Shift+Tab, Enter, Space)."
+      },
+      {
+        "type": "assertion",
+        "description": "All interactive elements including navigation, modals, tabs, and carousels are reachable and operable."
+      },
+      {
+        "type": "assertion",
+        "description": "Visible and distinct focus outlines appear on focused elements."
+      },
+      {
+        "type": "assertion",
+        "description": "ARIA labels and roles correctly describe modals, tabs, carousel controls, and other landmarks."
+      },
+      {
+        "type": "action",
+        "description": "Run automated accessibility tools (e.g., axe-core) to scan pages."
+      },
+      {
+        "type": "assertion",
+        "description": "No critical or serious accessibility issues reported."
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Responsive Layout and Interaction Consistency",
+    "description": "Validate the website layout adapts correctly and consistently across mobile, tablet, and desktop breakpoints with no horizontal scroll, overlapping or clipped elements, and consistent clickable areas.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Test homepage and key sections (Navbar, Hero, Services, Use Cases, Timeline, Client Stories, Footer) on multiple viewport sizes."
+      },
+      {
+        "type": "assertion",
+        "description": "Layout adjusts correctly with elements repositioning as expected."
+      },
+      {
+        "type": "assertion",
+        "description": "No horizontal overflow or scrollbars appear."
+      },
+      {
+        "type": "assertion",
+        "description": "All interactive elements remain fully clickable and visually clear across devices."
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "External Links Open in New Tabs Without Errors",
+    "description": "Confirm all external links such as to the booking platform and client websites open in new browser tabs without errors or navigation issues.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Click all external links present in booking CTAs and client story references."
+      },
+      {
+        "type": "assertion",
+        "description": "Each link opens in a new tab/window."
+      },
+      {
+        "type": "assertion",
+        "description": "No errors or content loading issues occur in the new tabs."
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Google Tag Manager and Google Search Console Integration",
+    "description": "Validate that Google Tag Manager and Google Search Console scripts load on the page without console errors and track page views as expected.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open homepage and observe browser console."
+      },
+      {
+        "type": "assertion",
+        "description": "No errors or warnings related to GTM or Search Console scripts."
+      },
+      {
+        "type": "action",
+        "description": "Use network monitoring tool to confirm GTM and Search Console requests are sent."
+      },
+      {
+        "type": "assertion",
+        "description": "Requests for GTM and Search Console tracking appear correctly without failed status."
+      }
+    ]
+  }
+]
