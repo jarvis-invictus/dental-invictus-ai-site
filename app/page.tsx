@@ -93,8 +93,8 @@ export default function Home() {
                   </div>
                   <span className="font-bold text-xs uppercase tracking-wider text-bond-gray">Performance</span>
                 </div>
-                <div className="text-4xl font-black text-bond-navy mb-1">+34</div>
-                <div className="text-xs text-bond-gray font-bold">New Patients This Month</div>
+                <div className="text-4xl font-black text-bond-navy mb-1">30+</div>
+                <div className="text-xs text-bond-gray font-bold">New Patients / Month</div>
               </motion.div>
 
               {/* Float Card 2: Navy Background - Google Reviews */}
@@ -105,12 +105,12 @@ export default function Home() {
               >
                 <div className="flex justify-between items-center mb-4">
                   <span className="font-bold text-xs uppercase tracking-wider text-bond-lime">Trust Score</span>
-                  <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">Live Sync</span>
+                  <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">Target</span>
                 </div>
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="text-4xl font-black text-white">⭐ 4.9</div>
+                  <div className="text-4xl font-black text-white">4.9★</div>
                 </div>
-                <div className="text-xs text-slate-300 font-medium">Google Reviews — 150+ Verified Ratings</div>
+                <div className="text-xs text-slate-300 font-medium">Average Google Rating — Our Benchmark</div>
               </motion.div>
 
               {/* Float Card 3: Purple Shadow - Appointments Booked */}
@@ -127,8 +127,8 @@ export default function Home() {
                   </div>
                   <span className="font-bold text-xs uppercase tracking-wider text-bond-gray">Capacity</span>
                 </div>
-                <div className="text-4xl font-black text-bond-navy mb-1">127</div>
-                <div className="text-xs text-bond-gray font-bold">Appointments Booked This Month</div>
+                <div className="text-2xl font-black text-bond-navy mb-1 leading-tight">Full Calendar</div>
+                <div className="text-xs text-bond-gray font-bold">Appointment Capacity — The Goal</div>
               </motion.div>
             </div>
           </div>
@@ -862,9 +862,9 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
           >
             {[
-              { value: "12+", label: "Dental clinics", accent: "lime" },
-              { value: "4.9★", label: "Average Google rating", accent: "navy" },
-              { value: "340+", label: "New patients generated", accent: "cyan" },
+              { value: "Dental", label: "Only — we don't do general", accent: "lime" },
+              { value: "4.9★", label: "Google rating we target", accent: "navy" },
+              { value: "30+", label: "New patients/month target", accent: "cyan" },
               { value: "2 wks", label: "Average setup time", accent: "purple" },
             ].map(({ value, label, accent }, i) => (
               <motion.div
@@ -898,8 +898,8 @@ export default function Home() {
             {[
               {
                 quote: "Before Invictus AI, I had maybe 8–10 new patients a month, mostly from referrals. Within 60 days of running their Meta ads campaign, I was getting 30+ new enquiries a month. The WhatsApp messages were constant. I had to hire a second receptionist.",
-                name: "Dr. Priya Kulkarni",
-                clinic: "SmileFirst Dental Clinic, Pune",
+                name: "Dr. P.K.",
+                clinic: "Dental Clinic Owner, Pune",
                 service: "Meta Ads + Content",
                 rating: 5,
                 initials: "PK",
@@ -908,8 +908,8 @@ export default function Home() {
               },
               {
                 quote: "My Google rating went from 3.8 stars with 12 reviews to 4.9 stars with 80+ reviews in 4 months. I did not do anything — they set up the automated system and patients started leaving reviews on their own. Now I rank above the clinic that has been around for 20 years.",
-                name: "Dr. Amit Desai",
-                clinic: "CarePoint Dental, Nashik",
+                name: "Dr. A.D.",
+                clinic: "Dental Clinic Owner, Nashik",
                 service: "Reputation Management",
                 rating: 5,
                 initials: "AD",
@@ -918,8 +918,8 @@ export default function Home() {
               },
               {
                 quote: "My old website was built by a cousin. It looked terrible on mobile and had no booking option. Sahil rebuilt everything in 10 days — clean design, Google Maps integrated, WhatsApp button. Within the first week the site was live, I got 3 appointment inquiries from Google search.",
-                name: "Dr. Snehal Pawar",
-                clinic: "Pawar Dental Care, Aurangabad",
+                name: "Dr. S.P.",
+                clinic: "Dental Clinic Owner, Aurangabad",
                 service: "Clinic Website",
                 rating: 5,
                 initials: "SP",
