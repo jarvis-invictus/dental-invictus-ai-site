@@ -334,7 +334,7 @@ export default function Home() {
 
                   {/* Count-up big number */}
                   <div className="mb-7">
-                    <CountUpNumber from={0} to={14} delay={0.9} className="text-7xl font-black text-white leading-none mb-2" />
+                    <CountUpNumber from={0} to={16} delay={0.9} className="text-7xl font-black text-white leading-none mb-2" />
                     <motion.p
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -733,8 +733,8 @@ export default function Home() {
             Four core growth systems. Built specifically for dental clinics.
           </motion.p>
 
-          {/* 4-Column Pricing Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+          {/* 2-Column Pricing Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 items-stretch">
 
             {/* Card 1 — Website */}
             <motion.div
