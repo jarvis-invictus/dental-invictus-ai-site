@@ -474,8 +474,8 @@ export default function Home() {
               {/* Tape strip */}
               <div className="absolute -top-4 left-1/2 w-32 h-8 bg-white/40 backdrop-blur-sm -translate-x-1/2 rotate-2 shadow-sm border border-white/50 z-20" />
               <div className="bg-bond-lime px-8 py-4 shadow-sticker transform rotate-[-1deg]">
-                <h2 className="text-4xl md:text-5xl font-black uppercase text-bond-navy tracking-tight">
-                  Three Problems Every Dental Clinic Owner Recognises Immediately
+                <h2 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase text-bond-navy tracking-tight leading-tight">
+                  Every Clinic. Same Struggle.
                 </h2>
               </div>
             </motion.div>
@@ -723,7 +723,7 @@ export default function Home() {
             >
               <div className="absolute -top-4 left-1/2 w-32 h-8 bg-white/40 backdrop-blur-sm -translate-x-1/2 rotate-2 shadow-sm border border-white/50 z-20" />
               <div className="bg-bond-lime px-8 py-4 shadow-sticker transform rotate-[-1deg]">
-                <h2 className="text-4xl md:text-5xl font-black uppercase text-bond-navy tracking-tight">
+                <h2 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase text-bond-navy tracking-tight leading-tight">
                   Our Three Services
                 </h2>
               </div>
@@ -1031,7 +1031,7 @@ export default function Home() {
             >
               <div className="absolute -top-4 left-1/2 w-32 h-8 bg-slate-100/60 backdrop-blur-sm -translate-x-1/2 rotate-2 shadow-sm border border-white/50 z-20" />
               <div className="bg-bond-lime px-8 py-4 shadow-sticker transform rotate-[-1deg]">
-                <h2 className="text-4xl md:text-5xl font-black uppercase text-bond-navy tracking-tight">
+                <h2 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase text-bond-navy tracking-tight leading-tight">
                   How It Works
                 </h2>
               </div>
@@ -1193,7 +1193,7 @@ export default function Home() {
             >
               <div className="absolute -top-4 left-1/2 w-32 h-8 bg-white/40 backdrop-blur-sm -translate-x-1/2 rotate-2 shadow-sm border border-white/50 z-20" />
               <div className="bg-bond-lime px-8 py-4 shadow-sticker transform rotate-[-1deg]">
-                <h2 className="text-4xl md:text-5xl font-black uppercase text-bond-navy tracking-tight">
+                <h2 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase text-bond-navy tracking-tight leading-tight">
                   What Our Clients Say
                 </h2>
               </div>
@@ -1360,7 +1360,7 @@ export default function Home() {
             >
               <div className="absolute -top-4 left-1/2 w-32 h-8 bg-slate-100/60 backdrop-blur-sm -translate-x-1/2 rotate-2 shadow-sm border border-white/50 z-20" />
               <div className="bg-bond-lime px-8 py-4 shadow-sticker transform rotate-[-1deg]">
-                <h2 className="text-4xl md:text-5xl font-black uppercase text-bond-navy tracking-tight">
+                <h2 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase text-bond-navy tracking-tight leading-tight">
                   Common Questions
                 </h2>
               </div>
@@ -1561,13 +1561,13 @@ export default function Home() {
                   +91 91564 67641
                 </a>
                 <a
-                  href="mailto:sahil@invictus-ai.in"
+                  href="mailto:contact@invictus-ai.in"
                   className="flex items-center gap-3 text-slate-400 hover:text-bond-lime transition-colors text-sm group"
                 >
                   <svg className="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                   </svg>
-                  sahil@invictus-ai.in
+                  contact@invictus-ai.in
                 </a>
                 <p className="flex items-center gap-3 text-slate-400 text-sm">
                   <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
