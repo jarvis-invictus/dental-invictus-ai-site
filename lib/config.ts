@@ -11,7 +11,7 @@ export const siteConfig = {
     },
     contact: {
         phone: "+91 9699577641",
-        email: "sahilbagul7641@gmail.com",
+        email: "contact@invictus-ai.in",
         address: "India"
     }
 };

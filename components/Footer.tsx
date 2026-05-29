@@ -19,7 +19,7 @@ export default function Footer() {
                             />
                         </Link>
                         <p className="text-slate-500 max-w-sm mb-6 leading-relaxed font-medium">
-                            Custom AI solutions that automate operations, engage customers intelligently, and scale with your business.
+                            Patient acquisition and automated growth systems built specifically for dental clinics.
                         </p>
 
                     </div>
@@ -29,17 +29,14 @@ export default function Footer() {
                         <h4 className="text-bond-navy font-bold mb-6 uppercase tracking-wider text-sm">Services</h4>
                         <ul className="space-y-3">
                             {[
-                                { name: "AI Consulting & Strategy", slug: "ai-consulting-strategy" },
-                                { name: "Web Design & Development", slug: "web-design-development" },
-                                { name: "AI Conversational Agents", slug: "ai-conversational-agents" },
-                                { name: "Voice AI Solutions", slug: "voice-ai-solutions" },
-                                { name: "WhatsApp Business Automation", slug: "whatsapp-automation" },
-                                { name: "AI Automation Workflows", slug: "ai-automation-workflows" },
-                                { name: "Digital Marketing", slug: "digital-marketing" },
+                                { name: "Clinic Website", slug: "#services" },
+                                { name: "Meta Ads + Content", slug: "#services" },
+                                { name: "Website Chatbot", slug: "#services" },
+                                { name: "Reputation Management", slug: "#services" },
                             ].map((item) => (
                                 <li key={item.name}>
                                     <Link
-                                        href={`/services/${item.slug}`}
+                                        href={item.slug}
                                         className="text-slate-500 hover:text-bond-navy transition-colors text-sm font-medium text-left focus:outline-none focus:text-bond-navy focus:underline"
                                     >
                                         {item.name}
@@ -72,8 +69,9 @@ export default function Footer() {
                 <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 uppercase tracking-wider font-bold">
                     <p>&copy; {new Date().getFullYear()} Invictus AI. All rights reserved.</p>
                     <div className="flex gap-6">
-                        <Link href="#" className="hover:text-bond-navy transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-bond-navy transition-colors">Terms of Service</Link>
+                        <Link href="/privacy-policy" className="hover:text-bond-navy transition-colors">Privacy Policy</Link>
+                        <Link href="/terms" className="hover:text-bond-navy transition-colors">Terms of Service</Link>
+                        <Link href="/data-deletion" className="hover:text-bond-navy transition-colors">Data Deletion</Link>
                     </div>
                 </div>
             </div>
