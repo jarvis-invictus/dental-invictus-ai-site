@@ -262,25 +262,25 @@ export default function PremiumKitBuilder() {
                 
                 <AnimatePresence>
                   {isWebsiteActive && (
-                    <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white">
+                    <motion.div key="summary-website" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white">
                       <span>Website ({websiteTier})</span>
                       <span className="font-bold">₹{websitePrice.toLocaleString()}</span>
                     </motion.div>
                   )}
                   {isAdsActive && (
-                    <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white">
+                    <motion.div key="summary-ads" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white">
                       <span>Meta Ads ({postsCount}p, {reelsCount}r)</span>
                       <span className="font-bold">₹{adsPrice.toLocaleString()}/mo</span>
                     </motion.div>
                   )}
                   {isBotActive && (
-                    <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white">
+                    <motion.div key="summary-bot" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white">
                       <span>Chatbot</span>
                       <span className="font-bold">₹{botPrice.toLocaleString()}/mo</span>
                     </motion.div>
                   )}
                   {isRepActive && (
-                    <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white">
+                    <motion.div key="summary-rep" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white">
                       <span>Reputation</span>
                       <span className="font-bold">₹{repPrice.toLocaleString()}/mo</span>
                     </motion.div>
