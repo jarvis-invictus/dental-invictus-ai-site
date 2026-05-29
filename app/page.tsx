@@ -3,6 +3,7 @@
 
 import Navbar from "@/components/Navbar";
 import PremiumKitBuilder from "@/components/PremiumKitBuilder";
+import Link from "next/link";
 
 
 import { Button } from "@/components/ui/Button";
@@ -742,195 +743,65 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0 }}
-              className="bg-white rounded-3xl shadow-sticker-lime border border-slate-100 overflow-hidden flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#ccff00] transition-all duration-300"
+              className="bg-white rounded-3xl shadow-sticker-lime border border-slate-100 p-8 flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#ccff00] transition-all duration-300"
             >
-              {/* Card Header */}
-              <div className="bg-bond-lime p-6">
-                <div className="text-xs font-bold uppercase tracking-widest text-bond-navy/60 mb-2">Service 01</div>
+              <div className="flex justify-between items-start mb-4">
                 <h3 className="text-2xl font-black text-bond-navy">Clinic Website</h3>
-                <p className="text-bond-navy/70 text-sm mt-1 font-medium">One-time project fee</p>
+                <span className="bg-bond-lime/20 text-bond-navy text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shrink-0 ml-2">From ₹7K</span>
               </div>
-
-              {/* Card Body */}
-              <div className="p-6 flex flex-col flex-1">
-                <p className="text-bond-gray text-sm leading-relaxed mb-6">
-                  A conversion-focused clinic website designed to turn local visitors into booked appointments — not just a digital presence, but a patient acquisition tool.
-                </p>
-
-                {/* Deliverables */}
-                <ul className="space-y-3 mb-8 flex-1">
-                  {[
-                    "Mobile-first, fast-loading design",
-                    "Appointment booking integration",
-                    "Google Maps + local SEO setup",
-                    "Services, doctor profile, and gallery pages",
-                    "WhatsApp chat button embedded",
-                    "3 revision rounds included",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-bond-navy">
-                      <svg className="w-5 h-5 text-bond-lime shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Pricing */}
-                <div className="border-t border-slate-100 pt-5 mb-5">
-                  <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-2">Starting from</div>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-3xl font-black text-bond-navy">₹7,000</span>
-                    <span className="text-bond-gray text-sm font-medium">/ project</span>
-                  </div>
-                  <div className="text-xs text-bond-gray mt-1">Premium: ₹13,000</div>
-                </div>
-
-                {/* CTA */}
-                <a
-                  href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'm%20interested%20in%20a%20clinic%20website%20for%20my%20dental%20practice."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full"
-                >
-                  <Button variant="lime" size="md" className="w-full group-hover:scale-105 transition-all duration-300">
-                    Get a Website Quote
-                  </Button>
-                </a>
-              </div>
+              <p className="text-bond-gray text-sm leading-relaxed mb-8 flex-1">
+                A conversion-focused clinic website designed to turn local visitors into booked appointments — not just a digital presence, but a patient acquisition tool.
+              </p>
+              <Link href="/services/clinic-website" className="w-full block">
+                <Button variant="outline" size="md" className="w-full border-bond-lime text-bond-navy hover:bg-bond-lime transition-colors">
+                  Learn More
+                </Button>
+              </Link>
             </motion.div>
 
-            {/* Card 2 — Meta Ads + Content (Featured) */}
+            {/* Card 2 — Meta Ads + Content */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="bg-bond-navy rounded-3xl shadow-2xl border border-bond-navy/50 overflow-hidden flex flex-col relative group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#0f172a] transition-all duration-300"
+              className="bg-bond-navy rounded-3xl shadow-2xl border border-bond-navy/50 p-8 flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#0f172a] transition-all duration-300 relative"
             >
-              {/* Most Popular badge */}
-              <div className="absolute top-4 right-4 text-bond-navy text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sticker animate-shimmer">
-                Most Popular
+              <div className="absolute top-4 right-4 text-bond-navy text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sticker animate-shimmer bg-bond-lime">Most Popular</div>
+              <div className="flex justify-between items-start mb-4 mt-2">
+                <h3 className="text-2xl font-black text-white pr-20">Meta Ads + Content</h3>
+                <span className="bg-white/10 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shrink-0 ml-2">₹4K/mo</span>
               </div>
-
-              {/* Card Header */}
-              <div className="bg-white/5 border-b border-white/10 p-6">
-                <div className="text-xs font-bold uppercase tracking-widest text-bond-lime/60 mb-2">Service 02</div>
-                <h3 className="text-2xl font-black text-white">Meta Ads + Content</h3>
-                <p className="text-white/50 text-sm mt-1 font-medium">Monthly retainer</p>
-              </div>
-
-              {/* Card Body */}
-              <div className="p-6 flex flex-col flex-1">
-                <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                  Hyper-local Instagram and Facebook ad campaigns paired with monthly content — reels, posts, and carousels — that position your clinic as the trusted name in your area.
-                </p>
-
-                {/* Deliverables */}
-                <ul className="space-y-3 mb-8 flex-1">
-                  {[
-                    "Monthly Meta ad campaign management",
-                    "4–8 posts + reels per month",
-                    "Ad creative design included",
-                    "Audience targeting — 5km local radius",
-                    "Monthly performance report",
-                    "Ad spend is your own budget (separate)",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-white/90">
-                      <svg className="w-5 h-5 text-bond-lime shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Pricing */}
-                <div className="border-t border-white/10 pt-5 mb-5">
-                  <div className="text-xs font-bold uppercase tracking-widest text-white/40 mb-2">Starting from</div>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-3xl font-black text-white">₹4,000</span>
-                    <span className="text-white/50 text-sm font-medium">/ month</span>
-                  </div>
-                  <div className="text-xs text-white/40 mt-1">Plus content creation (Posts/Reels)</div>
-                </div>
-
-                {/* CTA */}
-                <a
-                  href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'm%20interested%20in%20Meta%20Ads%20and%20content%20management%20for%20my%20dental%20clinic."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full"
-                >
-                  <Button variant="lime" size="md" className="w-full group-hover:scale-105 transition-all duration-300">
-                    Start My Ad Campaign
-                  </Button>
-                </a>
-              </div>
+              <p className="text-slate-300 text-sm leading-relaxed mb-8 flex-1">
+                Hyper-local Instagram and Facebook ad campaigns paired with monthly content that positions your clinic as the trusted name in your area.
+              </p>
+              <Link href="/services/meta-ads" className="w-full block">
+                <Button variant="lime" size="md" className="w-full hover:scale-105 transition-all duration-300">
+                  Learn More
+                </Button>
+              </Link>
             </motion.div>
 
-            {/* Card 3 — Reputation Management */}
+            {/* Card 3 — Chatbot */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white rounded-3xl shadow-sticker-cyan border border-slate-100 overflow-hidden flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#06b6d4] transition-all duration-300"
+              className="bg-white rounded-3xl shadow-sticker-cyan border border-slate-100 p-8 flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#06b6d4] transition-all duration-300"
             >
-              {/* Card Header */}
-              <div className="bg-bond-purple/10 border-b border-bond-purple/20 p-6">
-                <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-2">Service 03</div>
+              <div className="flex justify-between items-start mb-4">
                 <h3 className="text-2xl font-black text-bond-navy">Website Chatbot</h3>
-                <p className="text-bond-gray text-sm mt-1 font-medium">Monthly retainer</p>
+                <span className="bg-bond-purple/20 text-bond-purple text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shrink-0 ml-2">₹3K/mo</span>
               </div>
-
-              {/* Card Body */}
-              <div className="p-6 flex flex-col flex-1">
-                <p className="text-bond-gray text-sm leading-relaxed mb-6">
-                  An AI-powered receptionist that lives on your website, answering patient questions instantly, 24/7, and booking appointments directly into your calendar.
-                </p>
-
-                {/* Deliverables */}
-                <ul className="space-y-3 mb-8 flex-1">
-                  {[
-                    "Custom trained on your clinic data",
-                    "Answers common FAQs instantly",
-                    "Direct calendar booking integration",
-                    "Human handoff when needed",
-                    "Lead capture & qualification",
-                    "24/7 patient support",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-bond-navy">
-                      <svg className="w-5 h-5 text-bond-purple shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Pricing */}
-                <div className="border-t border-slate-100 pt-5 mb-5">
-                  <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-2">Fixed Price</div>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-3xl font-black text-bond-navy">₹3,000</span>
-                    <span className="text-bond-gray text-sm font-medium">/ month</span>
-                  </div>
-                  <div className="text-xs text-bond-gray mt-1">Unlimited conversations included</div>
-                </div>
-
-                {/* CTA */}
-                <a
-                  href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'm%20interested%20in%20a%20website%20chatbot%20for%20my%20dental%20clinic."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full"
-                >
-                  <Button variant="primary" size="md" className="w-full group-hover:scale-105 transition-all duration-300 !bg-bond-purple">
-                    Get an AI Chatbot
-                  </Button>
-                </a>
-              </div>
+              <p className="text-bond-gray text-sm leading-relaxed mb-8 flex-1">
+                An AI-powered receptionist that lives on your website, answering patient questions instantly, 24/7, and booking appointments directly into your calendar.
+              </p>
+              <Link href="/services/ai-chatbot" className="w-full block">
+                <Button variant="outline" size="md" className="w-full border-bond-purple text-bond-purple hover:bg-bond-purple hover:text-white transition-colors">
+                  Learn More
+                </Button>
+              </Link>
             </motion.div>
 
             {/* Card 4 — Reputation Management */}
@@ -939,64 +810,21 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.45 }}
-              className="bg-white rounded-3xl shadow-sticker-cyan border border-slate-100 overflow-hidden flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#f59e0b] transition-all duration-300"
+              className="bg-white rounded-3xl shadow-sticker-cyan border border-slate-100 p-8 flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#f59e0b] transition-all duration-300"
             >
-              {/* Card Header */}
-              <div className="bg-[#f59e0b]/10 border-b border-[#f59e0b]/20 p-6">
-                <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-2">Service 04</div>
-                <h3 className="text-2xl font-black text-bond-navy">Reputation Management</h3>
-                <p className="text-bond-gray text-sm mt-1 font-medium">Monthly retainer</p>
+              <div className="flex justify-between items-start mb-4">
+                <h3 className="text-2xl font-black text-bond-navy pr-4">Reputation Management</h3>
+                <span className="bg-[#f59e0b]/20 text-[#f59e0b] text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shrink-0 ml-2">₹3K/mo</span>
               </div>
-
-              {/* Card Body */}
-              <div className="p-6 flex flex-col flex-1">
-                <p className="text-bond-gray text-sm leading-relaxed mb-6">
-                  Automated Google review generation system that requests feedback from happy patients immediately after their visit — so your star rating grows effortlessly.
-                </p>
-
-                {/* Deliverables */}
-                <ul className="space-y-3 mb-8 flex-1">
-                  {[
-                    "Post-visit automated review requests",
-                    "Google Business Profile management",
-                    "Response to all incoming reviews",
-                    "Monthly review volume report",
-                    "Negative review alert system",
-                    "Online presence monitoring",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-bond-navy">
-                      <svg className="w-5 h-5 text-[#f59e0b] shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Pricing */}
-                <div className="border-t border-slate-100 pt-5 mb-5">
-                  <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-2">Fixed Price</div>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-3xl font-black text-bond-navy">₹3,000</span>
-                    <span className="text-bond-gray text-sm font-medium">/ month</span>
-                  </div>
-                  <div className="text-xs text-bond-gray mt-1">Unlimited review requests</div>
-                </div>
-
-                {/* CTA */}
-                <a
-                  href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'm%20interested%20in%20reputation%20management%20for%20my%20dental%20clinic."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full"
-                >
-                  <Button variant="primary" size="md" className="w-full group-hover:scale-105 transition-all duration-300 !bg-[#f59e0b]">
-                    Automate My Reviews
-                  </Button>
-                </a>
-              </div>
+              <p className="text-bond-gray text-sm leading-relaxed mb-8 flex-1">
+                Automated Google review generation system that requests feedback from happy patients immediately after their visit — so your star rating grows effortlessly.
+              </p>
+              <Link href="/services/reputation-management" className="w-full block">
+                <Button variant="outline" size="md" className="w-full border-[#f59e0b] text-[#f59e0b] hover:bg-[#f59e0b] hover:text-white transition-colors">
+                  Learn More
+                </Button>
+              </Link>
             </motion.div>
-
           </div>
 
           {/* Add-ons Banner Card */}

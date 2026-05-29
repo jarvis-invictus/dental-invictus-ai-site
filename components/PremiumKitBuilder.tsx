@@ -75,6 +75,21 @@ export default function PremiumKitBuilder() {
             Select the exact services you need. Your price updates instantly.
           </p>
         </div>
+        
+        {/* Floating Indicator */}
+        <AnimatePresence>
+          {!isWebsiteActive && !isAdsActive && !isBotActive && !isRepActive && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="flex items-center gap-3 bg-gradient-to-r from-bond-lime to-bond-cyan text-bond-navy px-6 py-3 rounded-full w-fit mb-8 shadow-[0_0_20px_rgba(204,255,0,0.6)] animate-pulse border border-white/50"
+            >
+              <span className="font-black text-sm tracking-wide uppercase">Click a service below to start</span>
+              <svg className="w-5 h-5 text-bond-navy animate-bounce" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" /></svg>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
