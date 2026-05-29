@@ -96,3 +96,40 @@
     scroll-behavior: smooth;
   }
 }
+
+/* Dashboard card float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Glow pulse for the card border */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 30px 0px rgba(204,255,0,0.15), 0 25px 60px -10px rgba(0,0,0,0.5); }
+  50% { box-shadow: 0 0 50px 8px rgba(204,255,0,0.28), 0 25px 60px -10px rgba(0,0,0,0.5); }
+}
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Shimmer sweep for bar chart highlight */
+@keyframes shimmer-sweep {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+.animate-bar-pulse {
+  animation: shimmer-sweep 1.8s ease-in-out infinite;
+}
+
+/* Blink cursor for live indicator */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}

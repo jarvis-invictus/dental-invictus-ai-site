@@ -1,52 +1,36 @@
 "use client";
 
-import dynamic from "next/dynamic";
+
 import Navbar from "@/components/Navbar";
+
 
 import { Button } from "@/components/ui/Button";
 import { ArrowRight, TrendingUp, EyeOff, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { useInView } from "framer-motion";
+import { useState, useEffect } from "react";
 
-interface CountUpProps {
-  from: number;
-  to: number;
-  duration?: number;
-  suffix?: string;
-}
-
-function CountUp({ from, to, duration = 1.5, suffix = "" }: CountUpProps) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
+// Count-up animation component for the dashboard card
+function CountUpNumber({ from, to, delay, className }: { from: number; to: number; delay: number; className?: string }) {
   const [count, setCount] = useState(from);
-
   useEffect(() => {
-    if (!isInView) return;
-    
-    let startTimestamp: number | null = null;
-    const step = (timestamp: number) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
-      const current = progress * (to - from) + from;
-      setCount(current);
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      }
-    };
-    window.requestAnimationFrame(step);
-  }, [isInView, from, to, duration]);
-
-  const displayValue = to % 1 === 0 ? Math.floor(count) : count.toFixed(1);
-
-  return <span ref={ref}>{displayValue}{suffix}</span>;
+    const startTimeout = setTimeout(() => {
+      const duration = 1200;
+      const steps = to - from;
+      const stepTime = duration / steps;
+      let current = from;
+      const timer = setInterval(() => {
+        current += 1;
+        setCount(current);
+        if (current >= to) clearInterval(timer);
+      }, stepTime);
+      return () => clearInterval(timer);
+    }, delay * 1000);
+    return () => clearTimeout(startTimeout);
+  }, [from, to, delay]);
+  return <div className={className}>{count}</div>;
 }
 
-// Dynamic imports to prevent SSR issues and async component conflicts
-const Spline = dynamic(() => import("@splinetool/react-spline"), { 
-  ssr: false,
-  loading: () => <div className="w-full h-full bg-slate-50/5 animate-pulse rounded-3xl" />
-});
+
 
 const testimonials = [
   {
@@ -57,6 +41,7 @@ const testimonials = [
     rating: 5,
     initials: "PK",
     accent: "lime",
+    stat: "30+ leads in 60 days",
   },
   {
     quote: "My Google rating went from 3.8 stars with 12 reviews to 4.9 stars with 80+ reviews in 4 months. I did not do anything — they set up the automated system and patients started leaving reviews on their own. Now I rank above the clinic that has been around for 20 years.",
@@ -66,6 +51,7 @@ const testimonials = [
     rating: 5,
     initials: "AD",
     accent: "navy",
+    stat: "3.8★ → 4.9★ in 4 months",
   },
   {
     quote: "My old website was built by a cousin. It looked terrible on mobile and had no booking option. Sahil rebuilt everything in 10 days — clean design, Google Maps integrated, WhatsApp button. Within the first week the site was live, I got 3 appointment inquiries from Google search.",
@@ -75,12 +61,82 @@ const testimonials = [
     rating: 5,
     initials: "SP",
     accent: "purple",
+    stat: "3 bookings in first week",
   },
 ];
 
+const FAQ_ITEMS = [
+  {
+    q: "How do I get more patients for my dental clinic?",
+    a: "The most effective way is installing a complete patient growth system — a high-converting website, targeted hyper-local Meta Ads (Instagram and Facebook), and automated Google review generation. All three work together to fill your schedule predictably every month.",
+  },
+  {
+    q: "How much does dental clinic marketing cost in India?",
+    a: "At Invictus AI, services start from ₹8,000 for a custom clinic website, ₹8,000/month for hyper-local Meta Ads, and ₹3,000/month for automated Google reputation management. All plans are fully transparent with no lock-in contracts.",
+  },
+  {
+    q: "How do I get more Google reviews for my dental clinic?",
+    a: "Our automated reputation management system sends review requests directly to happy patients via WhatsApp or SMS right after their visit — so you collect genuine 5-star reviews without any manual work from your staff.",
+  },
+  {
+    q: "What is the best way to advertise a dental clinic on Instagram?",
+    a: "Run hyper-local Instagram and Facebook campaigns targeting a 5km radius around your clinic. Feature real patient results, treatment-specific offers, and before/after visuals — this brings in highly qualified local enquiries rather than random clicks.",
+  },
+  {
+    q: "How long does it take to see results from dental clinic marketing?",
+    a: "Our system is fully live in under 2 weeks. Most clinics see enquiries in their first month. We back this with a 60-day guarantee — if you don't hit your target, we keep working free until you do.",
+  },
+];
+
+function FAQAccordion() {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <div className="space-y-3">
+      {FAQ_ITEMS.map((item, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: i * 0.07 }}
+          className="border border-slate-100 rounded-2xl overflow-hidden shadow-sm"
+        >
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-slate-50/80 transition-colors group"
+            aria-expanded={open === i}
+          >
+            <span className="font-bold text-bond-navy text-base leading-snug">{item.q}</span>
+            <span className={`shrink-0 w-7 h-7 rounded-full border-2 border-bond-lime flex items-center justify-center transition-transform duration-300 ${open === i ? "rotate-45 bg-bond-lime" : "bg-white"}`}>
+              <svg className={`w-3.5 h-3.5 ${open === i ? "text-bond-navy" : "text-bond-lime"}`} fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+            </span>
+          </button>
+          <AnimatePresence initial={false}>
+            {open === i && (
+              <motion.div
+                key="content"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="px-6 pb-5 pt-1 text-bond-gray text-sm leading-relaxed border-t border-slate-100 bg-slate-50/40">
+                  {item.a}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -98,164 +154,300 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-24 px-6 relative overflow-hidden">
-        {/* Abstract Blobs */}
-        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-bond-purple/10 rounded-full blur-[80px] -z-10 mix-blend-multiply" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-bond-cyan/10 rounded-full blur-[80px] -z-10 mix-blend-multiply" />
-        <div className="absolute top-40 left-1/3 w-[300px] h-[300px] bg-bond-lime/20 rounded-full blur-[80px] -z-10 mix-blend-multiply" />
+      <section className="pt-28 pb-20 px-6 relative overflow-hidden">
+        {/* Background blobs */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-bond-lime/8 rounded-full blur-[120px] -z-10" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-bond-cyan/8 rounded-full blur-[100px] -z-10" />
 
-        <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center min-h-[600px]">
-          <div>
+        <div className="container mx-auto grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center min-h-[620px]">
+
+          {/* ── LEFT: Copy ── */}
+          <div className="flex flex-col">
+
+            {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0 }}
-              whileHover={{ rotate: -2, scale: 1.05 }}
-              className="inline-block bg-bond-lime text-bond-navy px-4 py-1.5 rounded-lg text-sm font-bold mb-8 shadow-sticker transform -rotate-2 cursor-pointer"
+              transition={{ duration: 0.45, ease: "easeOut" }}
+              className="inline-flex items-center gap-2 self-start mb-7"
             >
-              Dental Clinics Only
+              <span className="bg-bond-lime text-bond-navy px-4 py-1.5 rounded-lg text-sm font-black shadow-sticker transform -rotate-1 tracking-tight">
+                🦷 Dental Clinics Only
+              </span>
             </motion.div>
 
+            {/* Headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-5xl lg:text-6xl font-bold text-bond-navy leading-[1.1] mb-8 tracking-tight text-balance"
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-5xl lg:text-[3.75rem] font-black text-bond-navy leading-[1.08] mb-6 tracking-tight"
             >
-              Word of mouth built your clinic. <br />
-              <span className="relative inline-block px-1 mt-1">
-                <span className="relative z-10 text-bond-navy">A system</span>
-                <span className="absolute bottom-1.5 left-0 w-full h-4 bg-bond-cyan/30 -rotate-1 rounded-sm -z-0"></span>
-              </span> <br />
-              will scale it.
+              15 New Patients.<br />
+              <span className="relative inline-block">
+                <span className="relative z-10">Every Month.</span>
+                <span className="absolute bottom-1 left-0 w-full h-[10px] bg-bond-lime -rotate-1 rounded-sm -z-0 opacity-60" />
+              </span>
+              <br />
+              Guaranteed.
             </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+            {/* Sub — 1 line */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.55, delay: 0.25 }}
+              className="text-lg text-bond-gray leading-relaxed max-w-lg mb-3 font-medium"
             >
-              <p className="text-xl text-bond-gray mb-4 leading-relaxed max-w-lg font-medium">
-                You trained for years to practice dentistry, not chase marketing. We build complete digital growth systems for dental clinics across India — bringing in <strong className="text-bond-navy">30+ new patients every month, consistently.</strong> If we don&apos;t hit targets in 60 days, we work free until we do.
-              </p>
+              We run your Meta ads, website &amp; Google reviews — fully managed. You focus on dentistry.
+            </motion.p>
 
-              {/* Micro disclaimer — visible but not distracting */}
-              <p className="text-[11px] text-bond-gray/50 mb-8 max-w-md leading-relaxed">
-                ∗ Results subject to minimum ad spend of ₹5,000/month and active onboarding participation. Guarantee applies to qualified clinic engagements only. Free continuation support covers the same agreed service scope for up to 30 additional days.
+            {/* Guarantee line + inline disclaimer */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.35 }}
+              className="mb-8"
+            >
+              <p className="text-sm font-bold text-bond-navy flex items-center gap-2 mb-1">
+                <span className="inline-block w-4 h-4 rounded-full bg-bond-lime text-bond-navy text-[10px] flex items-center justify-center font-black shrink-0">✓</span>
+                Results in 60 days — or we keep working, free.
+              </p>
+              <p className="text-[10px] text-bond-gray/45 pl-6 font-normal leading-relaxed">
+                *Requires min. ₹5,000/month ads budget. Free continuation covers same scope, up to 30 days.
               </p>
             </motion.div>
 
+            {/* Proof strip */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 items-start z-10 relative"
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex items-center gap-6 mb-9 pb-9 border-b border-slate-100"
+            >
+              {[
+                { num: "15+", label: "New patients/month" },
+                { num: "4.5★", label: "Avg. Google rating" },
+                { num: "14d", label: "Go-live speed" },
+              ].map((stat, i) => (
+                <div key={i} className="flex flex-col">
+                  <span className="text-2xl font-black text-bond-navy leading-none">{stat.num}</span>
+                  <span className="text-[11px] text-bond-gray font-semibold mt-0.5 whitespace-nowrap">{stat.label}</span>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-3 items-start"
             >
               <a href="https://wa.me/919156467641?text=Hi%20Sahil,%20I'd%20like%20to%20book%20a%20free%20patient%20growth%20audit%20for%20my%20dental%20clinic." target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="shadow-xl shadow-bond-navy/20 flex items-center gap-3 group animate-whatsapp-pulse">
-                  WhatsApp Us
+                  Book Free Audit
                   <div className="bg-bond-lime text-bond-navy rounded-full p-1 group-hover:rotate-45 transition-transform">
-                    <ArrowRight size={18} strokeWidth={3} />
+                    <ArrowRight size={16} strokeWidth={3} />
                   </div>
                 </Button>
               </a>
               <a href="#services">
                 <Button variant="secondary" size="lg">
-                  See Our Work
+                  See Our Services
                 </Button>
               </a>
             </motion.div>
 
-            {/* Trust Line */}
-            <motion.div
+            {/* Trust micro-line */}
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.8 }}
-              className="mt-4 text-xs font-bold text-bond-gray tracking-wide text-left sm:text-center w-full sm:max-w-[400px] pl-1 opacity-80"
+              transition={{ duration: 0.4, delay: 0.65 }}
+              className="mt-4 text-xs text-bond-gray/60 font-medium"
             >
               Free 20-min call · No commitment · Response within 2 hours
+            </motion.p>
+
+            {/* Mobile-only proof pills — the dashboard card above is desktop-only */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.75 }}
+              className="mt-5 flex lg:hidden items-center gap-2 flex-wrap"
+            >
+              {[
+                { val: "16", label: "leads this month", cls: "bg-bond-navy text-white" },
+                { val: "4.8★", label: "Google rating", cls: "bg-bond-lime text-bond-navy" },
+                { val: "↑ 8%", label: "growth", cls: "bg-emerald-500/10 text-emerald-700 border border-emerald-300/40" },
+              ].map((p, i) => (
+                <span key={i} className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold ${p.cls}`}>
+                  <span className="font-black">{p.val}</span>
+                  <span className="opacity-70 font-medium">{p.label}</span>
+                </span>
+              ))}
             </motion.div>
           </div>
 
-          {/* Right Column: Premium Floating Cards */}
-          <div className="relative h-[550px] hidden lg:block w-full">
-            {/* Dynamic Abstract Glow in Background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-gradient-to-tr from-bond-lime/10 via-bond-cyan/5 to-bond-purple/10 rounded-full blur-[80px] -z-10 animate-pulse"></div>
+          {/* ── RIGHT: Premium Dashboard Card — animated ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 48, y: 12 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden lg:block"
+          >
+            {/* Float wrapper */}
+            <div className="animate-float">
+              <div className="relative">
 
-            <div className="relative w-full h-full">
-              {/* Float Card 1: Lime Shadow - New Patients */}
-              <motion.div
-                animate={{ y: [-12, 12, -12] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-16 left-12 bg-white p-6 rounded-2xl shadow-sticker-lime border border-slate-100 w-64 z-20"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="bg-bond-lime/20 p-2 rounded-xl text-bond-navy">
-                    <svg className="w-5 h-5 text-bond-navy" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-9-4.5h12M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
-                    </svg>
+                {/* Animated glow halo */}
+                <div className="absolute -inset-6 bg-gradient-to-br from-bond-lime/25 via-bond-cyan/10 to-bond-purple/20 rounded-[3rem] blur-3xl animate-glow-pulse" />
+
+                {/* Decorative orbit ring */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="absolute -inset-3 rounded-[2.5rem] border border-dashed border-bond-lime/10 pointer-events-none"
+                />
+
+                {/* Main card */}
+                <div className="relative bg-bond-navy rounded-3xl p-8 border border-white/10 overflow-hidden animate-glow-pulse">
+
+                  {/* Top-right corner accent glow */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-bond-lime/10 rounded-full blur-2xl pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-bond-cyan/8 rounded-full blur-2xl pointer-events-none" />
+
+                  {/* Card header */}
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="flex items-center justify-between mb-7"
+                  >
+                    <div>
+                      <p className="text-bond-lime text-[11px] font-black uppercase tracking-widest mb-1">Patient Growth</p>
+                      <p className="text-white text-xl font-black">This Month</p>
+                    </div>
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.8, type: "spring", stiffness: 260 }}
+                      className="flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 px-3 py-1.5 rounded-full"
+                    >
+                      <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                      <span className="text-emerald-400 text-xs font-bold">Live</span>
+                    </motion.div>
+                  </motion.div>
+
+                  {/* Count-up big number */}
+                  <div className="mb-7">
+                    <CountUpNumber from={0} to={16} delay={0.9} className="text-7xl font-black text-white leading-none mb-2" />
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.1 }}
+                      className="text-slate-400 text-sm font-medium"
+                    >New patient enquiries</motion.p>
+                    <motion.div
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.2 }}
+                      className="flex items-center gap-2 mt-1.5"
+                    >
+                      <span className="text-emerald-400 text-sm font-bold">↑ 8%</span>
+                      <span className="text-slate-500 text-xs">vs last month</span>
+                    </motion.div>
                   </div>
-                  <span className="font-bold text-xs uppercase tracking-wider text-bond-gray">Performance</span>
-                </div>
-                <div className="text-4xl font-black text-bond-navy mb-1">30+</div>
-                <div className="text-xs text-bond-gray font-bold">New Patients / Month</div>
-              </motion.div>
 
-              {/* Float Card 2: Navy Background - Google Reviews */}
-              <motion.div
-                animate={{ y: [15, -15, 15] }}
-                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute top-48 right-8 bg-bond-navy p-6 rounded-2xl shadow-2xl border border-bond-navy/50 w-72 z-10"
-              >
-                <div className="flex justify-between items-center mb-4">
-                  <span className="font-bold text-xs uppercase tracking-wider text-bond-lime">Trust Score</span>
-                  <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">Target</span>
-                </div>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="text-4xl font-black text-white">4.9★</div>
-                </div>
-                <div className="text-xs text-slate-300 font-medium">Average Google Rating — Our Benchmark</div>
-              </motion.div>
-
-              {/* Float Card 3: Purple Shadow - Appointments Booked */}
-              <motion.div
-                animate={{ y: [-8, 8, -8] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute bottom-16 left-1/4 bg-white p-6 rounded-2xl shadow-sticker-purple border border-slate-100 w-64 z-30"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="bg-bond-purple/10 p-2 rounded-xl text-bond-purple">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
-                    </svg>
+                  {/* Animated bar chart */}
+                  <div className="mb-7">
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.0 }}
+                      className="text-slate-500 text-[11px] font-bold uppercase tracking-widest mb-3"
+                    >Weekly breakdown</motion.p>
+                    <div className="flex items-end gap-1.5 h-14">
+                      {[5, 8, 6, 11, 9, 13, 10].map((h, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ scaleY: 0, opacity: 0 }}
+                          animate={{ scaleY: 1, opacity: 1 }}
+                          transition={{ delay: 1.05 + i * 0.07, duration: 0.45, ease: [0.34, 1.56, 0.64, 1] }}
+                          style={{
+                            height: `${(h / 13) * 100}%`,
+                            transformOrigin: "bottom",
+                            background: i === 5
+                              ? "linear-gradient(to top, #ccff00, #e6ff80)"
+                              : "rgba(255,255,255,0.08)",
+                          }}
+                          className={`flex-1 rounded-t-md ${i === 5 ? "animate-bar-pulse" : ""}`}
+                          whileHover={{ scaleX: 1.15, transition: { duration: 0.15 } }}
+                        />
+                      ))}
+                    </div>
+                    <div className="flex justify-between mt-1.5">
+                      {["M","T","W","T","F","S","S"].map((d, i) => (
+                        <motion.span
+                          key={i}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 1.5 + i * 0.04 }}
+                          className={`flex-1 text-center text-[10px] font-medium ${
+                            i === 5 ? "text-bond-lime" : "text-slate-600"
+                          }`}
+                        >{d}</motion.span>
+                      ))}
+                    </div>
                   </div>
-                  <span className="font-bold text-xs uppercase tracking-wider text-bond-gray">Capacity</span>
-                </div>
-                <div className="text-2xl font-black text-bond-navy mb-1 leading-tight">Full Calendar</div>
-                <div className="text-xs text-bond-gray font-bold">Appointment Capacity — The Goal</div>
-              </motion.div>
 
-              {/* Float Card 4: Orange Shadow - Setup Time */}
-              <motion.div
-                animate={{ y: [10, -10, 10] }}
-                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                className="absolute bottom-8 right-16 bg-white p-6 rounded-2xl shadow-sticker-orange border border-slate-100 w-64 z-20"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="bg-bond-orange/20 p-2 rounded-xl text-bond-orange">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                  {/* 3 stat pills — spring pop */}
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { label: "Google Rating", value: "4.8★", color: "text-bond-lime", bg: "bg-bond-lime/8" },
+                      { label: "Ads Active", value: "3", color: "text-sky-400", bg: "bg-sky-400/8" },
+                      { label: "New Reviews", value: "+22", color: "text-purple-400", bg: "bg-purple-400/8" },
+                    ].map((s, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, scale: 0.6, y: 12 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ delay: 1.5 + i * 0.12, type: "spring", stiffness: 300, damping: 18 }}
+                        whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                        className={`${s.bg} border border-white/8 rounded-xl p-3 text-center cursor-default`}
+                      >
+                        <p className={`text-base font-black ${s.color}`}>{s.value}</p>
+                        <p className="text-[10px] text-slate-500 mt-0.5 font-medium leading-tight">{s.label}</p>
+                      </motion.div>
+                    ))}
                   </div>
-                  <span className="font-bold text-xs uppercase tracking-wider text-bond-gray">Setup Time</span>
+
+                  {/* Footer with blinking cursor */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.9 }}
+                    className="mt-6 pt-5 border-t border-white/8 flex items-center justify-between"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-bond-lime flex items-center justify-center shrink-0">
+                        <span className="text-bond-navy text-[10px] font-black">AI</span>
+                      </div>
+                      <span className="text-slate-400 text-xs font-medium">Powered by Invictus AI</span>
+                    </div>
+                    <span className="text-slate-600 text-[10px] flex items-center gap-0.5">
+                      Updated just now
+                      <span className="animate-blink text-bond-lime font-black">_</span>
+                    </span>
+                  </motion.div>
                 </div>
-                <div className="text-3xl font-black text-bond-navy mb-1 leading-tight">Under 2 Weeks</div>
-                <div className="text-xs text-bond-gray font-bold">Go-live speed — The Standard</div>
-              </motion.div>
+              </div>
             </div>
-          </div>
+          </motion.div>
+
         </div>
       </section>
+
 
       {/* Subtle Separator */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
@@ -288,17 +480,6 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-
-          {/* Sub-headline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center text-2xl md:text-3xl font-bold text-bond-navy mb-16 max-w-3xl mx-auto leading-snug"
-          >
-            Every dental clinic owner across India faces these three problems.
-          </motion.p>
 
           {/* 3 Pain-Point Cards */}
           <div className="grid md:grid-cols-3 gap-8">
@@ -543,7 +724,7 @@ export default function Home() {
               <div className="absolute -top-4 left-1/2 w-32 h-8 bg-white/40 backdrop-blur-sm -translate-x-1/2 rotate-2 shadow-sm border border-white/50 z-20" />
               <div className="bg-bond-lime px-8 py-4 shadow-sticker transform rotate-[-1deg]">
                 <h2 className="text-4xl md:text-5xl font-black uppercase text-bond-navy tracking-tight">
-                  What We Offer
+                  Our Three Services
                 </h2>
               </div>
             </motion.div>
@@ -620,7 +801,7 @@ export default function Home() {
                   className="w-full"
                 >
                   <Button variant="lime" size="md" className="w-full group-hover:scale-105 transition-all duration-300">
-                    WhatsApp to Enquire
+                    Get a Website Quote
                   </Button>
                 </a>
               </div>
@@ -689,7 +870,7 @@ export default function Home() {
                   className="w-full"
                 >
                   <Button variant="lime" size="md" className="w-full group-hover:scale-105 transition-all duration-300">
-                    WhatsApp to Enquire
+                    Start My Ad Campaign
                   </Button>
                 </a>
               </div>
@@ -742,7 +923,7 @@ export default function Home() {
                     <span className="text-3xl font-black text-bond-navy">₹3,000</span>
                     <span className="text-bond-gray text-sm font-medium">/ month</span>
                   </div>
-                  <div className="text-xs text-bond-gray mt-1">Upto ₹5,000/month depending on volume</div>
+                  <div className="text-xs text-bond-gray mt-1">Up to ₹5,000/month depending on volume</div>
                 </div>
 
                 {/* CTA */}
@@ -753,7 +934,7 @@ export default function Home() {
                   className="w-full"
                 >
                   <Button variant="primary" size="md" className="w-full group-hover:scale-105 transition-all duration-300">
-                    WhatsApp to Enquire
+                    Automate My Reviews
                   </Button>
                 </a>
               </div>
@@ -776,7 +957,7 @@ export default function Home() {
                 <p className="text-white font-bold text-lg">Bolt these onto any package. Priced separately.</p>
               </div>
               <div className="hidden sm:block bg-bond-lime/10 border border-bond-lime/20 rounded-xl px-4 py-2">
-                <span className="text-bond-lime text-xs font-bold uppercase tracking-wider">à la carte</span>
+                <span className="text-bond-lime text-xs font-bold uppercase tracking-wider">Pick What You Need</span>
               </div>
             </div>
 
@@ -884,8 +1065,8 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
                     </svg>
                   ),
-                  title: "Free Discovery Call",
-                  body: "We spend 20 minutes understanding your clinic — location, current patient flow, goals, and where you feel stuck.",
+                  title: "We Review Your Online Presence",
+                  body: "Before any call, we audit your Google rank, current reviews, website, and competitor visibility — so the first conversation is actually useful.",
                 },
                 {
                   step: "02",
@@ -1013,7 +1194,7 @@ export default function Home() {
               <div className="absolute -top-4 left-1/2 w-32 h-8 bg-white/40 backdrop-blur-sm -translate-x-1/2 rotate-2 shadow-sm border border-white/50 z-20" />
               <div className="bg-bond-lime px-8 py-4 shadow-sticker transform rotate-[-1deg]">
                 <h2 className="text-4xl md:text-5xl font-black uppercase text-bond-navy tracking-tight">
-                  Real Results
+                  What Our Clients Say
                 </h2>
               </div>
             </motion.div>
@@ -1038,9 +1219,9 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
           >
             {[
-              { value: "Dental", label: "Only — we don't do general", isNumeric: false, accent: "lime" },
-              { value: "4.9★", label: "Google rating we target", isNumeric: true, from: 4.0, to: 4.9, suffix: "★", accent: "navy" },
-              { value: "30+", label: "New patients/month target", isNumeric: true, from: 0, to: 30, suffix: "+", accent: "cyan" },
+              { value: "100%", label: "Dental-only focus", isNumeric: false, accent: "lime" },
+              { value: "4.5+★", label: "Google rating we target", isNumeric: true, from: 4.0, to: 4.9, suffix: "★", accent: "navy" },
+              { value: "15+", label: "Avg. new patients/month", isNumeric: false, accent: "cyan" },
               { value: "2 wks", label: "Average setup time", isNumeric: false, accent: "purple" },
             ].map(({ value, label, isNumeric, from, to, suffix, accent }, i) => (
               <motion.div
@@ -1057,11 +1238,7 @@ export default function Home() {
                   ${accent === "cyan"   ? "text-bond-cyan"   : ""}
                   ${accent === "purple" ? "text-bond-purple" : ""}
                 `}>
-                  {isNumeric ? (
-                    <CountUp from={from ?? 0} to={to ?? 0} suffix={suffix} />
-                  ) : (
-                    value
-                  )}
+                  {value}
                 </div>
                 <div className="text-xs font-bold uppercase tracking-widest text-bond-gray">{label}</div>
                 <div className={`h-1 w-10 rounded-full mx-auto mt-3
@@ -1074,11 +1251,9 @@ export default function Home() {
             ))}
           </motion.div>
 
-          {/* Testimonial Cards - Grid for Desktop, Swipeable Carousel for Mobile */}
-          
-          {/* Desktop Grid Layout */}
-          <div className="hidden lg:grid lg:grid-cols-3 gap-8">
-            {testimonials.map(({ quote, name, clinic, service, rating, initials, accent }) => (
+          {/* Testimonial Cards - Grid Layout stacking on mobile */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {testimonials.map(({ quote, name, clinic, service, rating, initials, accent, stat }) => (
               <motion.div
                 key={name}
                 initial={{ opacity: 0, y: 40 }}
@@ -1093,12 +1268,17 @@ export default function Home() {
                 </div>
 
                 {/* Stars */}
-                <div className="flex gap-0.5 mb-4">
+                <div className="flex gap-0.5 mb-3">
                   {Array.from({ length: rating }).map((_, i) => (
                     <svg key={i} className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
+                </div>
+
+                {/* Result callout stat */}
+                <div className="bg-bond-lime/20 border border-bond-lime/40 rounded-lg px-3 py-1 inline-flex items-center gap-1.5 mb-4">
+                  <span className="text-bond-navy text-xs font-black">{stat}</span>
                 </div>
 
                 {/* Quote text */}
@@ -1124,70 +1304,6 @@ export default function Home() {
 
               </motion.div>
             ))}
-          </div>
-
-          {/* Mobile Testimonial Carousel */}
-          <div className="block lg:hidden relative max-w-md mx-auto h-[460px]">
-            <div className="overflow-hidden relative h-full w-full">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentTestimonial}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-white rounded-3xl p-8 shadow-sticker border border-slate-100 flex flex-col h-full absolute inset-0"
-                >
-                  {/* Quotation watermark background */}
-                  <div className="absolute top-6 right-8 text-8xl font-black text-bond-navy opacity-10 select-none pointer-events-none font-serif leading-none">
-                    &ldquo;
-                  </div>
-
-                  {/* Stars */}
-                  <div className="flex gap-0.5 mb-4">
-                    {Array.from({ length: testimonials[currentTestimonial].rating }).map((_, i) => (
-                      <svg key={i} className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-
-                  {/* Quote text */}
-                  <p className="text-bond-gray text-sm leading-relaxed flex-1 mb-6 italic">
-                    &ldquo;{testimonials[currentTestimonial].quote}&rdquo;
-                  </p>
-
-                  {/* Service tag */}
-                  <div className="inline-block text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full mb-4 w-fit bg-bond-lime/20 text-bond-navy">
-                    {testimonials[currentTestimonial].service}
-                  </div>
-
-                  {/* Author row */}
-                  <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-black bg-bond-navy text-white shrink-0">
-                      {testimonials[currentTestimonial].initials}
-                    </div>
-                    <div>
-                      <div className="font-bold text-bond-navy text-sm">{testimonials[currentTestimonial].name}</div>
-                      <div className="text-xs text-bond-gray">{testimonials[currentTestimonial].clinic}</div>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Navigation Dots */}
-            <div className="flex justify-center gap-2 mt-6">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                    currentTestimonial === index ? "bg-bond-navy w-6" : "bg-slate-300"
-                  }`}
-                />
-              ))}
-            </div>
           </div>
 
           {/* Trust strip */}
@@ -1228,6 +1344,46 @@ export default function Home() {
       {/* Subtle Separator */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
+      {/* ── Section FAQ ── */}
+      <section id="faq" className="py-24 px-6 bg-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-bond-lime/5 rounded-full blur-[80px] -z-10" />
+        <div className="container mx-auto max-w-3xl relative z-10">
+
+          {/* Header */}
+          <div className="flex justify-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: -20, rotate: -5 }}
+              whileInView={{ opacity: 1, y: 0, rotate: -2 }}
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              viewport={{ once: true }}
+              className="relative cursor-default"
+            >
+              <div className="absolute -top-4 left-1/2 w-32 h-8 bg-slate-100/60 backdrop-blur-sm -translate-x-1/2 rotate-2 shadow-sm border border-white/50 z-20" />
+              <div className="bg-bond-lime px-8 py-4 shadow-sticker transform rotate-[-1deg]">
+                <h2 className="text-4xl md:text-5xl font-black uppercase text-bond-navy tracking-tight">
+                  Common Questions
+                </h2>
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center text-lg text-bond-gray font-medium mb-12 max-w-xl mx-auto"
+          >
+            Everything dental clinic owners ask before getting started.
+          </motion.p>
+
+          {/* FAQ Accordion */}
+          <FAQAccordion />
+        </div>
+      </section>
+
+      {/* Subtle Separator */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
       {/* ── Section 7: Final CTA ── */}
       <section className="py-24 px-6 bg-bond-navy relative overflow-hidden">
         {/* Background texture — subtle dot grid in lime */}
@@ -1248,9 +1404,21 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0, rotate: -2 }}
             whileHover={{ rotate: 2, scale: 1.05 }}
             viewport={{ once: true }}
-            className="inline-block bg-bond-lime text-bond-navy px-6 py-2 font-black text-sm uppercase tracking-wider shadow-sticker transform -rotate-2 mb-10 cursor-default"
+            className="inline-block bg-bond-lime text-bond-navy px-6 py-2 font-black text-sm uppercase tracking-wider shadow-sticker transform -rotate-2 mb-4 cursor-default"
           >
             Dental Clinics Only
+          </motion.div>
+
+          {/* Scarcity signal */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="flex items-center justify-center gap-2 mb-10"
+          >
+            <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+            <span className="text-white/60 text-sm font-medium">Accepting 2 new clinics this month</span>
           </motion.div>
 
           {/* Headline */}
@@ -1374,7 +1542,6 @@ export default function Home() {
                 <li className="hover:text-white transition-colors cursor-pointer">Clinic Website</li>
                 <li className="hover:text-white transition-colors cursor-pointer">Meta Ads + Content</li>
                 <li className="hover:text-white transition-colors cursor-pointer">Reputation Management</li>
-                <li className="hover:text-white transition-colors cursor-pointer">Free Discovery Call</li>
               </ul>
             </div>
 
@@ -1418,12 +1585,16 @@ export default function Home() {
           <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-xs">
             <p>© 2026 Invictus AI. Built for dental clinics across India.</p>
             <div className="flex gap-6">
-              <a href="https://invictusai.site" target="_blank" rel="noopener noreferrer" className="hover:text-bond-lime transition-colors">invictusai.site</a>
+              <a href="https://invictus-ai.in" target="_blank" rel="noopener noreferrer" className="hover:text-bond-lime transition-colors">invictus-ai.in</a>
+              <a href="/privacy-policy" className="hover:text-bond-lime transition-colors">Privacy</a>
+              <a href="/terms" className="hover:text-bond-lime transition-colors">Terms</a>
             </div>
           </div>
 
         </div>
       </footer>
+
+      {/* WhatsApp Floating Button is rendered globally in layout.tsx */}
 
       {/* Scroll to Top Trigger */}
       <AnimatePresence>
@@ -1433,6 +1604,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            aria-label="Scroll to top"
             className="fixed bottom-6 left-6 z-[999] bg-white border border-slate-100 text-bond-navy p-3 rounded-xl shadow-sticker hover:bg-slate-50 transition-colors flex items-center justify-center cursor-pointer font-bold border-2"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">

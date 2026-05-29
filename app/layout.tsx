@@ -166,6 +166,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      </head>
       {/* LocalBusiness Structured Data */}
       <Script
         id="local-business-ld"
@@ -187,6 +191,8 @@ export default function RootLayout({
 				})(window,document,'script','dataLayer','GTM-TB9SQLN2');`}
       </Script>
       <body className={clsx(inter.variable, handwriting.variable, "bg-white text-bond-navy antialiased font-sans min-h-screen flex flex-col")}>
+        {/* Permanent 3px bond-lime top accent bar */}
+        <div className="fixed top-0 left-0 right-0 h-[3px] bg-bond-lime z-[9999] pointer-events-none" />
         <PageProgressBar />
         <WhatsAppFloatingButton />
         {/* Google Tag Manager (noscript) */}
@@ -199,6 +205,7 @@ export default function RootLayout({
           />
         </noscript>
         {children}
+
       </body>
     </html>
   );
