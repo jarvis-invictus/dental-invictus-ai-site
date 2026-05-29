@@ -100,7 +100,7 @@ const localBusinessSchema = {
   "name": "Invictus AI",
   "description": "Patient growth system for dental clinics across India. Website, Meta Ads, and reputation management.",
   "url": "https://invictus-ai.in",
-  "telephone": "+919156467641",
+  "telephone": "+919699577641",
   "email": "sahil@invictus-ai.in",
   "address": {
     "@type": "PostalAddress",

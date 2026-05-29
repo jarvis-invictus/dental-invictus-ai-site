@@ -293,7 +293,7 @@ The website is a **single-page application (SPA)** with smooth scroll navigation
 | **Layout**            | 4-column grid: Brand (2 cols), Services links (1 col), Contact info (1 col) |
 | **Brand Column**      | Logo + tagline description                              |
 | **Services Column**   | 7 clickable service names → scrolls to card & dispatches `openService` event |
-| **Contact Column**    | Location ("Available Globally, Based in India"), Phone (+91 9156467641), Email (sahilbagul7641@gmail.com) |
+| **Contact Column**    | Location ("Available Globally, Based in India"), Phone (+91 9699577641), Email (sahilbagul7641@gmail.com) |
 | **Bottom Bar**        | Copyright © 2026 + Privacy Policy / Terms links (placeholder `#`) |
 | **Interaction**       | Service links scroll to the specific card and open it via custom event |
 

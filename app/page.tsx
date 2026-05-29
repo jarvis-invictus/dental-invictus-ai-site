@@ -244,7 +244,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-3 items-start"
             >
-              <a href="https://wa.me/919156467641?text=Hi%20Sahil,%20I'd%20like%20to%20book%20a%20free%20patient%20growth%20audit%20for%20my%20dental%20clinic." target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'd%20like%20to%20book%20a%20free%20patient%20growth%20audit%20for%20my%20dental%20clinic." target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="shadow-xl shadow-bond-navy/20 flex items-center gap-3 group animate-whatsapp-pulse">
                   Book Free Audit
                   <div className="bg-bond-lime text-bond-navy rounded-full p-1 group-hover:rotate-45 transition-transform">
@@ -795,7 +795,7 @@ export default function Home() {
 
                 {/* CTA */}
                 <a
-                  href="https://wa.me/919156467641?text=Hi%20Sahil,%20I'm%20interested%20in%20a%20clinic%20website%20for%20my%20dental%20practice."
+                  href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'm%20interested%20in%20a%20clinic%20website%20for%20my%20dental%20practice."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full"
@@ -864,7 +864,7 @@ export default function Home() {
 
                 {/* CTA */}
                 <a
-                  href="https://wa.me/919156467641?text=Hi%20Sahil,%20I'm%20interested%20in%20Meta%20Ads%20and%20content%20management%20for%20my%20dental%20clinic."
+                  href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'm%20interested%20in%20Meta%20Ads%20and%20content%20management%20for%20my%20dental%20clinic."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full"
@@ -928,7 +928,7 @@ export default function Home() {
 
                 {/* CTA */}
                 <a
-                  href="https://wa.me/919156467641?text=Hi%20Sahil,%20I'm%20interested%20in%20reputation%20management%20for%20my%20dental%20clinic."
+                  href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'm%20interested%20in%20reputation%20management%20for%20my%20dental%20clinic."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full"
@@ -1156,7 +1156,7 @@ export default function Home() {
           >
             <p className="text-bond-navy font-bold text-lg">Ready to start?</p>
             <a
-              href="https://wa.me/919156467641?text=Hi%20Sahil,%20I'd%20like%20to%20book%20a%20free%20discovery%20call%20for%20my%20dental%20clinic."
+              href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'd%20like%20to%20book%20a%20free%20discovery%20call%20for%20my%20dental%20clinic."
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -1459,7 +1459,7 @@ export default function Home() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
           >
             <a
-              href="https://wa.me/919156467641?text=Hi%20Sahil,%20I%20want%20to%20book%20a%20free%20discovery%20call%20for%20my%20dental%20clinic."
+              href="https://wa.me/919699577641?text=Hi%20Sahil,%20I%20want%20to%20book%20a%20free%20discovery%20call%20for%20my%20dental%20clinic."
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -1550,7 +1550,7 @@ export default function Home() {
               <div className="text-xs font-bold uppercase tracking-widest text-bond-lime mb-4">Contact</div>
               <div className="space-y-3">
                 <a
-                  href="https://wa.me/919156467641"
+                  href="https://wa.me/919699577641"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-slate-400 hover:text-bond-lime transition-colors text-sm group"

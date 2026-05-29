@@ -17,7 +17,7 @@ export default function WhatsAppFloatingButton() {
     <AnimatePresence>
       {visible && (
         <motion.a
-          href="https://wa.me/919156467641?text=Hi%20Sahil,%20I'd%20like%20to%20get%20a%20free%20patient%20growth%20audit%20for%20my%20dental%20clinic."
+          href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'd%20like%20to%20get%20a%20free%20patient%20growth%20audit%20for%20my%20dental%20clinic."
           target="_blank"
           rel="noopener noreferrer"
           initial={{ opacity: 0, y: 50, scale: 0.8 }}

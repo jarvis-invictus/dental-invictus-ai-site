@@ -10,7 +10,7 @@ export const siteConfig = {
         },
     },
     contact: {
-        phone: "+91 9156467641",
+        phone: "+91 9699577641",
         email: "sahilbagul7641@gmail.com",
         address: "India"
     }
