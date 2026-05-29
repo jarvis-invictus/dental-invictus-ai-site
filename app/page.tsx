@@ -2,7 +2,9 @@
 
 
 import Navbar from "@/components/Navbar";
-import BuildYourGrowthKit from "@/components/BuildYourGrowthKit";
+import PremiumKitBuilder from "@/components/PremiumKitBuilder";
+
+
 import { Button } from "@/components/ui/Button";
 import { ArrowRight, TrendingUp, EyeOff, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -694,8 +696,378 @@ export default function Home() {
       {/* Subtle Separator */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
-      {/* ── Section 4: Services + Pricing (Interactive Calculator) ── */}
-      <BuildYourGrowthKit />
+      {/* ── Section 4: Services + Pricing ── */}
+      <section id="services" className="py-24 px-6 bg-slate-50 relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "24px 24px" }}
+        />
+
+        <div className="container mx-auto max-w-7xl relative z-10">
+
+          {/* Section Header */}
+          <div className="flex justify-center mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: -20, rotate: -5 }}
+              whileInView={{ opacity: 1, y: 0, rotate: -2 }}
+              whileHover={{ scale: 1.1, rotate: 2 }}
+              viewport={{ once: true }}
+              className="relative cursor-default"
+            >
+              <div className="absolute -top-4 left-1/2 w-32 h-8 bg-white/40 backdrop-blur-sm -translate-x-1/2 rotate-2 shadow-sm border border-white/50 z-20" />
+              <div className="bg-bond-lime px-8 py-4 shadow-sticker transform rotate-[-1deg]">
+                <h2 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase text-bond-navy tracking-tight leading-tight">
+                  Our Core Services
+                </h2>
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center text-lg text-bond-gray font-medium mb-16 max-w-2xl mx-auto"
+          >
+            Four core growth systems. Built specifically for dental clinics.
+          </motion.p>
+
+          {/* 4-Column Pricing Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+
+            {/* Card 1 — Website */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0 }}
+              className="bg-white rounded-3xl shadow-sticker-lime border border-slate-100 overflow-hidden flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#ccff00] transition-all duration-300"
+            >
+              {/* Card Header */}
+              <div className="bg-bond-lime p-6">
+                <div className="text-xs font-bold uppercase tracking-widest text-bond-navy/60 mb-2">Service 01</div>
+                <h3 className="text-2xl font-black text-bond-navy">Clinic Website</h3>
+                <p className="text-bond-navy/70 text-sm mt-1 font-medium">One-time project fee</p>
+              </div>
+
+              {/* Card Body */}
+              <div className="p-6 flex flex-col flex-1">
+                <p className="text-bond-gray text-sm leading-relaxed mb-6">
+                  A conversion-focused clinic website designed to turn local visitors into booked appointments — not just a digital presence, but a patient acquisition tool.
+                </p>
+
+                {/* Deliverables */}
+                <ul className="space-y-3 mb-8 flex-1">
+                  {[
+                    "Mobile-first, fast-loading design",
+                    "Appointment booking integration",
+                    "Google Maps + local SEO setup",
+                    "Services, doctor profile, and gallery pages",
+                    "WhatsApp chat button embedded",
+                    "3 revision rounds included",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-bond-navy">
+                      <svg className="w-5 h-5 text-bond-lime shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Pricing */}
+                <div className="border-t border-slate-100 pt-5 mb-5">
+                  <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-2">Starting from</div>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-black text-bond-navy">₹7,000</span>
+                    <span className="text-bond-gray text-sm font-medium">/ project</span>
+                  </div>
+                  <div className="text-xs text-bond-gray mt-1">Premium: ₹13,000</div>
+                </div>
+
+                {/* CTA */}
+                <a
+                  href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'm%20interested%20in%20a%20clinic%20website%20for%20my%20dental%20practice."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full"
+                >
+                  <Button variant="lime" size="md" className="w-full group-hover:scale-105 transition-all duration-300">
+                    Get a Website Quote
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Card 2 — Meta Ads + Content (Featured) */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="bg-bond-navy rounded-3xl shadow-2xl border border-bond-navy/50 overflow-hidden flex flex-col relative group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#0f172a] transition-all duration-300"
+            >
+              {/* Most Popular badge */}
+              <div className="absolute top-4 right-4 text-bond-navy text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sticker animate-shimmer">
+                Most Popular
+              </div>
+
+              {/* Card Header */}
+              <div className="bg-white/5 border-b border-white/10 p-6">
+                <div className="text-xs font-bold uppercase tracking-widest text-bond-lime/60 mb-2">Service 02</div>
+                <h3 className="text-2xl font-black text-white">Meta Ads + Content</h3>
+                <p className="text-white/50 text-sm mt-1 font-medium">Monthly retainer</p>
+              </div>
+
+              {/* Card Body */}
+              <div className="p-6 flex flex-col flex-1">
+                <p className="text-slate-300 text-sm leading-relaxed mb-6">
+                  Hyper-local Instagram and Facebook ad campaigns paired with monthly content — reels, posts, and carousels — that position your clinic as the trusted name in your area.
+                </p>
+
+                {/* Deliverables */}
+                <ul className="space-y-3 mb-8 flex-1">
+                  {[
+                    "Monthly Meta ad campaign management",
+                    "4–8 posts + reels per month",
+                    "Ad creative design included",
+                    "Audience targeting — 5km local radius",
+                    "Monthly performance report",
+                    "Ad spend is your own budget (separate)",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-white/90">
+                      <svg className="w-5 h-5 text-bond-lime shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Pricing */}
+                <div className="border-t border-white/10 pt-5 mb-5">
+                  <div className="text-xs font-bold uppercase tracking-widest text-white/40 mb-2">Starting from</div>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-black text-white">₹4,000</span>
+                    <span className="text-white/50 text-sm font-medium">/ month</span>
+                  </div>
+                  <div className="text-xs text-white/40 mt-1">Plus content creation (Posts/Reels)</div>
+                </div>
+
+                {/* CTA */}
+                <a
+                  href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'm%20interested%20in%20Meta%20Ads%20and%20content%20management%20for%20my%20dental%20clinic."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full"
+                >
+                  <Button variant="lime" size="md" className="w-full group-hover:scale-105 transition-all duration-300">
+                    Start My Ad Campaign
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Card 3 — Reputation Management */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="bg-white rounded-3xl shadow-sticker-cyan border border-slate-100 overflow-hidden flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#06b6d4] transition-all duration-300"
+            >
+              {/* Card Header */}
+              <div className="bg-bond-purple/10 border-b border-bond-purple/20 p-6">
+                <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-2">Service 03</div>
+                <h3 className="text-2xl font-black text-bond-navy">Website Chatbot</h3>
+                <p className="text-bond-gray text-sm mt-1 font-medium">Monthly retainer</p>
+              </div>
+
+              {/* Card Body */}
+              <div className="p-6 flex flex-col flex-1">
+                <p className="text-bond-gray text-sm leading-relaxed mb-6">
+                  An AI-powered receptionist that lives on your website, answering patient questions instantly, 24/7, and booking appointments directly into your calendar.
+                </p>
+
+                {/* Deliverables */}
+                <ul className="space-y-3 mb-8 flex-1">
+                  {[
+                    "Custom trained on your clinic data",
+                    "Answers common FAQs instantly",
+                    "Direct calendar booking integration",
+                    "Human handoff when needed",
+                    "Lead capture & qualification",
+                    "24/7 patient support",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-bond-navy">
+                      <svg className="w-5 h-5 text-bond-purple shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Pricing */}
+                <div className="border-t border-slate-100 pt-5 mb-5">
+                  <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-2">Fixed Price</div>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-black text-bond-navy">₹3,000</span>
+                    <span className="text-bond-gray text-sm font-medium">/ month</span>
+                  </div>
+                  <div className="text-xs text-bond-gray mt-1">Unlimited conversations included</div>
+                </div>
+
+                {/* CTA */}
+                <a
+                  href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'm%20interested%20in%20a%20website%20chatbot%20for%20my%20dental%20clinic."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full"
+                >
+                  <Button variant="primary" size="md" className="w-full group-hover:scale-105 transition-all duration-300 !bg-bond-purple">
+                    Get an AI Chatbot
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Card 4 — Reputation Management */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.45 }}
+              className="bg-white rounded-3xl shadow-sticker-cyan border border-slate-100 overflow-hidden flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#f59e0b] transition-all duration-300"
+            >
+              {/* Card Header */}
+              <div className="bg-[#f59e0b]/10 border-b border-[#f59e0b]/20 p-6">
+                <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-2">Service 04</div>
+                <h3 className="text-2xl font-black text-bond-navy">Reputation Management</h3>
+                <p className="text-bond-gray text-sm mt-1 font-medium">Monthly retainer</p>
+              </div>
+
+              {/* Card Body */}
+              <div className="p-6 flex flex-col flex-1">
+                <p className="text-bond-gray text-sm leading-relaxed mb-6">
+                  Automated Google review generation system that requests feedback from happy patients immediately after their visit — so your star rating grows effortlessly.
+                </p>
+
+                {/* Deliverables */}
+                <ul className="space-y-3 mb-8 flex-1">
+                  {[
+                    "Post-visit automated review requests",
+                    "Google Business Profile management",
+                    "Response to all incoming reviews",
+                    "Monthly review volume report",
+                    "Negative review alert system",
+                    "Online presence monitoring",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-bond-navy">
+                      <svg className="w-5 h-5 text-[#f59e0b] shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Pricing */}
+                <div className="border-t border-slate-100 pt-5 mb-5">
+                  <div className="text-xs font-bold uppercase tracking-widest text-bond-gray mb-2">Fixed Price</div>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-black text-bond-navy">₹3,000</span>
+                    <span className="text-bond-gray text-sm font-medium">/ month</span>
+                  </div>
+                  <div className="text-xs text-bond-gray mt-1">Unlimited review requests</div>
+                </div>
+
+                {/* CTA */}
+                <a
+                  href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'm%20interested%20in%20reputation%20management%20for%20my%20dental%20clinic."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full"
+                >
+                  <Button variant="primary" size="md" className="w-full group-hover:scale-105 transition-all duration-300 !bg-[#f59e0b]">
+                    Automate My Reviews
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+
+          </div>
+
+          {/* Add-ons Banner Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-12 bg-bond-navy rounded-3xl overflow-hidden shadow-2xl animate-pulse-slow"
+          >
+            {/* Banner header */}
+            <div className="flex items-center justify-between px-8 pt-7 pb-5 border-b border-white/10">
+              <div>
+                <div className="text-xs font-bold uppercase tracking-widest text-bond-lime mb-1">Optional Add-ons</div>
+                <p className="text-white font-bold text-lg">Bolt these onto any package. Priced separately.</p>
+              </div>
+              <div className="hidden sm:block bg-bond-lime/10 border border-bond-lime/20 rounded-xl px-4 py-2">
+                <span className="text-bond-lime text-xs font-bold uppercase tracking-wider">Pick What You Need</span>
+              </div>
+            </div>
+
+            {/* 3 Add-on tiles */}
+            <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
+
+              {/* Tile 1 — Ad Creative Set */}
+              <div className="p-7 group hover:bg-white/5 transition-colors cursor-pointer">
+                <div className="w-10 h-10 bg-bond-lime/10 border border-bond-lime/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-bond-lime" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+                  </svg>
+                </div>
+                <h4 className="text-white font-bold mb-1">Ad Creative Set</h4>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">5 custom ad creatives — static + reel thumbnail — designed for your clinic's campaign.</p>
+                <div className="text-bond-lime font-black text-xl">₹1,500 <span className="text-slate-400 text-sm font-normal">– ₹2,500</span></div>
+                <div className="text-slate-500 text-xs mt-0.5">per set</div>
+              </div>
+
+              {/* Tile 2 — Campaign Landing Page */}
+              <div className="p-7 group hover:bg-white/5 transition-colors cursor-pointer">
+                <div className="w-10 h-10 bg-bond-lime/10 border border-bond-lime/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-bond-lime" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253" />
+                  </svg>
+                </div>
+                <h4 className="text-white font-bold mb-1">Campaign Landing Page</h4>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">Dedicated conversion page for a specific treatment — teeth whitening, implants, braces — built to capture leads from ads.</p>
+                <div className="text-bond-lime font-black text-xl">₹3,000 <span className="text-slate-400 text-sm font-normal">– ₹5,000</span></div>
+                <div className="text-slate-500 text-xs mt-0.5">one-time</div>
+              </div>
+
+              {/* Tile 3 — Monthly SEO */}
+              <div className="p-7 group hover:bg-white/5 transition-colors cursor-pointer">
+                <div className="w-10 h-10 bg-bond-lime/10 border border-bond-lime/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <svg className="w-5 h-5 text-bond-lime" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                  </svg>
+                </div>
+                <h4 className="text-white font-bold mb-1">Monthly SEO Optimisation</h4>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">On-page optimisation, local keyword targeting, and Google Business Profile updates to grow organic rank every month.</p>
+                <div className="text-bond-lime font-black text-xl">₹2,000 <span className="text-slate-400 text-sm font-normal">– ₹3,000</span></div>
+                <div className="text-slate-500 text-xs mt-0.5">per month</div>
+              </div>
+
+            </div>
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* ── Visual Kit Builder Section ── */}
+      <PremiumKitBuilder />
 
       {/* Subtle Separator */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
