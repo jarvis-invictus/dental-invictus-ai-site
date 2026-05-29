@@ -86,7 +86,7 @@ export default function PremiumKitBuilder() {
               className={`relative rounded-3xl transition-all duration-300 p-6 cursor-pointer border-2 ${
                 isWebsiteActive 
                   ? "bg-white border-bond-lime shadow-[8px_8px_0px_0px_#ccff00] -translate-y-2" 
-                  : "bg-slate-50 border-slate-200 hover:border-slate-300 hover:bg-slate-100"
+                  : "bg-bond-lime/5 border-bond-lime/30 hover:bg-bond-lime/10 hover:border-bond-lime/60 hover:shadow-[0_0_20px_rgba(204,255,0,0.15)] hover:-translate-y-1"
               }`}
               onClick={(e) => {
                 // Prevent clicking toggle from toggling the whole card
@@ -144,7 +144,7 @@ export default function PremiumKitBuilder() {
               className={`relative rounded-3xl transition-all duration-300 p-6 cursor-pointer border-2 ${
                 isAdsActive 
                   ? "bg-white border-bond-cyan shadow-[8px_8px_0px_0px_#06b6d4] -translate-y-2" 
-                  : "bg-slate-50 border-slate-200 hover:border-slate-300 hover:bg-slate-100"
+                  : "bg-bond-cyan/5 border-bond-cyan/30 hover:bg-bond-cyan/10 hover:border-bond-cyan/60 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:-translate-y-1"
               }`}
               onClick={(e) => {
                 if ((e.target as HTMLElement).closest('.ads-sliders')) return;
@@ -207,7 +207,7 @@ export default function PremiumKitBuilder() {
               className={`relative rounded-3xl transition-all duration-300 p-6 cursor-pointer border-2 ${
                 isBotActive 
                   ? "bg-white border-bond-purple shadow-[8px_8px_0px_0px_#a855f7] -translate-y-2" 
-                  : "bg-slate-50 border-slate-200 hover:border-slate-300 hover:bg-slate-100"
+                  : "bg-bond-purple/5 border-bond-purple/30 hover:bg-bond-purple/10 hover:border-bond-purple/60 hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:-translate-y-1"
               }`}
               onClick={() => setIsBotActive(!isBotActive)}
             >
@@ -230,7 +230,7 @@ export default function PremiumKitBuilder() {
               className={`relative rounded-3xl transition-all duration-300 p-6 cursor-pointer border-2 ${
                 isRepActive 
                   ? "bg-white border-[#f59e0b] shadow-[8px_8px_0px_0px_#f59e0b] -translate-y-2" 
-                  : "bg-slate-50 border-slate-200 hover:border-slate-300 hover:bg-slate-100"
+                  : "bg-[#f59e0b]/5 border-[#f59e0b]/30 hover:bg-[#f59e0b]/10 hover:border-[#f59e0b]/60 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] hover:-translate-y-1"
               }`}
               onClick={() => setIsRepActive(!isRepActive)}
             >
