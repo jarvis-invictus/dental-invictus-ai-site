@@ -1,0 +1,157 @@
+# Invictus AI — Full Documentation
+
+> AI-powered patient growth systems built exclusively for dental clinics in India.
+
+Invictus AI is a niche dental marketing agency founded by Sahil Bagul. Unlike generic digital agencies, we work exclusively with dental clinics across India — from single-chair practices in Tier 2 cities to multi-location clinics in metros. We build automated patient acquisition systems using AI, modern web technology, and data-driven advertising.
+
+---
+
+## Who We Serve
+
+We serve dental clinics of all sizes across India. Our clients typically include:
+- Independent dental practitioners looking to get their first online patients
+- Multi-chair clinics wanting to scale beyond word-of-mouth referrals
+- Multi-location chains needing consistent branding and marketing across locations
+- New clinic owners who want to launch with a strong digital presence from Day 1
+
+---
+
+## Our Services
+
+### 1. Dental Clinic Website Design
+
+We build high-converting, mobile-first websites specifically for dental clinics.
+
+**What's included:**
+- Custom responsive design (not WordPress templates)
+- Treatment pages with local SEO optimization
+- Google Maps integration
+- WhatsApp click-to-chat integration
+- Online appointment booking forms
+- Google PageSpeed optimization (target: 90+ score)
+- Structured data markup (LocalBusiness, MedicalBusiness schema)
+
+**Pricing:**
+- Standard Package: Starts at ₹7,000 (one-time) — up to 5 pages, 3 revision rounds
+- Premium Package: Starts at ₹13,000 (one-time) — up to 10 pages, 5 revision rounds, blog setup, advanced SEO
+- Pricing varies based on requirements and complexity
+
+**Learn more:** [/services/clinic-website](https://invictus-ai.in/services/clinic-website)
+
+---
+
+### 2. Meta Ads & Social Media Content
+
+We run hyper-local Instagram and Facebook ad campaigns targeted within a 5km radius of the clinic.
+
+**What's included:**
+- Audience research and targeting setup
+- Ad creative design (carousel, video, story formats)
+- Content calendar with 8–12 posts per month
+- Monthly performance reporting
+- WhatsApp-direct lead generation campaigns
+- A/B testing and optimization
+
+**Pricing:** Starts at ₹8,000/month (plus ad spend)
+
+**Typical results:**
+- 200–300% increase in patient inquiries within 60 days
+- Cost per lead: ₹80–₹200 depending on city tier
+- Average ROI: 10–15x on ad spend
+
+**Learn more:** [/services/meta-ads](https://invictus-ai.in/services/meta-ads)
+
+---
+
+### 3. AI Website Chatbot
+
+A 24/7 AI receptionist trained on the clinic's data that answers patient queries and books appointments.
+
+**What's included:**
+- Custom chatbot trained on clinic services, pricing, and FAQs
+- WhatsApp and website widget integration
+- Appointment booking capability
+- Lead capture with email/phone collection
+- Monthly conversation analytics
+
+**Pricing:** ₹3,000/month
+
+**Learn more:** [/services/ai-chatbot](https://invictus-ai.in/services/ai-chatbot)
+
+---
+
+### 4. Automated Google Review Management
+
+We set up an automated system that collects 5-star reviews from patients after every visit.
+
+**What's included:**
+- Automated WhatsApp review request messages (sent 2 hours post-appointment)
+- 'Happy Patient Filter' — routes unsatisfied patients to private feedback
+- Google review link generation
+- Review response templates
+- Monthly review analytics dashboard
+
+**Pricing:** ₹3,000/month
+
+**Typical results:**
+- 3.8★ → 4.9★ Google rating in 4 months
+- 500%+ increase in total review count
+- Improved Google Maps (Local Pack) ranking
+
+**Learn more:** [/services/reputation-management](https://invictus-ai.in/services/reputation-management)
+
+---
+
+## Results & Case Studies
+
+### Case Study 1: Dr. P.K., Pune
+- **Service:** Meta Ads
+- **Before:** 8–10 new patient inquiries/month (referral only)
+- **After:** 30+ inquiries/month at ₹120/lead
+- **Timeline:** 60 days
+- **ROI:** ~15x
+
+### Case Study 2: Dr. A.D., Nashik
+- **Service:** Reputation Management
+- **Before:** 3.8★ rating, 12 reviews, Local Pack #7
+- **After:** 4.9★ rating, 80+ reviews, Local Pack #1
+- **Timeline:** 4 months
+
+### Case Study 3: Dr. S.P., Aurangabad
+- **Service:** Clinic Website
+- **Before:** Outdated non-responsive site, PageSpeed 23/100, zero organic traffic
+- **After:** PageSpeed 94/100, 12 keywords ranking, 3 appointment inquiries in Week 1
+- **Timeline:** 10 days build
+
+**All case studies:** [/case-studies](https://invictus-ai.in/case-studies)
+
+---
+
+## Blog & Resources
+
+We publish in-depth dental marketing guides on our blog. Key articles:
+
+- "The Complete Guide to Digital Marketing for Dental Clinics in 2026" — comprehensive hub article covering all 4 pillars of dental clinic growth
+- "How Much Does a Dental Clinic Website Cost in India? (2026 Breakdown)" — transparent pricing comparison with tables
+- "5 Automated Ways to Get More Google Reviews for Your Dental Clinic" — proven automated strategies with ROI data
+
+**All articles:** [/blog](https://invictus-ai.in/blog)
+
+---
+
+## About
+
+- **Founded by:** Sahil Bagul
+- **Location:** India (serving clinics nationally)
+- **Specialty:** Dental clinic marketing only (no other industries)
+- **Approach:** AI-powered automation, transparent pricing, no lock-in contracts
+
+**About page:** [/about](https://invictus-ai.in/about)
+
+---
+
+## Contact
+
+- **WhatsApp:** +91 9699577641
+- **Email:** contact@invictus-ai.in
+- **Website:** https://invictus-ai.in

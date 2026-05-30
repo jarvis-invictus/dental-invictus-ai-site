@@ -1,0 +1,24 @@
+# Invictus AI
+
+> AI-powered patient growth systems built exclusively for dental clinics in India.
+
+Invictus AI is a specialized dental marketing agency that helps dental clinics acquire more patients through website design, Meta ads, Google review automation, and AI chatbots.
+
+## Services
+
+- [Clinic Website Design](/services/clinic-website): High-converting, mobile-first dental clinic websites with local SEO and WhatsApp integration. Starts at ₹7,000.
+- [Meta Ads & Content](/services/meta-ads): Hyper-local Instagram and Facebook ad campaigns targeted within 5km of your clinic. Starts at ₹8,000/mo.
+- [AI Website Chatbot](/services/ai-chatbot): 24/7 AI receptionist that answers patient questions and books appointments on your website. ₹3,000/mo.
+- [Reputation Management](/services/reputation-management): Automated 5-star Google review collection via WhatsApp with negative feedback filtering. ₹3,000/mo.
+
+## Key Pages
+
+- [About Us](/about): Our story, founder bio, and what makes us different.
+- [Case Studies](/case-studies): Real before/after results from dental clinics we've worked with.
+- [Blog](/blog): Dental marketing guides, SEO strategies, and growth playbooks.
+
+## Contact
+
+- WhatsApp: +91 9699577641
+- Email: contact@invictus-ai.in
+- Website: https://invictus-ai.in

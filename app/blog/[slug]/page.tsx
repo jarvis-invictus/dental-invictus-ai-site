@@ -88,12 +88,49 @@ export default async function BlogPostPage({ params }: Props) {
     keywords: post.tags.join(", "),
   };
 
+  // Extract FAQ schema from MDX content (### question + paragraph answer pattern)
+  const faqRegex = /###\s+(.+?)\n\n([\s\S]*?)(?=\n###|\n##|\n$)/g;
+  const faqSection = post.content.match(/## (?:FAQ|Frequently Asked Questions)[\s\S]*/i);
+  const faqItems: { question: string; answer: string }[] = [];
+
+  if (faqSection) {
+    let match;
+    while ((match = faqRegex.exec(faqSection[0])) !== null) {
+      const question = match[1].trim();
+      const answer = match[2].trim().replace(/\n/g, " ").replace(/\*\*/g, "").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+      if (question && answer) {
+        faqItems.push({ question, answer });
+      }
+    }
+  }
+
+  const faqSchema = faqItems.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqItems.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      }
+    : null;
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <BlogPostContent post={post} relatedPosts={relatedPosts} />
     </>
   );
