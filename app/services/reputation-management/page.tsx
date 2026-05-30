@@ -51,7 +51,7 @@ export default function ReputationManagementService() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-black text-center mb-6 leading-[1.1] tracking-tight text-bond-navy"
+            className="text-4xl md:text-5xl lg:text-6xl font-black text-center mb-6 leading-[1.1] tracking-tight text-bond-navy"
           >
             Automated <br />
             <span className="relative inline-block mt-2">
@@ -65,7 +65,7 @@ export default function ReputationManagementService() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-bond-gray max-w-2xl mx-auto text-center mb-12 leading-relaxed font-bold"
+            className="text-base md:text-lg text-bond-gray max-w-2xl mx-auto text-center mb-12 leading-relaxed font-bold"
           >
             Your Google rating is the #1 deciding factor for new patients. We automate your review collection process to bury negative reviews and skyrocket your local ranking.
           </motion.p>
@@ -89,7 +89,7 @@ export default function ReputationManagementService() {
       <section className="py-24 px-6 relative z-10 bg-slate-50 border-t border-slate-200">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-16 text-center">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4 text-bond-navy">Protect and grow your <span className="text-[#f59e0b] underline decoration-wavy decoration-bond-lime underline-offset-8">reputation</span></h2>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-bond-navy">Protect and grow your <span className="text-[#f59e0b] underline decoration-wavy decoration-bond-lime underline-offset-8">reputation</span></h2>
             <p className="text-bond-gray max-w-2xl mx-auto font-bold">A single bad review can cost you dozens of patients. We ensure that doesn't happen.</p>
           </div>
 
@@ -149,12 +149,12 @@ export default function ReputationManagementService() {
       <section className="py-24 px-6 relative overflow-hidden bg-white">
         <div className="container mx-auto max-w-4xl relative z-10 flex flex-col items-center">
           <div className="bond-card border-4 border-bond-navy rounded-[3rem] p-8 md:p-14 w-full max-w-2xl text-center shadow-[12px_12px_0px_0px_#f59e0b] bg-slate-50">
-            <h2 className="text-3xl font-black mb-4 text-bond-navy uppercase tracking-tight">Monthly Retainer</h2>
+            <h2 className="text-2xl md:text-3xl font-black mb-4 text-bond-navy uppercase tracking-tight">Monthly Retainer</h2>
             <p className="text-bond-gray mb-8 font-bold text-lg">Automated review requests. Includes negative review filtering.</p>
             
             <div className="flex items-end justify-center gap-2 mb-10">
               <span className="text-bond-gray text-lg mb-2 font-black uppercase">Flat fee</span>
-              <span className="text-6xl font-black text-bond-navy">₹3,000</span>
+              <span className="text-5xl font-black text-bond-navy">₹3,000</span>
               <span className="text-bond-gray text-lg mb-2 font-black">/mo</span>
             </div>
 

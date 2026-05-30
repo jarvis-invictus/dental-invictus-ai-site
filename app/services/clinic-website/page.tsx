@@ -57,7 +57,7 @@ export default function ClinicWebsiteService() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-black text-center mb-6 leading-[1.1] tracking-tight text-bond-navy"
+            className="text-4xl md:text-5xl lg:text-6xl font-black text-center mb-6 leading-[1.1] tracking-tight text-bond-navy"
           >
             Patient-Acquiring <br />
             <span className="relative inline-block mt-2">
@@ -71,7 +71,7 @@ export default function ClinicWebsiteService() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-bond-gray max-w-2xl mx-auto text-center mb-12 leading-relaxed font-bold"
+            className="text-base md:text-lg text-bond-gray max-w-2xl mx-auto text-center mb-12 leading-relaxed font-bold"
           >
             Stop losing patients to clinics with better websites. We build lightning-fast, highly-optimized websites engineered to turn local Google searches into booked appointments.
           </motion.p>
@@ -95,7 +95,7 @@ export default function ClinicWebsiteService() {
       <section className="py-24 px-6 relative z-10 bg-slate-50 border-t border-slate-200">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-16 text-center">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4 text-bond-navy">Why our websites <span className="text-bond-purple underline decoration-wavy decoration-bond-lime underline-offset-8">convert</span></h2>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-bond-navy">Why our websites <span className="text-bond-purple underline decoration-wavy decoration-bond-lime underline-offset-8">convert</span></h2>
             <p className="text-bond-gray max-w-2xl mx-auto font-bold">We don't just build digital brochures. We build patient acquisition engines.</p>
           </div>
 
@@ -155,7 +155,7 @@ export default function ClinicWebsiteService() {
       <section className="py-24 px-6 relative overflow-hidden bg-white">
         <div className="container mx-auto max-w-5xl relative z-10">
           <div className="mb-16 text-center">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4 text-bond-navy">Our <span className="bg-bond-lime px-2 pb-1 border-2 border-bond-navy rounded-lg shadow-[4px_4px_0px_0px_#0f172a]">Packages</span></h2>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-bond-navy">Our <span className="bg-bond-lime px-2 pb-1 border-2 border-bond-navy rounded-lg shadow-[4px_4px_0px_0px_#0f172a]">Packages</span></h2>
             <p className="text-bond-gray max-w-2xl mx-auto font-bold">Two distinct packages tailored to your clinic's requirements.</p>
           </div>
 
@@ -173,7 +173,7 @@ export default function ClinicWebsiteService() {
               
               <div className="mb-10">
                 <span className="text-bond-gray text-lg mr-2 font-black uppercase tracking-wider">Starts at</span>
-                <span className="text-5xl font-black text-bond-navy">₹7,000</span>
+                <span className="text-4xl font-black text-bond-navy">₹7,000</span>
               </div>
 
               <ul className="space-y-4 mb-12 flex-1">
@@ -225,7 +225,7 @@ export default function ClinicWebsiteService() {
               
               <div className="mb-10">
                 <span className="text-slate-400 text-lg mr-2 font-black uppercase tracking-wider">Starts at</span>
-                <span className="text-5xl font-black text-bond-lime">₹13,000</span>
+                <span className="text-4xl font-black text-bond-lime">₹13,000</span>
               </div>
 
               <ul className="space-y-4 mb-12 flex-1">
