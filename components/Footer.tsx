@@ -24,19 +24,19 @@ export default function Footer() {
 
                     </div>
 
-                    {/* Links */}
+                    {/* Services — now linking to real pages */}
                     <div>
                         <h4 className="text-bond-navy font-bold mb-6 uppercase tracking-wider text-sm">Services</h4>
                         <ul className="space-y-3">
                             {[
-                                { name: "Clinic Website", slug: "#services" },
-                                { name: "Meta Ads + Content", slug: "#services" },
-                                { name: "Website Chatbot", slug: "#services" },
-                                { name: "Reputation Management", slug: "#services" },
+                                { name: "Clinic Website", href: "/services/clinic-website" },
+                                { name: "Meta Ads + Content", href: "/services/meta-ads" },
+                                { name: "Website Chatbot", href: "/services/ai-chatbot" },
+                                { name: "Reputation Management", href: "/services/reputation-management" },
                             ].map((item) => (
                                 <li key={item.name}>
                                     <Link
-                                        href={item.slug}
+                                        href={item.href}
                                         className="text-slate-500 hover:text-bond-navy transition-colors text-sm font-medium text-left focus:outline-none focus:text-bond-navy focus:underline"
                                     >
                                         {item.name}
