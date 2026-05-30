@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Globe, Zap, Target, Search, Smartphone, ShieldCheck, ArrowRight } from "lucide-react";
+import { Globe, Zap, Target, Search, Smartphone, ShieldCheck, ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react";
 
 export default function ClinicWebsiteService() {
   const schema = {
@@ -19,8 +19,9 @@ export default function ClinicWebsiteService() {
     },
     "areaServed": "IN",
     "offers": {
-      "@type": "Offer",
-      "price": "7000",
+      "@type": "AggregateOffer",
+      "lowPrice": "7000",
+      "highPrice": "13000",
       "priceCurrency": "INR"
     }
   };
@@ -30,6 +31,15 @@ export default function ClinicWebsiteService() {
       <Navbar />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       
+      {/* Navigation */}
+      <div className="absolute top-24 left-6 md:left-12 z-50">
+        <Link href="/">
+          <Button variant="outline" size="sm" className="bg-white/5 border-white/10 hover:bg-white/10 text-slate-300 hover:text-white backdrop-blur-md rounded-full shadow-lg">
+            <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
+          </Button>
+        </Link>
+      </div>
+
       {/* 1. Immersive Hero Section */}
       <section className="relative pt-40 pb-32 px-6">
         {/* Ambient Glows */}
@@ -42,7 +52,7 @@ export default function ClinicWebsiteService() {
             animate={{ opacity: 1, y: 0 }}
             className="flex justify-center mb-8"
           >
-            <div className="bg-bond-lime/10 border border-bond-lime/20 text-bond-lime text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full backdrop-blur-md">
+            <div className="bg-bond-lime/10 border border-bond-lime/20 text-bond-lime text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full backdrop-blur-md shadow-[0_0_15px_rgba(204,255,0,0.15)]">
               Service 01
             </div>
           </motion.div>
@@ -54,7 +64,7 @@ export default function ClinicWebsiteService() {
             className="text-5xl md:text-7xl lg:text-8xl font-black text-center mb-6 leading-[1.1] tracking-tight"
           >
             Patient-Acquiring <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-bond-lime to-green-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-bond-lime to-green-400 drop-shadow-[0_0_30px_rgba(204,255,0,0.3)]">
               Dental Websites
             </span>
           </motion.h1>
@@ -63,7 +73,7 @@ export default function ClinicWebsiteService() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto text-center mb-12 leading-relaxed"
+            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto text-center mb-12 leading-relaxed font-medium"
           >
             Stop losing patients to clinics with better websites. We build lightning-fast, highly-optimized websites engineered to turn local Google searches into booked appointments.
           </motion.p>
@@ -83,131 +93,160 @@ export default function ClinicWebsiteService() {
         </div>
       </section>
 
-      {/* 2. Bento Grid Section */}
-      <section className="py-24 px-6 bg-slate-900/50 border-y border-white/5 relative z-10 backdrop-blur-xl">
+      {/* 2. Glassmorphism Features Section */}
+      <section className="py-24 px-6 relative z-10">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-16 text-center">
             <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">Why our websites <span className="text-bond-lime">convert</span></h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">We don't just build digital brochures. We build patient acquisition engines.</p>
+            <p className="text-slate-400 max-w-2xl mx-auto font-medium">We don't just build digital brochures. We build patient acquisition engines.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Bento 1: Speed (Spans 2 columns on large screens) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Feature 1 */}
             <motion.div 
-              whileHover={{ scale: 1.02 }}
-              className="md:col-span-2 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 overflow-hidden relative group"
+              whileHover={{ y: -5 }}
+              className="bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-bond-lime/30 rounded-[2rem] p-10 transition-all duration-300 group shadow-2xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-bond-lime/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <div className="bg-bond-lime/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border border-bond-lime/30 text-bond-lime">
-                  <Zap className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-black mb-3">Lightning Fast</h3>
-                <p className="text-slate-400 leading-relaxed max-w-md">Your patients won't wait. Our modern tech stack ensures your site loads in milliseconds, drastically reducing bounce rates and keeping patients engaged.</p>
+              <div className="bg-white/5 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-bond-lime/50 group-hover:bg-bond-lime/10 transition-colors">
+                <Target className="w-7 h-7 text-slate-300 group-hover:text-bond-lime transition-colors" />
               </div>
+              <h3 className="text-2xl font-black mb-4">Direct Appointment Booking</h3>
+              <p className="text-slate-400 leading-relaxed font-medium">Integrated WhatsApp, floating CTAs, and optimized appointment forms mean completely friction-free booking straight from the homepage.</p>
             </motion.div>
 
-            {/* Bento 2: Local SEO */}
+            {/* Feature 2 */}
             <motion.div 
-              whileHover={{ scale: 1.02 }}
-              className="bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 relative group"
+              whileHover={{ y: -5 }}
+              className="bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-bond-lime/30 rounded-[2rem] p-10 transition-all duration-300 group shadow-2xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <div className="bg-cyan-500/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border border-cyan-500/30 text-cyan-400">
-                  <Search className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-black mb-3">Local SEO Ready</h3>
-                <p className="text-slate-400 leading-relaxed">Perfectly optimized for Google Maps so you show up when patients search for "dentist near me".</p>
+              <div className="bg-white/5 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-bond-lime/50 group-hover:bg-bond-lime/10 transition-colors">
+                <Smartphone className="w-7 h-7 text-slate-300 group-hover:text-bond-lime transition-colors" />
               </div>
+              <h3 className="text-2xl font-black mb-4">Mobile First</h3>
+              <p className="text-slate-400 leading-relaxed font-medium">80% of your traffic is on mobile. We design for the phone first, desktop second, ensuring a flawless experience on any device.</p>
+            </motion.div>
+            
+            {/* Feature 3 */}
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-bond-lime/30 rounded-[2rem] p-10 transition-all duration-300 group shadow-2xl"
+            >
+              <div className="bg-white/5 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-bond-lime/50 group-hover:bg-bond-lime/10 transition-colors">
+                <Search className="w-7 h-7 text-slate-300 group-hover:text-bond-lime transition-colors" />
+              </div>
+              <h3 className="text-2xl font-black mb-4">Local SEO Ready</h3>
+              <p className="text-slate-400 leading-relaxed font-medium">Perfectly optimized technical SEO and structured data so you show up instantly when patients search for "dentist near me".</p>
             </motion.div>
 
-            {/* Bento 3: Mobile First */}
+            {/* Feature 4 */}
             <motion.div 
-              whileHover={{ scale: 1.02 }}
-              className="bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 relative group"
+              whileHover={{ y: -5 }}
+              className="bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-bond-lime/30 rounded-[2rem] p-10 transition-all duration-300 group shadow-2xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <div className="bg-purple-500/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border border-purple-500/30 text-purple-400">
-                  <Smartphone className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-black mb-3">Mobile First</h3>
-                <p className="text-slate-400 leading-relaxed">80% of your traffic is on mobile. We design for the phone first, desktop second.</p>
+              <div className="bg-white/5 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-bond-lime/50 group-hover:bg-bond-lime/10 transition-colors">
+                <Zap className="w-7 h-7 text-slate-300 group-hover:text-bond-lime transition-colors" />
               </div>
-            </motion.div>
-
-            {/* Bento 4: Direct Booking (Spans 2 columns) */}
-            <motion.div 
-              whileHover={{ scale: 1.02 }}
-              className="md:col-span-2 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 relative group overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-bond-lime/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <div className="bg-bond-lime/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border border-bond-lime/30 text-bond-lime">
-                  <Target className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-black mb-3">Direct Appointment Booking</h3>
-                <p className="text-slate-400 leading-relaxed max-w-md">Integrated WhatsApp, floating CTAs, and optimized appointment forms mean completely friction-free booking straight from the homepage.</p>
-              </div>
+              <h3 className="text-2xl font-black mb-4">Lightning Fast</h3>
+              <p className="text-slate-400 leading-relaxed font-medium">Your patients won't wait. Our modern tech stack ensures your site loads in milliseconds, drastically reducing bounce rates.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* 3. Interactive Timeline / Deliverables */}
-      <section className="py-32 px-6 relative">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl md:text-5xl font-black text-center mb-20 tracking-tight">What's <span className="text-bond-lime">Included</span></h2>
-          
-          <div className="space-y-12">
-            {[
-              { title: "Custom UI/UX Design", desc: "Premium, bespoke design tailored to your clinic's brand. No generic templates." },
-              { title: "Essential Pages", desc: "Home, About Doctor, Services List, Gallery, and Contact pages all included." },
-              { title: "WhatsApp Integration", desc: "Floating WhatsApp button so patients can chat with your front desk instantly." },
-              { title: "3 Revision Rounds", desc: "We ensure you are 100% happy with the design before we push it live." },
-            ].map((step, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="flex items-start gap-6"
-              >
-                <div className="shrink-0 w-12 h-12 rounded-full bg-bond-lime/10 border border-bond-lime text-bond-lime flex items-center justify-center font-black text-xl">
-                  {index + 1}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">{step.title}</h3>
-                  <p className="text-slate-400 leading-relaxed">{step.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Premium Pricing Glass Card */}
-      <section className="py-24 px-6 bg-slate-900/80 border-t border-white/5 relative overflow-hidden">
+      {/* 3. Pricing Packages */}
+      <section className="py-24 px-6 relative overflow-hidden bg-slate-900/40 border-y border-white/5">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-bond-lime/5 rounded-full blur-[100px] pointer-events-none" />
         
-        <div className="container mx-auto max-w-4xl relative z-10 flex flex-col items-center">
-          <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 w-full max-w-2xl text-center shadow-2xl">
-            <ShieldCheck className="w-12 h-12 text-bond-lime mx-auto mb-6" />
-            <h2 className="text-3xl font-black mb-2">Transparent Pricing</h2>
-            <p className="text-slate-400 mb-8">One-time project fee. No hidden costs.</p>
-            
-            <div className="flex items-end justify-center gap-2 mb-10">
-              <span className="text-slate-400 text-lg mb-2 font-bold">Starts from</span>
-              <span className="text-6xl font-black text-white">₹7,000</span>
-            </div>
+        <div className="container mx-auto max-w-5xl relative z-10">
+          <div className="mb-16 text-center">
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">Transparent <span className="text-bond-lime">Pricing</span></h2>
+            <p className="text-slate-400 max-w-2xl mx-auto font-medium">Two distinct packages tailored to your clinic's scale. No hidden fees.</p>
+          </div>
 
-            <Link href="/#kit-builder" className="inline-block w-full">
-              <Button variant="lime" size="lg" className="w-full text-lg h-16 shadow-[0_0_30px_rgba(204,255,0,0.3)] hover:shadow-[0_0_50px_rgba(204,255,0,0.5)] transition-all">
-                Add to My Kit <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </Link>
+          <div className="grid md:grid-cols-2 gap-8">
+            
+            {/* Standard Package */}
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-10 flex flex-col relative overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]"
+            >
+              <div className="mb-8">
+                <h3 className="text-2xl font-black mb-2 text-white">Standard Website</h3>
+                <p className="text-slate-400 text-sm font-medium">Perfect for new or independent clinics.</p>
+              </div>
+              
+              <div className="mb-10">
+                <span className="text-5xl font-black text-white">₹7,000</span>
+                <span className="text-slate-400 text-lg ml-2 font-bold">One-time</span>
+              </div>
+
+              <ul className="space-y-4 mb-12 flex-1">
+                {[
+                  "Custom UI/UX Design",
+                  "Up to 5 Essential Pages",
+                  "WhatsApp Chat Integration",
+                  "Basic Local SEO Optimization",
+                  "3 Revision Rounds Included",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-slate-300 font-medium">
+                    <CheckCircle2 className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
+                    {item}
+                  </li>
+                ))}
+                <li className="flex items-start gap-3 text-slate-400 text-sm italic mt-6">
+                  <span className="block p-1 bg-white/5 rounded">*Additional revisions charged separately based on requirements.</span>
+                </li>
+              </ul>
+
+              <Link href="/#kit-builder" className="w-full mt-auto">
+                <Button variant="outline" size="lg" className="w-full text-base font-bold h-14 border-white/20 text-white hover:bg-white hover:text-bond-navy transition-all">
+                  Select Standard Plan
+                </Button>
+              </Link>
+            </motion.div>
+
+            {/* Premium Package */}
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="bg-bond-navy backdrop-blur-2xl border-2 border-bond-lime/50 rounded-[2rem] p-10 flex flex-col relative overflow-hidden shadow-[0_0_40px_rgba(204,255,0,0.1)] transition-all duration-300 hover:shadow-[0_0_60px_rgba(204,255,0,0.2)]"
+            >
+              <div className="absolute top-6 right-6 bg-bond-lime/20 text-bond-lime text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
+                Most Popular
+              </div>
+
+              <div className="mb-8">
+                <h3 className="text-2xl font-black mb-2 text-white">Premium Website</h3>
+                <p className="text-slate-400 text-sm font-medium">For established clinics demanding the best.</p>
+              </div>
+              
+              <div className="mb-10">
+                <span className="text-slate-400 text-lg mr-2 font-bold">Starts at</span>
+                <span className="text-5xl font-black text-bond-lime">₹13,000</span>
+              </div>
+
+              <ul className="space-y-4 mb-12 flex-1">
+                {[
+                  "Advanced Premium UI/UX Animations",
+                  "Unlimited Pages & Treatments",
+                  "Advanced Appointment Booking System",
+                  "Comprehensive Technical SEO",
+                  "Unlimited Revisions until Launch",
+                  "Priority Support",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-slate-200 font-medium">
+                    <CheckCircle2 className="w-5 h-5 text-bond-lime shrink-0 mt-0.5" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <Link href="/#kit-builder" className="w-full mt-auto">
+                <Button variant="lime" size="lg" className="w-full text-base font-bold h-14 shadow-[0_0_20px_rgba(204,255,0,0.2)] hover:shadow-[0_0_30px_rgba(204,255,0,0.4)] transition-all">
+                  Select Premium Plan
+                </Button>
+              </Link>
+            </motion.div>
+
           </div>
         </div>
       </section>

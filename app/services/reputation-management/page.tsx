@@ -4,25 +4,20 @@ import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Star, MessageSquare, AlertCircle, ShieldCheck, Map, ArrowRight } from "lucide-react";
+import { Star, Shield, ThumbsUp, TrendingUp, AlertTriangle, ShieldCheck, ArrowRight, ArrowLeft } from "lucide-react";
 
 export default function ReputationManagementService() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Dental Clinic Reputation Management",
-    "description": "Automated Google review generation and reputation monitoring for dentists.",
+    "description": "Automated Google Review generation and bad review mitigation for dental clinics.",
     "provider": {
       "@type": "Organization",
       "name": "Invictus AI",
       "url": "https://invictus-ai.in"
     },
-    "areaServed": "IN",
-    "offers": {
-      "@type": "Offer",
-      "price": "3000",
-      "priceCurrency": "INR"
-    }
+    "areaServed": "IN"
   };
 
   return (
@@ -30,11 +25,20 @@ export default function ReputationManagementService() {
       <Navbar />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       
+      {/* Navigation */}
+      <div className="absolute top-24 left-6 md:left-12 z-50">
+        <Link href="/">
+          <Button variant="outline" size="sm" className="bg-white/5 border-white/10 hover:bg-white/10 text-slate-300 hover:text-white backdrop-blur-md rounded-full shadow-lg">
+            <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
+          </Button>
+        </Link>
+      </div>
+
       {/* 1. Immersive Hero Section */}
       <section className="relative pt-40 pb-32 px-6">
         {/* Ambient Glows */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-yellow-500/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-orange-500/10 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="container mx-auto max-w-5xl relative z-10">
           <motion.div 
@@ -42,7 +46,7 @@ export default function ReputationManagementService() {
             animate={{ opacity: 1, y: 0 }}
             className="flex justify-center mb-8"
           >
-            <div className="bg-amber-500/10 border border-amber-500/20 text-amber-500 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full backdrop-blur-md">
+            <div className="bg-amber-500/10 border border-amber-500/20 text-amber-500 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full backdrop-blur-md shadow-[0_0_15px_rgba(245,158,11,0.15)]">
               Service 04
             </div>
           </motion.div>
@@ -53,9 +57,9 @@ export default function ReputationManagementService() {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-7xl lg:text-8xl font-black text-center mb-6 leading-[1.1] tracking-tight"
           >
-            Automated 5-Star <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-500">
-              Google Reviews
+            Automated <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500 drop-shadow-[0_0_30px_rgba(245,158,11,0.3)]">
+              5-Star Reviews
             </span>
           </motion.h1>
 
@@ -63,9 +67,9 @@ export default function ReputationManagementService() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto text-center mb-12 leading-relaxed"
+            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto text-center mb-12 leading-relaxed font-medium"
           >
-            Don't rely on patients to remember. Our automated system texts them right after their appointment to collect positive Google reviews and build undeniable trust.
+            Your Google rating is the #1 deciding factor for new patients. We automate your review collection process to bury negative reviews and skyrocket your local ranking.
           </motion.p>
 
           <motion.div 
@@ -83,107 +87,75 @@ export default function ReputationManagementService() {
         </div>
       </section>
 
-      {/* 2. Bento Grid Section */}
-      <section className="py-24 px-6 bg-slate-900/50 border-y border-white/5 relative z-10 backdrop-blur-xl">
+      {/* 2. Glassmorphism Features Section */}
+      <section className="py-24 px-6 relative z-10">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-16 text-center">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">Grow your reputation on <span className="text-amber-500">autopilot</span></h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">More 5-star reviews equals more trust, and more trust equals more booked appointments.</p>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">Protect and grow your <span className="text-amber-500">reputation</span></h2>
+            <p className="text-slate-400 max-w-2xl mx-auto font-medium">A single bad review can cost you dozens of patients. We ensure that doesn't happen.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Bento 1: Automated SMS (Spans 2 columns) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Feature 1 */}
             <motion.div 
-              whileHover={{ scale: 1.02 }}
-              className="md:col-span-2 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 overflow-hidden relative group"
+              whileHover={{ y: -5 }}
+              className="bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-amber-500/30 rounded-[2rem] p-10 transition-all duration-300 group shadow-2xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <div className="bg-amber-500/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border border-amber-500/30 text-amber-500">
-                  <MessageSquare className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-black mb-3">Post-Visit Automated Texts</h3>
-                <p className="text-slate-400 leading-relaxed max-w-md">We integrate with your systems to automatically send an SMS review request to patients immediately after they leave your clinic—while the great experience is fresh on their mind.</p>
+              <div className="bg-white/5 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-amber-500/50 group-hover:bg-amber-500/10 transition-colors">
+                <Star className="w-7 h-7 text-slate-300 group-hover:text-amber-500 transition-colors" />
               </div>
+              <h3 className="text-2xl font-black mb-4">Automated WhatsApp Follow-ups</h3>
+              <p className="text-slate-400 leading-relaxed font-medium">We automatically message patients on WhatsApp right after their appointment when they are happiest, directly asking for a Google review.</p>
             </motion.div>
 
-            {/* Bento 2: Map Ranking */}
+            {/* Feature 2 */}
             <motion.div 
-              whileHover={{ scale: 1.02 }}
-              className="bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 relative group"
+              whileHover={{ y: -5 }}
+              className="bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-amber-500/30 rounded-[2rem] p-10 transition-all duration-300 group shadow-2xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <div className="bg-yellow-500/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border border-yellow-500/30 text-yellow-500">
-                  <Map className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-black mb-3">Map Ranking</h3>
-                <p className="text-slate-400 leading-relaxed">Constant fresh reviews signal to Google that your clinic is popular, bumping you higher in local map pack rankings.</p>
+              <div className="bg-white/5 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-amber-500/50 group-hover:bg-amber-500/10 transition-colors">
+                <AlertTriangle className="w-7 h-7 text-slate-300 group-hover:text-amber-500 transition-colors" />
               </div>
+              <h3 className="text-2xl font-black mb-4">Bad Review Shield</h3>
+              <p className="text-slate-400 leading-relaxed font-medium">Our system acts as a filter. If a patient is unhappy, their feedback comes to you privately so you can resolve the issue before it ever hits Google.</p>
+            </motion.div>
+            
+            {/* Feature 3 */}
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-amber-500/30 rounded-[2rem] p-10 transition-all duration-300 group shadow-2xl"
+            >
+              <div className="bg-white/5 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-amber-500/50 group-hover:bg-amber-500/10 transition-colors">
+                <ThumbsUp className="w-7 h-7 text-slate-300 group-hover:text-amber-500 transition-colors" />
+              </div>
+              <h3 className="text-2xl font-black mb-4">Frictionless 1-Click Process</h3>
+              <p className="text-slate-400 leading-relaxed font-medium">We remove all friction. Patients click the link and are taken exactly to the spot to leave the 5 stars, increasing completion rates drastically.</p>
             </motion.div>
 
-            {/* Bento 3: Filter Negative Feedback (Spans 3 columns) */}
+            {/* Feature 4 */}
             <motion.div 
-              whileHover={{ scale: 1.02 }}
-              className="md:col-span-3 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 relative group overflow-hidden"
+              whileHover={{ y: -5 }}
+              className="bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-amber-500/30 rounded-[2rem] p-10 transition-all duration-300 group shadow-2xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
-                <div>
-                  <div className="bg-red-500/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border border-red-500/30 text-red-400">
-                    <AlertCircle className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-2xl font-black mb-3">Filter Negative Feedback</h3>
-                  <p className="text-slate-400 leading-relaxed max-w-2xl">Our smart review gateway asks patients to rate their experience from 1-5 first. If they select 4 or 5 stars, they are sent to Google. If they select 1-3 stars, they are directed to a private internal feedback form, giving you a chance to resolve the issue before it permanently damages your public reputation.</p>
-                </div>
+              <div className="bg-white/5 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-amber-500/50 group-hover:bg-amber-500/10 transition-colors">
+                <TrendingUp className="w-7 h-7 text-slate-300 group-hover:text-amber-500 transition-colors" />
               </div>
+              <h3 className="text-2xl font-black mb-4">Dominate Local Search Map</h3>
+              <p className="text-slate-400 leading-relaxed font-medium">Google heavily favors clinics with recent, high-volume 5-star reviews. As your review count explodes, you naturally rank #1 in the Local Map Pack.</p>
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Interactive Timeline / Deliverables */}
-      <section className="py-32 px-6 relative">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl md:text-5xl font-black text-center mb-20 tracking-tight">What's <span className="text-amber-500">Included</span></h2>
-          
-          <div className="space-y-12">
-            {[
-              { title: "Review Gateway Setup", desc: "We build the custom landing page that filters positive vs negative feedback." },
-              { title: "SMS Automation Integration", desc: "We set up the automated triggers so texts go out exactly when they should, with zero manual work from your staff." },
-              { title: "Google Profile Optimization", desc: "We ensure your Google Business Profile is fully optimized, verified, and structured for maximum local SEO." },
-              { title: "Review Monitoring", desc: "Get alerted the moment a new review is posted so you can always stay on top of your online presence." },
-            ].map((step, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="flex items-start gap-6"
-              >
-                <div className="shrink-0 w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500 text-amber-500 flex items-center justify-center font-black text-xl">
-                  {index + 1}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">{step.title}</h3>
-                  <p className="text-slate-400 leading-relaxed">{step.desc}</p>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* 4. Premium Pricing Glass Card */}
-      <section className="py-24 px-6 bg-slate-900/80 border-t border-white/5 relative overflow-hidden">
+      {/* 3. Premium Pricing Glass Card */}
+      <section className="py-24 px-6 bg-slate-900/40 border-t border-white/5 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="container mx-auto max-w-4xl relative z-10 flex flex-col items-center">
-          <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 w-full max-w-2xl text-center shadow-2xl">
+          <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[3rem] p-8 md:p-14 w-full max-w-2xl text-center shadow-[0_0_50px_rgba(0,0,0,0.5)]">
             <ShieldCheck className="w-12 h-12 text-amber-500 mx-auto mb-6" />
             <h2 className="text-3xl font-black mb-2">Monthly Retainer</h2>
-            <p className="text-slate-400 mb-8">Unlimited automated review requests.</p>
+            <p className="text-slate-400 mb-8 font-medium">Automated review requests via WhatsApp. Includes negative review filtering.</p>
             
             <div className="flex items-end justify-center gap-2 mb-10">
               <span className="text-slate-400 text-lg mb-2 font-bold">Flat fee</span>
@@ -192,7 +164,7 @@ export default function ReputationManagementService() {
             </div>
 
             <Link href="/#kit-builder" className="inline-block w-full">
-              <Button variant="outline" size="lg" className="w-full text-lg h-16 bg-amber-500 text-bond-navy hover:bg-amber-400 border-none shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:shadow-[0_0_50px_rgba(245,158,11,0.5)] transition-all">
+              <Button variant="outline" size="lg" className="w-full text-lg h-16 bg-amber-500 text-bond-navy hover:bg-amber-400 border-none shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:shadow-[0_0_50px_rgba(245,158,11,0.5)] transition-all font-bold">
                 Add to My Kit <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>

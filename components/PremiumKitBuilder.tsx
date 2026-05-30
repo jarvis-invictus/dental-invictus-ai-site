@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe, Megaphone, Bot, Star } from "lucide-react";
 
@@ -18,44 +18,24 @@ export default function PremiumKitBuilder() {
   const [isBotActive, setIsBotActive] = useState(false);
   const [isRepActive, setIsRepActive] = useState(false);
 
-  // Pricing Logic
-  const websitePrice = isWebsiteActive ? (websiteTier === "Standard" ? 7000 : 13000) : 0;
-  const adsPrice = isAdsActive ? (4000 + (postsCount * 300) + (reelsCount * 800)) : 0;
-  const botPrice = isBotActive ? 3000 : 0;
-  const repPrice = isRepActive ? 3000 : 0;
-
-  const monthlySubtotal = adsPrice + botPrice + repPrice;
-  const activeMonthlyCount = [isAdsActive, isBotActive, isRepActive].filter(Boolean).length;
-  
-  let discountPercent = 0;
-  if (activeMonthlyCount === 2) discountPercent = 0.10;
-  if (activeMonthlyCount === 3) discountPercent = 0.15;
-  
-  const discountAmount = monthlySubtotal * discountPercent;
-  const finalMonthly = monthlySubtotal - discountAmount;
-
   // WhatsApp Message Generator
   const generateWhatsAppLink = () => {
-    let msg = `Hi Sahil, I've built my Growth Kit:\n\n`;
+    let msg = `Hi Sahil, I want to request a quote for a custom Growth Kit:\n\n`;
     
     if (isWebsiteActive) {
-      msg += `*Website*: ${websiteTier} (₹${websitePrice.toLocaleString()})\n`;
+      msg += `*Website Package*: ${websiteTier}\n`;
     }
     
+    const activeMonthlyCount = [isAdsActive, isBotActive, isRepActive].filter(Boolean).length;
+
     if (activeMonthlyCount > 0) {
-      msg += `\n*Monthly Services*:\n`;
+      msg += `\n*Monthly Services Included*:\n`;
       if (isAdsActive) msg += `- Meta Ads & Content (${postsCount} posts, ${reelsCount} reels)\n`;
       if (isBotActive) msg += `- Website Chatbot\n`;
       if (isRepActive) msg += `- Reputation Management\n`;
     }
     
-    msg += `\n*Summary*:\n`;
-    msg += `One-time Setup: ₹${websitePrice.toLocaleString()}\n`;
-    msg += `Monthly Total: ₹${finalMonthly.toLocaleString()}/mo\n`;
-    
-    if (discountPercent > 0) {
-      msg += `(Includes ${discountPercent * 100}% Bundle Discount!)\n`;
-    }
+    msg += `\nPlease let me know the estimated cost for this kit.`;
     
     const encoded = encodeURIComponent(msg);
     return `https://wa.me/919699577641?text=${encoded}`;
@@ -72,7 +52,7 @@ export default function PremiumKitBuilder() {
             Build Your Growth Kit
           </h2>
           <p className="text-bond-gray font-medium mt-3 text-lg max-w-2xl">
-            Select the exact services you need. Your price updates instantly.
+            Select the exact services you need. Request a custom quote instantly.
           </p>
         </div>
         
@@ -140,13 +120,13 @@ export default function PremiumKitBuilder() {
                         onClick={() => setWebsiteTier("Standard")}
                         className={`flex-1 relative z-10 py-2 text-sm font-bold rounded-full transition-colors ${websiteTier === 'Standard' ? 'text-bond-navy' : 'text-slate-500 hover:text-bond-navy'}`}
                       >
-                        Standard (₹7K)
+                        Standard
                       </button>
                       <button 
                         onClick={() => setWebsiteTier("Premium")}
                         className={`flex-1 relative z-10 py-2 text-sm font-bold rounded-full transition-colors ${websiteTier === 'Premium' ? 'text-bond-navy' : 'text-slate-500 hover:text-bond-navy'}`}
                       >
-                        Premium (₹13K)
+                        Premium
                       </button>
                     </div>
                   </motion.div>
@@ -191,7 +171,7 @@ export default function PremiumKitBuilder() {
                     <div className="space-y-4 pt-2">
                       <div>
                         <div className="flex justify-between text-xs font-bold text-bond-navy mb-2">
-                          <span>POSTS/MO (₹300 ea)</span>
+                          <span>POSTS/MO</span>
                           <span>{postsCount}</span>
                         </div>
                         <input 
@@ -202,7 +182,7 @@ export default function PremiumKitBuilder() {
                       </div>
                       <div>
                         <div className="flex justify-between text-xs font-bold text-bond-navy mb-2">
-                          <span>REELS/MO (₹800 ea)</span>
+                          <span>REELS/MO</span>
                           <span>{reelsCount}</span>
                         </div>
                         <input 
@@ -237,7 +217,7 @@ export default function PremiumKitBuilder() {
                 )}
               </div>
               <h3 className={`text-2xl font-black ${isBotActive ? 'text-bond-navy' : 'text-slate-500'}`}>Chatbot</h3>
-              <p className={`text-sm mt-1 font-medium ${isBotActive ? 'text-bond-gray' : 'text-slate-400'}`}>₹3,000 / month</p>
+              <p className={`text-sm mt-1 font-medium ${isBotActive ? 'text-bond-gray' : 'text-slate-400'}`}>Monthly retainer</p>
             </div>
 
             {/* Tile: Rep */}
@@ -260,7 +240,7 @@ export default function PremiumKitBuilder() {
                 )}
               </div>
               <h3 className={`text-2xl font-black ${isRepActive ? 'text-bond-navy' : 'text-slate-500'}`}>Reputation</h3>
-              <p className={`text-sm mt-1 font-medium ${isRepActive ? 'text-bond-gray' : 'text-slate-400'}`}>₹3,000 / month</p>
+              <p className={`text-sm mt-1 font-medium ${isRepActive ? 'text-bond-gray' : 'text-slate-400'}`}>Monthly retainer</p>
             </div>
 
           </div>
@@ -268,7 +248,7 @@ export default function PremiumKitBuilder() {
           {/* Right: Live Summary Panel */}
           <div className="lg:col-span-5 relative">
             <div className="sticky top-24 bg-bond-navy rounded-3xl shadow-2xl p-8 border border-white/10">
-              <div className="text-xs font-bold uppercase tracking-widest text-bond-lime mb-6">Your Kit</div>
+              <div className="text-xs font-bold uppercase tracking-widest text-bond-lime mb-6">Your Selected Services</div>
 
               <div className="space-y-4 mb-8 min-h-[120px]">
                 {!isWebsiteActive && !isAdsActive && !isBotActive && !isRepActive && (
@@ -277,48 +257,34 @@ export default function PremiumKitBuilder() {
                 
                 <AnimatePresence>
                   {isWebsiteActive && (
-                    <motion.div key="summary-website" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white">
-                      <span>Website ({websiteTier})</span>
-                      <span className="font-bold">₹{websitePrice.toLocaleString()}</span>
+                    <motion.div key="summary-website" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white border-b border-white/5 pb-3">
+                      <span className="font-bold">Website Package</span>
+                      <span className="text-bond-lime">{websiteTier}</span>
                     </motion.div>
                   )}
                   {isAdsActive && (
-                    <motion.div key="summary-ads" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white">
-                      <span>Meta Ads ({postsCount}p, {reelsCount}r)</span>
-                      <span className="font-bold">₹{adsPrice.toLocaleString()}/mo</span>
+                    <motion.div key="summary-ads" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white border-b border-white/5 pb-3">
+                      <span className="font-bold">Meta Ads & Content</span>
+                      <span className="text-cyan-400">{postsCount} Posts, {reelsCount} Reels</span>
                     </motion.div>
                   )}
                   {isBotActive && (
-                    <motion.div key="summary-bot" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white">
-                      <span>Chatbot</span>
-                      <span className="font-bold">₹{botPrice.toLocaleString()}/mo</span>
+                    <motion.div key="summary-bot" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white border-b border-white/5 pb-3">
+                      <span className="font-bold">AI Chatbot</span>
+                      <span className="text-bond-purple">Included</span>
                     </motion.div>
                   )}
                   {isRepActive && (
-                    <motion.div key="summary-rep" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white">
-                      <span>Reputation</span>
-                      <span className="font-bold">₹{repPrice.toLocaleString()}/mo</span>
+                    <motion.div key="summary-rep" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }} className="flex justify-between text-white border-b border-white/5 pb-3">
+                      <span className="font-bold">Reputation Management</span>
+                      <span className="text-amber-500">Included</span>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
 
-              {discountPercent > 0 && (
-                <div className="bg-bond-lime/10 border border-bond-lime/20 rounded-xl p-4 mb-6 flex justify-between items-center text-bond-lime">
-                  <span className="text-sm font-bold">{discountPercent * 100}% Bundle Savings</span>
-                  <span className="font-black">-₹{discountAmount.toLocaleString()}/mo</span>
-                </div>
-              )}
-
-              <div className="border-t border-white/10 pt-6 space-y-2 mb-8">
-                <div className="flex justify-between text-white/70">
-                  <span>One-time Setup</span>
-                  <span className="font-bold text-white">₹{websitePrice.toLocaleString()}</span>
-                </div>
-                <div className="flex justify-between text-white/70 items-end">
-                  <span>Monthly Total</span>
-                  <span className="font-black text-3xl text-bond-lime">₹{finalMonthly.toLocaleString()}</span>
-                </div>
+              <div className="border-t border-white/10 pt-6 mb-8 text-slate-300 text-sm leading-relaxed">
+                Send us your requested kit configuration on WhatsApp, and our team will get back to you with a custom quote and bundle discount.
               </div>
 
               <a
@@ -327,7 +293,7 @@ export default function PremiumKitBuilder() {
                 rel="noopener noreferrer"
                 className={`block w-full text-center py-4 rounded-xl font-bold transition-all duration-300 ${
                   (isWebsiteActive || isAdsActive || isBotActive || isRepActive)
-                    ? "bg-bond-lime text-bond-navy hover:scale-[1.02] hover:shadow-lg cursor-pointer"
+                    ? "bg-bond-lime text-bond-navy hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(204,255,0,0.3)] cursor-pointer"
                     : "bg-white/10 text-white/40 cursor-not-allowed"
                 }`}
                 onClick={(e) => {
@@ -336,7 +302,7 @@ export default function PremiumKitBuilder() {
                   }
                 }}
               >
-                Get This Kit on WhatsApp
+                Request a Custom Quote
               </a>
 
             </div>
