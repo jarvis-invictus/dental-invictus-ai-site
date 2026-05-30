@@ -7,7 +7,7 @@ import Link from "next/link";
 
 
 import { Button } from "@/components/ui/Button";
-import { ArrowRight, TrendingUp, EyeOff, Clock } from "lucide-react";
+import { ArrowRight, TrendingUp, EyeOff, Clock, Globe, Megaphone, Bot, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
@@ -743,18 +743,35 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0 }}
-              className="bg-white rounded-3xl shadow-sticker-lime border border-slate-100 p-8 flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#ccff00] transition-all duration-300"
+              className="bg-white rounded-[2rem] shadow-sticker-lime border border-slate-100 p-10 flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#ccff00] transition-all duration-300 min-h-[480px]"
             >
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-2xl font-black text-bond-navy">Clinic Website</h3>
-                <span className="bg-bond-lime/20 text-bond-navy text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shrink-0 ml-2">From ₹7K</span>
+              <div className="flex justify-between items-start mb-6">
+                <div className="w-14 h-14 bg-bond-lime/20 text-bond-navy rounded-2xl flex items-center justify-center border border-bond-lime/30">
+                  <Globe className="w-7 h-7" />
+                </div>
+                <span className="bg-bond-lime/20 text-bond-navy text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full shrink-0">From ₹7K</span>
               </div>
-              <p className="text-bond-gray text-sm leading-relaxed mb-8 flex-1">
-                A conversion-focused clinic website designed to turn local visitors into booked appointments — not just a digital presence, but a patient acquisition tool.
+              <h3 className="text-3xl font-black text-bond-navy mb-4">Clinic Website</h3>
+              <p className="text-bond-gray text-base leading-relaxed mb-8">
+                A conversion-focused clinic website designed to turn local visitors into booked appointments — not just a digital brochure, but a patient acquisition engine.
               </p>
-              <Link href="/services/clinic-website" className="w-full block">
-                <Button variant="outline" size="md" className="w-full border-bond-lime text-bond-navy hover:bg-bond-lime transition-colors">
-                  Learn More
+              
+              <ul className="space-y-3 mb-10 flex-1">
+                {[
+                  "Mobile-first, lightning fast design",
+                  "Direct appointment booking forms",
+                  "Local SEO & Google Maps optimization"
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm font-medium text-bond-navy">
+                    <svg className="w-5 h-5 text-bond-lime shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <Link href="/services/clinic-website" className="w-full block mt-auto">
+                <Button variant="outline" size="lg" className="w-full border-2 border-bond-lime text-bond-navy hover:bg-bond-lime transition-colors h-14 text-base font-bold">
+                  Explore Website Plans <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
             </motion.div>
@@ -765,19 +782,36 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="bg-bond-navy rounded-3xl shadow-2xl border border-bond-navy/50 p-8 flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#0f172a] transition-all duration-300 relative"
+              className="bg-bond-navy rounded-[2rem] shadow-2xl border border-bond-navy/50 p-10 flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#0f172a] transition-all duration-300 relative min-h-[480px]"
             >
-              <div className="absolute top-4 right-4 text-bond-navy text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sticker animate-shimmer bg-bond-lime">Most Popular</div>
-              <div className="flex justify-between items-start mb-4 mt-2">
-                <h3 className="text-2xl font-black text-white pr-20">Meta Ads + Content</h3>
-                <span className="bg-white/10 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shrink-0 ml-2">₹4K/mo</span>
+              <div className="absolute top-6 right-6 text-bond-navy text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sticker animate-shimmer bg-bond-lime">Most Popular</div>
+              
+              <div className="flex justify-between items-start mb-6">
+                <div className="w-14 h-14 bg-cyan-500/20 text-cyan-400 rounded-2xl flex items-center justify-center border border-cyan-500/30">
+                  <Megaphone className="w-7 h-7" />
+                </div>
               </div>
-              <p className="text-slate-300 text-sm leading-relaxed mb-8 flex-1">
-                Hyper-local Instagram and Facebook ad campaigns paired with monthly content that positions your clinic as the trusted name in your area.
+              <h3 className="text-3xl font-black text-white mb-4 pr-24">Meta Ads + Content</h3>
+              <p className="text-slate-300 text-base leading-relaxed mb-8">
+                Hyper-local Instagram and Facebook ad campaigns paired with monthly content that positions your clinic as the trusted name in your 5km radius.
               </p>
-              <Link href="/services/meta-ads" className="w-full block">
-                <Button variant="lime" size="md" className="w-full hover:scale-105 transition-all duration-300">
-                  Learn More
+
+              <ul className="space-y-3 mb-10 flex-1">
+                {[
+                  "Monthly targeted ad management",
+                  "4-8 posts + reels produced per month",
+                  "Transparent lead tracking & reporting"
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm font-medium text-white/90">
+                    <svg className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <Link href="/services/meta-ads" className="w-full block mt-auto">
+                <Button variant="lime" size="lg" className="w-full h-14 text-base font-bold shadow-[0_0_20px_rgba(204,255,0,0.2)] hover:shadow-[0_0_30px_rgba(204,255,0,0.4)] transition-all duration-300">
+                  See Advertising Plans <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
             </motion.div>
@@ -788,18 +822,35 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white rounded-3xl shadow-sticker-cyan border border-slate-100 p-8 flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#06b6d4] transition-all duration-300"
+              className="bg-white rounded-[2rem] shadow-sticker-cyan border border-slate-100 p-10 flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#06b6d4] transition-all duration-300 min-h-[480px]"
             >
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-2xl font-black text-bond-navy">Website Chatbot</h3>
-                <span className="bg-bond-purple/20 text-bond-purple text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shrink-0 ml-2">₹3K/mo</span>
+              <div className="flex justify-between items-start mb-6">
+                <div className="w-14 h-14 bg-bond-purple/20 text-bond-purple rounded-2xl flex items-center justify-center border border-bond-purple/30">
+                  <Bot className="w-7 h-7" />
+                </div>
+                <span className="bg-bond-purple/20 text-bond-purple text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full shrink-0">₹3K/mo</span>
               </div>
-              <p className="text-bond-gray text-sm leading-relaxed mb-8 flex-1">
+              <h3 className="text-3xl font-black text-bond-navy mb-4">Website Chatbot</h3>
+              <p className="text-bond-gray text-base leading-relaxed mb-8">
                 An AI-powered receptionist that lives on your website, answering patient questions instantly, 24/7, and booking appointments directly into your calendar.
               </p>
-              <Link href="/services/ai-chatbot" className="w-full block">
-                <Button variant="outline" size="md" className="w-full border-bond-purple text-bond-purple hover:bg-bond-purple hover:text-white transition-colors">
-                  Learn More
+
+              <ul className="space-y-3 mb-10 flex-1">
+                {[
+                  "Custom trained on your clinic data",
+                  "Direct calendar booking integration",
+                  "Human handoff for complex questions"
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm font-medium text-bond-navy">
+                    <svg className="w-5 h-5 text-bond-purple shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <Link href="/services/ai-chatbot" className="w-full block mt-auto">
+                <Button variant="outline" size="lg" className="w-full border-2 border-bond-purple text-bond-purple hover:bg-bond-purple hover:text-white transition-colors h-14 text-base font-bold">
+                  Meet the AI Chatbot <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
             </motion.div>
@@ -810,18 +861,35 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.45 }}
-              className="bg-white rounded-3xl shadow-sticker-cyan border border-slate-100 p-8 flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#f59e0b] transition-all duration-300"
+              className="bg-white rounded-[2rem] shadow-sticker-cyan border border-slate-100 p-10 flex flex-col group hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_#f59e0b] transition-all duration-300 min-h-[480px]"
             >
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-2xl font-black text-bond-navy pr-4">Reputation Management</h3>
-                <span className="bg-[#f59e0b]/20 text-[#f59e0b] text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shrink-0 ml-2">₹3K/mo</span>
+              <div className="flex justify-between items-start mb-6">
+                <div className="w-14 h-14 bg-[#f59e0b]/20 text-[#f59e0b] rounded-2xl flex items-center justify-center border border-[#f59e0b]/30">
+                  <Star className="w-7 h-7" />
+                </div>
+                <span className="bg-[#f59e0b]/20 text-[#f59e0b] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full shrink-0">₹3K/mo</span>
               </div>
-              <p className="text-bond-gray text-sm leading-relaxed mb-8 flex-1">
+              <h3 className="text-3xl font-black text-bond-navy mb-4 pr-4">Reputation Management</h3>
+              <p className="text-bond-gray text-base leading-relaxed mb-8">
                 Automated Google review generation system that requests feedback from happy patients immediately after their visit — so your star rating grows effortlessly.
               </p>
-              <Link href="/services/reputation-management" className="w-full block">
-                <Button variant="outline" size="md" className="w-full border-[#f59e0b] text-[#f59e0b] hover:bg-[#f59e0b] hover:text-white transition-colors">
-                  Learn More
+
+              <ul className="space-y-3 mb-10 flex-1">
+                {[
+                  "Post-visit automated SMS requests",
+                  "Filter out negative 1-3 star reviews",
+                  "Google Business Profile optimization"
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm font-medium text-bond-navy">
+                    <svg className="w-5 h-5 text-[#f59e0b] shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <Link href="/services/reputation-management" className="w-full block mt-auto">
+                <Button variant="outline" size="lg" className="w-full border-2 border-[#f59e0b] text-[#f59e0b] hover:bg-[#f59e0b] hover:text-white transition-colors h-14 text-base font-bold">
+                  Grow Your Reviews <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
             </motion.div>
