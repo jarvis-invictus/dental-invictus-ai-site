@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Globe, Zap, Target, Search, Smartphone, ShieldCheck, ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Target, Smartphone, Search, Zap, CheckCircle2 } from "lucide-react";
 
 export default function ClinicWebsiteService() {
   const schema = {
@@ -27,32 +27,28 @@ export default function ClinicWebsiteService() {
   };
 
   return (
-    <div className="bg-bond-navy min-h-screen text-white font-sans selection:bg-bond-lime selection:text-bond-navy overflow-hidden">
+    <div className="bg-white min-h-screen text-bond-navy font-sans selection:bg-bond-lime selection:text-bond-navy overflow-hidden">
       <Navbar />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       
       {/* Navigation */}
-      <div className="absolute top-24 left-6 md:left-12 z-50">
+      <div className="pt-24 px-6 md:px-12 relative z-50">
         <Link href="/">
-          <Button variant="outline" size="sm" className="bg-white/5 border-white/10 hover:bg-white/10 text-slate-300 hover:text-white backdrop-blur-md rounded-full shadow-lg">
+          <Button variant="outline" size="sm" className="bg-white border-bond-gray/20 hover:bg-slate-50 text-bond-navy rounded-full shadow-sm font-bold">
             <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
           </Button>
         </Link>
       </div>
 
-      {/* 1. Immersive Hero Section */}
-      <section className="relative pt-40 pb-32 px-6">
-        {/* Ambient Glows */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-bond-lime/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
-
+      {/* 1. Hero Section (Sticker Theme) */}
+      <section className="relative pt-12 pb-32 px-6">
         <div className="container mx-auto max-w-5xl relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="flex justify-center mb-8"
           >
-            <div className="bg-bond-lime/10 border border-bond-lime/20 text-bond-lime text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full backdrop-blur-md shadow-[0_0_15px_rgba(204,255,0,0.15)]">
+            <div className="bg-bond-lime/20 border-2 border-bond-lime text-bond-navy text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-[4px_4px_0px_0px_rgba(204,255,0,0.5)]">
               Service 01
             </div>
           </motion.div>
@@ -61,11 +57,13 @@ export default function ClinicWebsiteService() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-black text-center mb-6 leading-[1.1] tracking-tight"
+            className="text-5xl md:text-7xl lg:text-8xl font-black text-center mb-6 leading-[1.1] tracking-tight text-bond-navy"
           >
             Patient-Acquiring <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-bond-lime to-green-400 drop-shadow-[0_0_30px_rgba(204,255,0,0.3)]">
-              Dental Websites
+            <span className="relative inline-block mt-2">
+              <span className="relative z-10 px-4 py-1 bg-bond-lime text-bond-navy border-4 border-bond-navy transform -rotate-2 inline-block shadow-[8px_8px_0px_0px_#0f172a]">
+                Dental Websites
+              </span>
             </span>
           </motion.h1>
 
@@ -73,7 +71,7 @@ export default function ClinicWebsiteService() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto text-center mb-12 leading-relaxed font-medium"
+            className="text-lg md:text-xl text-bond-gray max-w-2xl mx-auto text-center mb-12 leading-relaxed font-bold"
           >
             Stop losing patients to clinics with better websites. We build lightning-fast, highly-optimized websites engineered to turn local Google searches into booked appointments.
           </motion.p>
@@ -85,7 +83,7 @@ export default function ClinicWebsiteService() {
             className="flex flex-col sm:flex-row justify-center gap-4"
           >
             <Link href="/#kit-builder">
-              <Button variant="lime" size="lg" className="w-full sm:w-auto hover:scale-105 transition-all text-bond-navy shadow-[0_0_40px_rgba(204,255,0,0.4)]">
+              <Button variant="lime" size="lg" className="w-full sm:w-auto hover:-translate-y-1 transition-transform border-2 border-bond-navy shadow-[4px_4px_0px_0px_#0f172a] text-bond-navy font-black text-lg">
                 Build Your Growth Kit
               </Button>
             </Link>
@@ -93,114 +91,120 @@ export default function ClinicWebsiteService() {
         </div>
       </section>
 
-      {/* 2. Glassmorphism Features Section */}
-      <section className="py-24 px-6 relative z-10">
+      {/* 2. Features Section (bond-card style) */}
+      <section className="py-24 px-6 relative z-10 bg-slate-50 border-t border-slate-200">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-16 text-center">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">Why our websites <span className="text-bond-lime">convert</span></h2>
-            <p className="text-slate-400 max-w-2xl mx-auto font-medium">We don't just build digital brochures. We build patient acquisition engines.</p>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4 text-bond-navy">Why our websites <span className="text-bond-purple underline decoration-wavy decoration-bond-lime underline-offset-8">convert</span></h2>
+            <p className="text-bond-gray max-w-2xl mx-auto font-bold">We don't just build digital brochures. We build patient acquisition engines.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Feature 1 */}
             <motion.div 
               whileHover={{ y: -5 }}
-              className="bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-bond-lime/30 rounded-[2rem] p-10 transition-all duration-300 group shadow-2xl"
+              className="bond-card rounded-3xl p-10 hover:shadow-[8px_8px_0px_0px_#ccff00]"
             >
-              <div className="bg-white/5 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-bond-lime/50 group-hover:bg-bond-lime/10 transition-colors">
-                <Target className="w-7 h-7 text-slate-300 group-hover:text-bond-lime transition-colors" />
+              <div className="bg-bond-lime/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 border-2 border-bond-lime">
+                <Target className="w-8 h-8 text-bond-navy" />
               </div>
-              <h3 className="text-2xl font-black mb-4">Direct Appointment Booking</h3>
-              <p className="text-slate-400 leading-relaxed font-medium">Integrated WhatsApp, floating CTAs, and optimized appointment forms mean completely friction-free booking straight from the homepage.</p>
+              <h3 className="text-2xl font-black mb-4 text-bond-navy">Direct Appointment Booking</h3>
+              <p className="text-bond-gray font-medium leading-relaxed">Integrated WhatsApp, floating CTAs, and optimized appointment forms mean completely friction-free booking straight from the homepage.</p>
             </motion.div>
 
             {/* Feature 2 */}
             <motion.div 
               whileHover={{ y: -5 }}
-              className="bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-bond-lime/30 rounded-[2rem] p-10 transition-all duration-300 group shadow-2xl"
+              className="bond-card rounded-3xl p-10 hover:shadow-[8px_8px_0px_0px_#ccff00]"
             >
-              <div className="bg-white/5 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-bond-lime/50 group-hover:bg-bond-lime/10 transition-colors">
-                <Smartphone className="w-7 h-7 text-slate-300 group-hover:text-bond-lime transition-colors" />
+              <div className="bg-bond-lime/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 border-2 border-bond-lime">
+                <Smartphone className="w-8 h-8 text-bond-navy" />
               </div>
-              <h3 className="text-2xl font-black mb-4">Mobile First</h3>
-              <p className="text-slate-400 leading-relaxed font-medium">80% of your traffic is on mobile. We design for the phone first, desktop second, ensuring a flawless experience on any device.</p>
+              <h3 className="text-2xl font-black mb-4 text-bond-navy">Mobile First</h3>
+              <p className="text-bond-gray font-medium leading-relaxed">80% of your traffic is on mobile. We design for the phone first, desktop second, ensuring a flawless experience on any device.</p>
             </motion.div>
             
             {/* Feature 3 */}
             <motion.div 
               whileHover={{ y: -5 }}
-              className="bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-bond-lime/30 rounded-[2rem] p-10 transition-all duration-300 group shadow-2xl"
+              className="bond-card rounded-3xl p-10 hover:shadow-[8px_8px_0px_0px_#ccff00]"
             >
-              <div className="bg-white/5 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-bond-lime/50 group-hover:bg-bond-lime/10 transition-colors">
-                <Search className="w-7 h-7 text-slate-300 group-hover:text-bond-lime transition-colors" />
+              <div className="bg-bond-lime/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 border-2 border-bond-lime">
+                <Search className="w-8 h-8 text-bond-navy" />
               </div>
-              <h3 className="text-2xl font-black mb-4">Local SEO Ready</h3>
-              <p className="text-slate-400 leading-relaxed font-medium">Perfectly optimized technical SEO and structured data so you show up instantly when patients search for "dentist near me".</p>
+              <h3 className="text-2xl font-black mb-4 text-bond-navy">Local SEO Ready</h3>
+              <p className="text-bond-gray font-medium leading-relaxed">Perfectly optimized technical SEO and structured data so you show up instantly when patients search for "dentist near me".</p>
             </motion.div>
 
             {/* Feature 4 */}
             <motion.div 
               whileHover={{ y: -5 }}
-              className="bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-bond-lime/30 rounded-[2rem] p-10 transition-all duration-300 group shadow-2xl"
+              className="bond-card rounded-3xl p-10 hover:shadow-[8px_8px_0px_0px_#ccff00]"
             >
-              <div className="bg-white/5 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-bond-lime/50 group-hover:bg-bond-lime/10 transition-colors">
-                <Zap className="w-7 h-7 text-slate-300 group-hover:text-bond-lime transition-colors" />
+              <div className="bg-bond-lime/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 border-2 border-bond-lime">
+                <Zap className="w-8 h-8 text-bond-navy" />
               </div>
-              <h3 className="text-2xl font-black mb-4">Lightning Fast</h3>
-              <p className="text-slate-400 leading-relaxed font-medium">Your patients won't wait. Our modern tech stack ensures your site loads in milliseconds, drastically reducing bounce rates.</p>
+              <h3 className="text-2xl font-black mb-4 text-bond-navy">Lightning Fast</h3>
+              <p className="text-bond-gray font-medium leading-relaxed">Your patients won't wait. Our modern tech stack ensures your site loads in milliseconds, drastically reducing bounce rates.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* 3. Pricing Packages */}
-      <section className="py-24 px-6 relative overflow-hidden bg-slate-900/40 border-y border-white/5">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-bond-lime/5 rounded-full blur-[100px] pointer-events-none" />
-        
+      <section className="py-24 px-6 relative overflow-hidden bg-white">
         <div className="container mx-auto max-w-5xl relative z-10">
           <div className="mb-16 text-center">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">Transparent <span className="text-bond-lime">Pricing</span></h2>
-            <p className="text-slate-400 max-w-2xl mx-auto font-medium">Two distinct packages tailored to your clinic's scale. No hidden fees.</p>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4 text-bond-navy">Our <span className="bg-bond-lime px-2 pb-1 border-2 border-bond-navy rounded-lg shadow-[4px_4px_0px_0px_#0f172a]">Packages</span></h2>
+            <p className="text-bond-gray max-w-2xl mx-auto font-bold">Two distinct packages tailored to your clinic's requirements.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
             
             {/* Standard Package */}
             <motion.div 
               whileHover={{ y: -5 }}
-              className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-10 flex flex-col relative overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]"
+              className="bond-card border-2 border-bond-gray/20 rounded-[2rem] p-10 flex flex-col relative overflow-hidden bg-slate-50"
             >
-              <div className="mb-8">
-                <h3 className="text-2xl font-black mb-2 text-white">Standard Website</h3>
-                <p className="text-slate-400 text-sm font-medium">Perfect for new or independent clinics.</p>
+              <div className="mb-8 border-b-2 border-bond-gray/10 pb-6">
+                <h3 className="text-3xl font-black mb-2 text-bond-navy">Standard</h3>
+                <p className="text-bond-gray font-bold">A powerful digital foundation for your practice.</p>
               </div>
               
               <div className="mb-10">
-                <span className="text-5xl font-black text-white">₹7,000</span>
-                <span className="text-slate-400 text-lg ml-2 font-bold">One-time</span>
+                <span className="text-bond-gray text-lg mr-2 font-black uppercase tracking-wider">Starts at</span>
+                <span className="text-5xl font-black text-bond-navy">₹7,000</span>
               </div>
 
               <ul className="space-y-4 mb-12 flex-1">
-                {[
-                  "Custom UI/UX Design",
-                  "Up to 5 Essential Pages",
-                  "WhatsApp Chat Integration",
-                  "Basic Local SEO Optimization",
-                  "3 Revision Rounds Included",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-slate-300 font-medium">
-                    <CheckCircle2 className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
-                    {item}
-                  </li>
-                ))}
-                <li className="flex items-start gap-3 text-slate-400 text-sm italic mt-6">
-                  <span className="block p-1 bg-white/5 rounded">*Additional revisions charged separately based on requirements.</span>
+                <li className="flex items-start gap-3 text-bond-navy font-bold">
+                  <CheckCircle2 className="w-6 h-6 text-bond-lime shrink-0" />
+                  <span>Custom UI/UX Design</span>
+                </li>
+                <li className="flex items-start gap-3 text-bond-navy font-bold">
+                  <CheckCircle2 className="w-6 h-6 text-bond-lime shrink-0" />
+                  <div className="flex flex-col">
+                    <span>Up to 5 Essential Sections</span>
+                    <span className="text-sm font-medium text-bond-gray mt-1 leading-snug">Hero, About Us, Core Services (One-Page), Testimonial, Call-to-Action.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3 text-bond-navy font-bold">
+                  <CheckCircle2 className="w-6 h-6 text-bond-lime shrink-0" />
+                  <span>WhatsApp Chat Integration</span>
+                </li>
+                <li className="flex items-start gap-3 text-bond-navy font-bold">
+                  <CheckCircle2 className="w-6 h-6 text-bond-lime shrink-0" />
+                  <span>Basic Local SEO Optimization</span>
+                </li>
+                <li className="flex items-start gap-3 text-bond-navy font-bold">
+                  <CheckCircle2 className="w-6 h-6 text-bond-lime shrink-0" />
+                  <span>Up to 3 Revision Rounds</span>
                 </li>
               </ul>
 
               <Link href="/#kit-builder" className="w-full mt-auto">
-                <Button variant="outline" size="lg" className="w-full text-base font-bold h-14 border-white/20 text-white hover:bg-white hover:text-bond-navy transition-all">
-                  Select Standard Plan
+                <Button variant="outline" size="lg" className="w-full text-lg font-black h-14 border-2 border-bond-navy text-bond-navy hover:bg-slate-100 transition-all shadow-[4px_4px_0px_0px_#0f172a]">
+                  Select Standard
                 </Button>
               </Link>
             </motion.div>
@@ -208,41 +212,51 @@ export default function ClinicWebsiteService() {
             {/* Premium Package */}
             <motion.div 
               whileHover={{ y: -5 }}
-              className="bg-bond-navy backdrop-blur-2xl border-2 border-bond-lime/50 rounded-[2rem] p-10 flex flex-col relative overflow-hidden shadow-[0_0_40px_rgba(204,255,0,0.1)] transition-all duration-300 hover:shadow-[0_0_60px_rgba(204,255,0,0.2)]"
+              className="bg-bond-navy border-2 border-bond-navy rounded-[2rem] p-10 flex flex-col relative overflow-hidden shadow-[12px_12px_0px_0px_#ccff00]"
             >
-              <div className="absolute top-6 right-6 bg-bond-lime/20 text-bond-lime text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
-                Most Popular
+              <div className="absolute top-6 right-6 bg-bond-lime text-bond-navy text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full border-2 border-bond-navy">
+                Premium
               </div>
 
-              <div className="mb-8">
-                <h3 className="text-2xl font-black mb-2 text-white">Premium Website</h3>
-                <p className="text-slate-400 text-sm font-medium">For established clinics demanding the best.</p>
+              <div className="mb-8 border-b-2 border-white/10 pb-6">
+                <h3 className="text-3xl font-black mb-2 text-white">Premium</h3>
+                <p className="text-slate-400 font-bold">For high-growth clinics wanting a comprehensive ecosystem.</p>
               </div>
               
               <div className="mb-10">
-                <span className="text-slate-400 text-lg mr-2 font-bold">Starts at</span>
+                <span className="text-slate-400 text-lg mr-2 font-black uppercase tracking-wider">Starts at</span>
                 <span className="text-5xl font-black text-bond-lime">₹13,000</span>
               </div>
 
               <ul className="space-y-4 mb-12 flex-1">
-                {[
-                  "Advanced Premium UI/UX Animations",
-                  "Unlimited Pages & Treatments",
-                  "Advanced Appointment Booking System",
-                  "Comprehensive Technical SEO",
-                  "Unlimited Revisions until Launch",
-                  "Priority Support",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-slate-200 font-medium">
-                    <CheckCircle2 className="w-5 h-5 text-bond-lime shrink-0 mt-0.5" />
-                    {item}
-                  </li>
-                ))}
+                <li className="flex items-start gap-3 text-white font-bold">
+                  <CheckCircle2 className="w-6 h-6 text-bond-lime shrink-0" />
+                  <span>Advanced Premium Animations</span>
+                </li>
+                <li className="flex items-start gap-3 text-white font-bold">
+                  <CheckCircle2 className="w-6 h-6 text-bond-lime shrink-0" />
+                  <div className="flex flex-col">
+                    <span>Dedicated Inner Pages</span>
+                    <span className="text-sm font-medium text-slate-400 mt-1 leading-snug">Separate pages for individual Treatments, Blogs, Dedicated About/Team, Detailed Testimonials.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3 text-white font-bold">
+                  <CheckCircle2 className="w-6 h-6 text-bond-lime shrink-0" />
+                  <span>Advanced Appointment System</span>
+                </li>
+                <li className="flex items-start gap-3 text-white font-bold">
+                  <CheckCircle2 className="w-6 h-6 text-bond-lime shrink-0" />
+                  <span>Comprehensive Technical SEO</span>
+                </li>
+                <li className="flex items-start gap-3 text-white font-bold">
+                  <CheckCircle2 className="w-6 h-6 text-bond-lime shrink-0" />
+                  <span>Up to 5 Revision Rounds</span>
+                </li>
               </ul>
 
               <Link href="/#kit-builder" className="w-full mt-auto">
-                <Button variant="lime" size="lg" className="w-full text-base font-bold h-14 shadow-[0_0_20px_rgba(204,255,0,0.2)] hover:shadow-[0_0_30px_rgba(204,255,0,0.4)] transition-all">
-                  Select Premium Plan
+                <Button variant="lime" size="lg" className="w-full text-lg font-black h-14 hover:-translate-y-1 transition-transform border-2 border-white shadow-[4px_4px_0px_0px_#ffffff]">
+                  Select Premium
                 </Button>
               </Link>
             </motion.div>
