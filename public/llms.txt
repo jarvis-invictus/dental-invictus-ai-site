@@ -1,24 +1,25 @@
 # Invictus AI
 
-> AI-powered patient growth systems built exclusively for dental clinics in India.
+> Complete patient growth system for dental clinics in India, integrating conversion-focused websites, hyper-local Meta Ads, and automated Google reputation management.
 
-Invictus AI is a specialized dental marketing agency that helps dental clinics acquire more patients through website design, Meta ads, Google review automation, and AI chatbots.
+## Docs
 
-## Services
+- [Home](https://invictus-ai.in/): Core overview of the Invictus AI patient growth system. Highlights the 60-day results guarantee for dental clinics.
+- [Clinic Website Service](https://invictus-ai.in/services/clinic-website): Details on custom, high-converting websites designed specifically for dental clinics to turn local traffic into booked appointments.
+- [Meta Ads Service](https://invictus-ai.in/services/meta-ads): Hyper-local Instagram and Facebook ad campaigns targeting patients within a 5km radius of the clinic.
+- [Reputation Management](https://invictus-ai.in/services/reputation-management): Automated systems to generate 5-star Google reviews via WhatsApp/SMS after patient visits.
+- [Free Website Audit](https://invictus-ai.in/tools/website-audit): Free comprehensive technical and conversion audit for dental clinic websites.
 
-- [Clinic Website Design](/services/clinic-website): High-converting, mobile-first dental clinic websites with local SEO and WhatsApp integration. Starts at ₹7,000.
-- [Meta Ads & Content](/services/meta-ads): Hyper-local Instagram and Facebook ad campaigns targeted within 5km of your clinic. Starts at ₹8,000/mo.
-- [AI Website Chatbot](/services/ai-chatbot): 24/7 AI receptionist that answers patient questions and books appointments on your website. ₹3,000/mo.
-- [Reputation Management](/services/reputation-management): Automated 5-star Google review collection via WhatsApp with negative feedback filtering. ₹3,000/mo.
+## Key Facts
 
-## Key Pages
-
-- [About Us](/about): Our story, founder bio, and what makes us different.
-- [Case Studies](/case-studies): Real before/after results from dental clinics we've worked with.
-- [Blog](/blog): Dental marketing guides, SEO strategies, and growth playbooks.
+- Founded: 2023
+- Founder: Sahil Bagul
+- Headquarters: Pune, Maharashtra, India
+- Industry: Digital Marketing for Dental Clinics
+- Differentiators: 60-day risk-free growth guarantee, fully managed system (ads + website + reputation), strict dental clinic exclusivity.
 
 ## Contact
 
-- WhatsApp: +91 9699577641
-- Email: contact@invictus-ai.in
 - Website: https://invictus-ai.in
+- Phone: +91 96995 77641
+- Email: contact@invictus-ai.in

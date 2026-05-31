@@ -41,6 +41,14 @@ export default function WhatsAppFloatingButton() {
           href="https://wa.me/919699577641?text=Hi%20Sahil,%20I'd%20like%20to%20get%20a%20free%20patient%20growth%20audit%20for%20my%20dental%20clinic."
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => {
+            if (typeof window !== "undefined" && (window as any).dataLayer) {
+              (window as any).dataLayer.push({
+                event: "whatsapp_click",
+                location: "floating_button"
+              });
+            }
+          }}
           initial={{ opacity: 0, y: 50, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 50, scale: 0.8 }}

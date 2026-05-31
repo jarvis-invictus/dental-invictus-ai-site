@@ -473,7 +473,7 @@ export default function BuildYourGrowthKit() {
                   )}
                   <h4 className="text-lg font-bold text-bond-navy mb-1 mt-6">Ad Creative Set</h4>
                   <div className="text-bond-navy font-black mb-3">₹2,000 <span className="text-slate-400 text-xs font-normal">one-time</span></div>
-                  <p className="text-slate-500 text-sm leading-relaxed">5 custom ad creatives (static images + reel thumbnails) designed specifically for your clinic's campaign.</p>
+                  <p className="text-slate-500 text-sm leading-relaxed">5 custom ad creatives (static images + reel thumbnails) designed specifically for your clinic&apos;s campaign.</p>
                 </div>
               </div>
             </div>

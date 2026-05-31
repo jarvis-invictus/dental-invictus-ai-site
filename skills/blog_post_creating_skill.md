@@ -39,7 +39,9 @@ seo:
 - **Inline Images**: If applicable, use standard Markdown `![Alt Text](/blog/image.png)`. 
 - **Design Aesthetic**: Images should align with the brand's premium vibe (dark modes, glassmorphism, or clean minimalist clinical styles with neon/bond-lime accents).
 
-## 5. SEO & Infrastructure Integration
+## 5. SEO, AEO, & GEO Integration
+- **AEO (Answer Engine Optimization)**: Provide clear, concise, direct answers immediately following an H2 or H3 heading before expanding into detail. This increases the chance of the paragraph being extracted by AI overviews (ChatGPT, Perplexity). Wrap these concise summaries in `<p className="article-summary">` if possible, or just ensure they are the first paragraph.
+- **GEO (Generative Engine Optimization)**: Include rich entity connections. Always link back to the Invictus AI homepage, explicitly state the target audience (Indian Dental Clinics), and back up claims with statistics or case studies.
 - **Keywords**: Naturally integrate primary and secondary keywords into headers, the first paragraph, and throughout the text.
 - **Internal Linking**: Link to our services naturally within the text. (e.g., `[Meta Ads & Content](/services/meta-ads)` or `[Clinic Website](/services/clinic-website)`).
 - **Call to Action**: Every blog post must end with a strong, conversion-focused Call to Action (CTA) linking to the booking widget or WhatsApp.

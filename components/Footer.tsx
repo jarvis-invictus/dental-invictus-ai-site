@@ -95,7 +95,7 @@ export default function Footer() {
                         </div>
                         <div className="bg-white/5 border border-white/10 rounded-xl p-5">
                             <h5 className="text-white font-bold text-sm mb-2">Free Clinic Audit</h5>
-                            <p className="text-slate-400 text-xs mb-4">Find out exactly why your website isn't converting patients.</p>
+                            <p className="text-slate-400 text-xs mb-4">Find out exactly why your website isn&apos;t converting patients.</p>
                             <a href="https://wa.me/919699577641" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-white text-bond-navy font-bold py-2 px-4 rounded-lg text-sm hover:bg-bond-lime transition-colors">
                                 Get Free Audit
                             </a>

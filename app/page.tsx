@@ -581,7 +581,7 @@ export default function Home() {
 
               <div className="space-y-5 text-lg text-bond-gray leading-relaxed font-medium max-w-lg">
                 <p>
-                  Most clinics try random things — a freelancer for the website, a student for Instagram, a relative who "knows about Google." None of it connects. None of it is measured.
+                  Most clinics try random things — a freelancer for the website, a student for Instagram, a relative who &quot;knows about Google.&quot; None of it connects. None of it is measured.
                 </p>
                 <p>
                   We do not sell disconnected services. We install one integrated patient growth system built exclusively for dental clinics — where your website, ads, and reputation work together as a single engine.
@@ -926,7 +926,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <h4 className="text-white font-bold mb-1">Ad Creative Set</h4>
-                <p className="text-slate-400 text-sm leading-relaxed mb-4">5 custom ad creatives — static + reel thumbnail — designed for your clinic's campaign.</p>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">5 custom ad creatives — static + reel thumbnail — designed for your clinic&apos;s campaign.</p>
                 <div className="text-bond-lime font-black text-xl">₹1,500 <span className="text-slate-400 text-sm font-normal">– ₹2,500</span></div>
                 <div className="text-slate-500 text-xs mt-0.5">per set</div>
               </div>

@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { X, ArrowRight, CheckCircle2, AlertCircle, Lightbulb, Highlighter } from "lucide-react";
+import { X, ArrowRight, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ServiceDetail {
@@ -104,7 +104,7 @@ export default function ServiceExpansion({ isOpen, onClose, service, color }: Se
 
                                     <div className="pl-4 border-l-4 border-bond-lime mb-10">
                                         <p className="text-bond-navy text-lg font-medium leading-relaxed font-handwriting">
-                                            "{service.description}"
+                                            &quot;{service.description}&quot;
                                         </p>
                                     </div>
 

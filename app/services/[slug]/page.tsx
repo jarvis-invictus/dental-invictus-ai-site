@@ -68,7 +68,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
                             <div className="mb-8 p-4 bg-slate-50 border-2 border-bond-navy rounded-xl shadow-[4px_4px_0px_0px_#0f172a] transform -rotate-1">
                                 <p className="text-bond-navy text-sm font-bold leading-relaxed">
-                                    "{service.description}"
+                                    &quot;{service.description}&quot;
                                 </p>
                             </div>
 

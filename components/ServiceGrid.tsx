@@ -127,7 +127,7 @@ export default function ServiceGrid() {
                                                     "font-medium text-slate-700 leading-relaxed",
                                                     isConsulting ? "text-xl md:text-2xl" : "text-lg"
                                                 )}>
-                                                    "{service.description}"
+                                                    &quot;{service.description}&quot;
                                                 </p>
 
                                                 {/* Micro-Label */}

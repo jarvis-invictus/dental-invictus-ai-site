@@ -3,12 +3,11 @@
 import { useEffect, useState } from "react";
 
 export default function PageProgressBar() {
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(30);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     // Initial mount progress
-    setWidth(30);
     const t1 = setTimeout(() => setWidth(70), 150);
     const t2 = setTimeout(() => setWidth(100), 400);
     const t3 = setTimeout(() => setVisible(false), 800); // fade out completed

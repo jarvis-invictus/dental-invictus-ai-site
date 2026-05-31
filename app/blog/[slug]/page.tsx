@@ -125,6 +125,15 @@ export default async function BlogPostPage({ params }: Props) {
     author: {
       "@type": "Person",
       name: post.author,
+      jobTitle: "Founder & CEO",
+      worksFor: {
+        "@type": "Organization",
+        name: "Invictus AI"
+      },
+      sameAs: [
+        "https://www.linkedin.com/in/sahilbagul",
+        "https://twitter.com/sahilbagul"
+      ]
     },
     publisher: {
       "@type": "Organization",
@@ -137,7 +146,11 @@ export default async function BlogPostPage({ params }: Props) {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://invictus-ai.in/blog/${post.slug}`,
+      "@id": `https://invictus-ai.in/blog/${post.slug}`
+    },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".article-summary", ".key-takeaway", "h2", "h3"]
     },
     keywords: post.tags.join(", "),
   };

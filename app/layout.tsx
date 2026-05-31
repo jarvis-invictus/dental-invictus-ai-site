@@ -111,7 +111,34 @@ const localBusinessSchema = {
     "addressCountry": "IN"
   },
   "areaServed": "India",
-  "serviceType": "Dental Clinic Digital Marketing"
+  "serviceType": "Dental Clinic Digital Marketing",
+  "foundingDate": "2023",
+  "founder": {
+    "@type": "Person",
+    "name": "Sahil Bagul",
+    "jobTitle": "Founder & CEO"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/invictus-ai",
+    "https://www.instagram.com/invictusai",
+    "https://twitter.com/invictusai",
+    "https://www.youtube.com/@invictusai"
+  ],
+  "knowsAbout": [
+    "Dental Clinic Marketing",
+    "Patient Acquisition",
+    "Local SEO for Dentists",
+    "Meta Ads for Dentists",
+    "Healthcare Reputation Management"
+  ]
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Invictus AI",
+  "url": "https://invictus-ai.in",
+  "description": "Patient growth system for dental clinics across India."
 };
 
 const faqSchema = {
@@ -177,6 +204,12 @@ export default function RootLayout({
         id="local-business-ld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      {/* WebSite Structured Data */}
+      <Script
+        id="website-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
       {/* FAQ Page Structured Data */}
       <Script
