@@ -8,9 +8,11 @@ This skill provides the comprehensive rules and format for generating and publis
 - **Service Positioning**: NEVER attack or harm our own services. For example, do not blindly say "stop buying ads" if we provide Meta Ads services. Instead, frame it as "stop buying *unoptimized* ads" or "shift from generic ads to strategic Meta Ads".
 - **Tone**: Professional, authoritative, and persuasive. The audience is dental clinic owners who want to grow their practice and patient base.
 
-## 2. Typography and Heading Structure
-- **Markdown Only**: Always use standard Markdown headers (`##` for H2, `###` for H3). DO NOT use raw HTML tags like `<h2>` or `<h3>`. The site's infrastructure automatically maps Markdown headers to the correct Tailwind CSS styles.
-- **Header Aesthetics**: The system automatically applies `font-black`, `text-bond-navy`, tight tracking (`tracking-tight` or `tracking-tighter`), and specific margins to ensure headers are bold, catch attention, and are about 10-20% smaller than the main hero title. You do not need to add custom CSS to headers; just use `##` and `###`.
+## 2. Typography, Layout, and MDX Components
+- **MANDATORY LAYOUT COMPONENTS**: The website's blog system relies on custom MDX components for layout. If you just write raw markdown, it will stretch full-width and look completely broken ("zoomed in"). You MUST wrap content inside `<Section className="bg-white">` or `<Section className="bg-slate-50 border-y border-slate-100">`. Use `<div className="text-center max-w-3xl mx-auto mb-16">` to constrain text widths.
+- **Component Usage**: Use components like `<Lead>`, `<Grid cols={2}>`, and `<FeatureBlock title="..." description="...">` to arrange content beautifully instead of just writing raw paragraphs.
+- **Markdown Headers**: Inside these wrappers, always use standard Markdown headers (`##` for H2, `###` for H3). DO NOT use raw HTML tags like `<h2>` or `<h3>`.
+- **Header Aesthetics**: The system automatically applies `font-black`, `text-bond-navy`, tight tracking (`tracking-tight`), and specific margins to ensure headers are bold and catch attention.
 - **Bolder Emphasis**: Use bolding (`**text**`) generously for key takeaways and important concepts to make them highly scannable.
 
 ## 3. Frontmatter & Metadata
