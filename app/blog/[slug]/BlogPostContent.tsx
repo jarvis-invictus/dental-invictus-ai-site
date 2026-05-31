@@ -7,6 +7,8 @@ import { ArrowLeft, Calendar, Clock, User, ArrowRight, Tag } from "lucide-react"
 import { Button } from "@/components/ui/Button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import TableOfContents from "@/components/TableOfContents";
+import AuthorCard from "@/components/AuthorCard";
 import type { BlogPost, BlogPostMeta } from "@/lib/blog";
 
 interface Props {
@@ -37,19 +39,19 @@ export default function BlogPostContent({ post, relatedPosts, children }: Props)
         </div>
       </div>
 
-      {/* Article Header */}
-      <article className="pt-8 pb-16 px-6">
-        <div className="container mx-auto max-w-3xl">
+      {/* Hero Section */}
+      <section className="pt-24 md:pt-32 pb-16 px-6 relative overflow-hidden">
+        <div className="container mx-auto max-w-5xl text-center relative z-10">
           {/* Tags */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-wrap gap-2 mb-6"
+            className="flex flex-wrap justify-center gap-2 mb-8"
           >
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] font-black uppercase tracking-wider text-bond-purple bg-bond-purple/10 px-3 py-1 rounded-full border border-bond-purple/20"
+                className="text-[11px] font-black uppercase tracking-widest text-bond-purple bg-bond-purple/10 px-5 py-2 rounded-full"
               >
                 {tag}
               </span>
@@ -61,45 +63,58 @@ export default function BlogPostContent({ post, relatedPosts, children }: Props)
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-black leading-[1.15] tracking-tight mb-8"
+            className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tighter mb-8 text-bond-navy"
           >
             {post.title}
           </motion.h1>
 
-          {/* Meta bar */}
+          {/* Subtitle / Description */}
+          {post.description && (
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              className="text-lg md:text-xl text-slate-500 font-medium leading-relaxed max-w-3xl mx-auto mb-12"
+            >
+              {post.description}
+            </motion.p>
+          )}
+
+          {/* Author Meta Bar */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex flex-wrap items-center gap-6 text-sm text-bond-gray font-bold mb-12 pb-8 border-b-2 border-bond-gray/10"
+            className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500 font-bold mb-16"
           >
-            <div className="flex items-center gap-2">
-              <User className="w-4 h-4" />
-              <span>{post.author}</span>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-slate-200 border-2 border-white shadow-sm flex items-center justify-center overflow-hidden">
+                <User className="w-5 h-5 text-slate-400" />
+              </div>
+              <span className="font-bold text-slate-800 text-base">{post.author}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
-              <span>
-                {new Date(post.date).toLocaleDateString("en-IN", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+            <span>
+              {new Date(post.date).toLocaleDateString("en-IN", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </span>
+            <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+            <div className="flex items-center gap-1.5">
               <Clock className="w-4 h-4" />
               <span>{post.readingTime}</span>
             </div>
           </motion.div>
 
-          {/* Hero Cover Image */}
+          {/* Hero Cover Image (If exists, make it massive and premium) */}
           {post.coverImage && (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25 }}
-              className="mb-12 rounded-3xl overflow-hidden border-4 border-bond-navy shadow-[8px_8px_0px_0px_#ccff00] relative aspect-[16/9] md:aspect-[21/9]"
+              transition={{ delay: 0.2 }}
+              className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-[2rem] overflow-hidden border-4 border-white shadow-[0_20px_50px_rgba(0,0,0,0.1)]"
             >
               <Image
                 src={post.coverImage}
@@ -110,25 +125,14 @@ export default function BlogPostContent({ post, relatedPosts, children }: Props)
               />
             </motion.div>
           )}
+        </div>
+      </section>
 
-          {/* MDX Content */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="prose prose-lg mx-auto max-w-none
-              prose-headings:font-black prose-headings:tracking-tight
-              prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:bg-bond-navy prose-h2:text-white prose-h2:px-4 prose-h2:py-2 prose-h2:inline-block prose-h2:shadow-[4px_4px_0px_0px_#ccff00] prose-h2:mt-16 prose-h2:mb-8
-              prose-h3:text-xl md:prose-h3:text-2xl prose-h3:text-bond-navy prose-h3:mt-12 prose-h3:mb-6 prose-h3:border-b-4 prose-h3:border-bond-navy prose-h3:pb-2
-              prose-p:text-lg md:prose-p:text-xl prose-p:font-bold prose-p:leading-[1.8] prose-p:mb-8 prose-p:text-slate-800
-              prose-a:text-white prose-a:bg-bond-navy prose-a:px-1 prose-a:no-underline hover:prose-a:bg-bond-purple hover:prose-a:text-white prose-a:transition-colors
-              prose-strong:bg-[#ccff00] prose-strong:px-1 prose-strong:text-bond-navy prose-strong:font-black prose-strong:rounded-sm
-              prose-blockquote:border-l-8 prose-blockquote:border-bond-navy prose-blockquote:bg-slate-50 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:font-black prose-blockquote:text-bond-navy prose-blockquote:not-italic prose-blockquote:shadow-[6px_6px_0px_0px_#ccff00] prose-blockquote:my-10
-              prose-ul:text-lg md:prose-ul:text-xl prose-ul:font-bold prose-ul:space-y-4 prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-8
-              prose-li:marker:text-bond-navy prose-li:pl-2"
-          >
-            {children}
-          </motion.div>
+      {/* Full-Width MDX Content Area */}
+      <article className="w-full flex flex-col pb-24 relative">
+        {/* We remove the 'prose' class entirely so the MDX can act as full-width layout components */}
+        <div className="w-full">
+          {children}
         </div>
       </article>
 

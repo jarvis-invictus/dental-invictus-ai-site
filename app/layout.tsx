@@ -100,6 +100,8 @@ const localBusinessSchema = {
   "name": "Invictus AI",
   "description": "Patient growth system for dental clinics across India. Website, Meta Ads, and reputation management.",
   "url": "https://invictus-ai.in",
+  "logo": "https://invictus-ai.in/icon.png",
+  "image": "https://invictus-ai.in/og-image.png",
   "telephone": "+919699577641",
   "email": "contact@invictus-ai.in",
   "address": {

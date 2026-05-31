@@ -15,11 +15,7 @@ interface Props {
 }
 
 export default function BlogIndexContent({ posts, tags }: Props) {
-  const [activeTag, setActiveTag] = useState<string | null>(null);
-
-  const filteredPosts = activeTag
-    ? posts.filter((p) => p.tags.includes(activeTag))
-    : posts;
+  const filteredPosts = posts;
 
   return (
     <div className="bg-white min-h-screen text-bond-navy font-sans">
@@ -64,39 +60,7 @@ export default function BlogIndexContent({ posts, tags }: Props) {
         </div>
       </section>
 
-      {/* Tag Filters */}
-      {tags.length > 0 && (
-        <section className="px-6 pb-8">
-          <div className="container mx-auto max-w-5xl">
-            <div className="flex flex-wrap gap-2 justify-center">
-              <button
-                onClick={() => setActiveTag(null)}
-                className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider border-2 transition-all ${
-                  activeTag === null
-                    ? "bg-bond-navy text-white border-bond-navy shadow-[3px_3px_0px_0px_#ccff00]"
-                    : "bg-white text-bond-gray border-bond-gray/20 hover:border-bond-navy hover:text-bond-navy"
-                }`}
-              >
-                All Posts
-              </button>
-              {tags.map((tag) => (
-                <button
-                  key={tag}
-                  onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                  className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider border-2 transition-all ${
-                    activeTag === tag
-                      ? "bg-bond-navy text-white border-bond-navy shadow-[3px_3px_0px_0px_#ccff00]"
-                      : "bg-white text-bond-gray border-bond-gray/20 hover:border-bond-navy hover:text-bond-navy"
-                  }`}
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
+      {/* Tag Filters Removed per request */}
       {/* Posts Grid */}
       <section className="px-6 pb-24">
         <div className="container mx-auto max-w-5xl">
@@ -134,18 +98,7 @@ export default function BlogIndexContent({ posts, tags }: Props) {
                       )}
 
                       <div className="p-6 flex flex-col flex-1">
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-1.5 mb-3">
-                          {post.tags.slice(0, 2).map((tag) => (
-                            <span
-                              key={tag}
-                              className="text-[10px] font-black uppercase tracking-wider text-bond-purple bg-bond-purple/10 px-2 py-0.5 rounded-full"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-
+                        {/* Tags Removed per request */}
                         {/* Title */}
                         <h2 className="text-lg font-black text-bond-navy mb-3 leading-snug group-hover:text-bond-purple transition-colors line-clamp-2">
                           {post.title}

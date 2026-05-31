@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, Globe, Megaphone, Bot, Star } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
@@ -20,6 +21,7 @@ export default function Navbar() {
     const [isServicesOpen, setIsServicesOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -78,10 +80,10 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
-        { name: "How It Works", href: "#how-it-works" },
-        { name: "Results", href: "/case-studies" },
-        { name: "Blog", href: "/blog" },
-        { name: "About", href: "/about" },
+        { name: "How It Works", href: "/#how-it-works", id: "how-it-works" },
+        { name: "Results", href: "/case-studies", id: "results" },
+        { name: "Blog", href: "/blog", id: "blog" },
+        { name: "About", href: "/about", id: "about" },
     ];
 
     return (
@@ -145,7 +147,11 @@ export default function Navbar() {
                     </div>
 
                     {navLinks.map((link) => {
-                        const isActive = activeSection === link.href.slice(1);
+                        const isActive = 
+                          (link.id === "how-it-works" || link.id === "services") 
+                            ? (pathname === "/" && activeSection === link.id)
+                            : pathname.startsWith(link.href);
+                            
                         return (
                             <Link
                                 key={link.name}
@@ -198,7 +204,11 @@ export default function Navbar() {
                     ))}
                     <div className="border-t border-slate-100 my-2" />
                     {navLinks.map((link) => {
-                        const isActive = activeSection === link.href.slice(1);
+                        const isActive = 
+                          (link.id === "how-it-works" || link.id === "services") 
+                            ? (pathname === "/" && activeSection === link.id)
+                            : pathname.startsWith(link.href);
+                            
                         return (
                             <Link
                                 key={link.name}

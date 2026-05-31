@@ -14,7 +14,13 @@ import {
   ComparisonTable, 
   BlogImage, 
   BarChart,
-  Highlight
+  Highlight,
+  FAQAccordion,
+  FAQItem,
+  Lead,
+  Section,
+  Grid,
+  FeatureBlock
 } from "@/components/mdx/mdx-components";
 
 const mdxComponents = {
@@ -26,7 +32,24 @@ const mdxComponents = {
   ComparisonTable,
   BlogImage,
   BarChart,
-  Highlight
+  Highlight,
+  FAQAccordion,
+  FAQItem,
+  Lead,
+  Section,
+  Grid,
+  FeatureBlock,
+  h2: (props: any) => <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] tracking-tighter text-bond-navy mt-16 mb-8" {...props} />,
+  h3: (props: any) => <h3 className="text-2xl md:text-3xl lg:text-4xl font-black leading-[1.15] tracking-tighter text-bond-navy mt-12 mb-6" {...props} />,
+  h4: (props: any) => <h4 className="text-xl md:text-2xl lg:text-3xl font-black leading-[1.2] tracking-tight text-bond-purple mt-10 mb-4" {...props} />,
+  h5: (props: any) => <h5 className="text-lg md:text-xl font-bold text-slate-800 mt-8 mb-4" {...props} />,
+  p: (props: any) => <p className="text-base md:text-lg font-medium text-slate-600 leading-[1.8] mb-8 max-w-4xl" {...props} />,
+  ul: (props: any) => <ul className="text-base md:text-lg font-medium text-slate-600 space-y-4 list-disc pl-8 mb-10 marker:text-bond-purple" {...props} />,
+  ol: (props: any) => <ol className="text-base md:text-lg font-medium text-slate-600 space-y-4 list-decimal pl-8 mb-10 marker:text-bond-purple" {...props} />,
+  li: (props: any) => <li className="pl-2" {...props} />,
+  a: (props: any) => <a className="text-bond-purple font-black hover:underline" {...props} />,
+  strong: (props: any) => <strong className="font-black text-bond-navy" {...props} />,
+  blockquote: (props: any) => <blockquote className="border-l-8 border-bond-purple bg-bond-purple/5 px-8 py-6 font-bold text-bond-navy text-lg italic rounded-r-2xl my-12" {...props} />
 };
 
 interface Props {
@@ -98,6 +121,7 @@ export default async function BlogPostPage({ params }: Props) {
     headline: post.title,
     description: post.description,
     datePublished: post.date,
+    image: post.coverImage ? `https://invictus-ai.in${post.coverImage}` : "https://invictus-ai.in/og-image.png",
     author: {
       "@type": "Person",
       name: post.author,
@@ -106,6 +130,10 @@ export default async function BlogPostPage({ params }: Props) {
       "@type": "Organization",
       name: "Invictus AI",
       url: "https://invictus-ai.in",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://invictus-ai.in/icon.png"
+      }
     },
     mainEntityOfPage: {
       "@type": "WebPage",
