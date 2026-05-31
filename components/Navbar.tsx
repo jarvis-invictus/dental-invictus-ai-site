@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, Globe, Megaphone, Bot, Star } from "lucide-react";
@@ -98,9 +99,12 @@ export default function Navbar() {
             <div className="container mx-auto px-6 flex justify-between items-center">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group">
-                    <img
+                    <Image
                         src="/logo.png"
                         alt={siteConfig.name}
+                        width={160}
+                        height={40}
+                        priority
                         className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
                     />
                 </Link>

@@ -14,6 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 import { services } from "@/lib/services";
 import Link from "next/link";
+import Image from "next/image";
 
 // Map string icon names to components
 const iconMap: Record<string, any> = {
@@ -83,9 +84,11 @@ export default function ServiceGrid() {
 
                                     {/* Invictus Logo Overlay */}
                                     <div className="absolute bottom-6 left-6 z-20">
-                                        <img
+                                        <Image
                                             src="/logo.png"
                                             alt="Invictus AI"
+                                            width={160}
+                                            height={16}
                                             className="h-4 w-auto object-contain opacity-50 grayscale mix-blend-multiply"
                                         />
                                     </div>

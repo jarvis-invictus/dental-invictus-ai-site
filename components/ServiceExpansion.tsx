@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { X, ArrowRight, CheckCircle2, AlertCircle, Lightbulb, Highlighter } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -119,9 +120,11 @@ export default function ServiceExpansion({ isOpen, onClose, service, color }: Se
 
                                 {/* Background Pattern / Branding */}
                                 <div className="absolute bottom-6 left-8 opacity-20 pointer-events-none select-none">
-                                    <img
+                                    <Image
                                         src="/logo.png"
                                         alt="Invictus AI"
+                                        width={160}
+                                        height={48}
                                         className="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-500"
                                     />
                                 </div>
