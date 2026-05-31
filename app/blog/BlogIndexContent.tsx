@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Clock, Calendar, Tag } from "lucide-react";
 import { useState } from "react";
@@ -114,12 +115,23 @@ export default function BlogIndexContent({ posts, tags }: Props) {
                 >
                   <Link href={`/blog/${post.slug}`} className="group block">
                     <article className="bond-card rounded-2xl overflow-hidden border-2 border-bond-gray/10 hover:border-bond-navy hover:shadow-[8px_8px_0px_0px_#ccff00] transition-all h-full flex flex-col">
-                      {/* Cover Image Placeholder */}
-                      <div className="h-48 bg-gradient-to-br from-bond-lime/30 via-bond-purple/10 to-bond-cyan/20 flex items-center justify-center border-b-2 border-bond-gray/10">
-                        <span className="text-4xl font-black text-bond-navy/20">
-                          {post.title.charAt(0)}
-                        </span>
-                      </div>
+                      {/* Cover Image */}
+                      {post.coverImage ? (
+                        <div className="relative h-48 border-b-2 border-bond-gray/10 overflow-hidden">
+                          <Image
+                            src={post.coverImage}
+                            alt={post.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                      ) : (
+                        <div className="h-48 bg-gradient-to-br from-bond-lime/30 via-bond-purple/10 to-bond-cyan/20 flex items-center justify-center border-b-2 border-bond-gray/10">
+                          <span className="text-4xl font-black text-bond-navy/20">
+                            {post.title.charAt(0)}
+                          </span>
+                        </div>
+                      )}
 
                       <div className="p-6 flex flex-col flex-1">
                         {/* Tags */}

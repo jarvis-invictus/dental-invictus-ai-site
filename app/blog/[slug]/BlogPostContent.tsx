@@ -1,22 +1,23 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, User, ArrowRight, Tag } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import type { BlogPost, BlogPostMeta } from "@/lib/blog";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
 
 interface Props {
   post: BlogPost;
   relatedPosts: BlogPostMeta[];
+  children: React.ReactNode;
 }
 
-export default function BlogPostContent({ post, relatedPosts }: Props) {
+
+
+export default function BlogPostContent({ post, relatedPosts, children }: Props) {
   return (
     <div className="bg-white min-h-screen text-bond-navy font-sans">
       <Navbar />
@@ -92,35 +93,41 @@ export default function BlogPostContent({ post, relatedPosts }: Props) {
             </div>
           </motion.div>
 
+          {/* Hero Cover Image */}
+          {post.coverImage && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25 }}
+              className="mb-12 rounded-3xl overflow-hidden border-4 border-bond-navy shadow-[8px_8px_0px_0px_#ccff00] relative aspect-[16/9] md:aspect-[21/9]"
+            >
+              <Image
+                src={post.coverImage}
+                alt={post.title}
+                fill
+                priority
+                className="object-cover"
+              />
+            </motion.div>
+          )}
+
           {/* MDX Content */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="prose prose-lg max-w-none
-              prose-headings:font-black prose-headings:tracking-tight prose-headings:text-bond-navy
-              prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:pb-2 prose-h2:border-b-2 prose-h2:border-bond-lime/50
-              prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-              prose-p:text-bond-gray prose-p:font-medium prose-p:leading-relaxed
-              prose-a:text-bond-purple prose-a:font-bold prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-bond-navy prose-strong:font-black
-              prose-li:text-bond-gray prose-li:font-medium
-              prose-table:border-2 prose-table:border-bond-gray/20 prose-table:rounded-xl
-              prose-th:bg-bond-navy prose-th:text-white prose-th:font-black prose-th:text-sm prose-th:uppercase prose-th:tracking-wider
-              prose-td:border prose-td:border-bond-gray/10 prose-td:text-sm
-              prose-blockquote:border-l-4 prose-blockquote:border-bond-lime prose-blockquote:bg-bond-lime/5 prose-blockquote:rounded-r-xl prose-blockquote:py-1
-              prose-code:bg-slate-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-bold
-            "
+            className="prose prose-lg mx-auto max-w-none
+              prose-headings:font-black prose-headings:tracking-tight
+              prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:bg-bond-navy prose-h2:text-white prose-h2:px-4 prose-h2:py-2 prose-h2:inline-block prose-h2:shadow-[4px_4px_0px_0px_#ccff00] prose-h2:mt-16 prose-h2:mb-8
+              prose-h3:text-xl md:prose-h3:text-2xl prose-h3:text-bond-navy prose-h3:mt-12 prose-h3:mb-6 prose-h3:border-b-4 prose-h3:border-bond-navy prose-h3:pb-2
+              prose-p:text-lg md:prose-p:text-xl prose-p:font-bold prose-p:leading-[1.8] prose-p:mb-8 prose-p:text-slate-800
+              prose-a:text-white prose-a:bg-bond-navy prose-a:px-1 prose-a:no-underline hover:prose-a:bg-bond-purple hover:prose-a:text-white prose-a:transition-colors
+              prose-strong:bg-[#ccff00] prose-strong:px-1 prose-strong:text-bond-navy prose-strong:font-black prose-strong:rounded-sm
+              prose-blockquote:border-l-8 prose-blockquote:border-bond-navy prose-blockquote:bg-slate-50 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:font-black prose-blockquote:text-bond-navy prose-blockquote:not-italic prose-blockquote:shadow-[6px_6px_0px_0px_#ccff00] prose-blockquote:my-10
+              prose-ul:text-lg md:prose-ul:text-xl prose-ul:font-bold prose-ul:space-y-4 prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-8
+              prose-li:marker:text-bond-navy prose-li:pl-2"
           >
-            <MDXRemote
-              source={post.content}
-              options={{
-                mdxOptions: {
-                  remarkPlugins: [remarkGfm],
-                  rehypePlugins: [rehypeSlug],
-                },
-              }}
-            />
+            {children}
           </motion.div>
         </div>
       </article>

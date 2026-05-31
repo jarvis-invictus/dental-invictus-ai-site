@@ -2,6 +2,32 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPostSlugs, getPostBySlug, getAllPosts } from "@/lib/blog";
 import BlogPostContent from "./BlogPostContent";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+import { 
+  Callout, 
+  StatCard, 
+  StepList, 
+  AnimatedStep, 
+  SourceLink, 
+  ComparisonTable, 
+  BlogImage, 
+  BarChart,
+  Highlight
+} from "@/components/mdx/mdx-components";
+
+const mdxComponents = {
+  Callout,
+  StatCard,
+  StepList,
+  AnimatedStep,
+  SourceLink,
+  ComparisonTable,
+  BlogImage,
+  BarChart,
+  Highlight
+};
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -131,7 +157,18 @@ export default async function BlogPostPage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       )}
-      <BlogPostContent post={post} relatedPosts={relatedPosts} />
+      <BlogPostContent post={post} relatedPosts={relatedPosts}>
+        <MDXRemote
+          source={post.content}
+          components={mdxComponents}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [remarkGfm],
+              rehypePlugins: [rehypeSlug],
+            },
+          }}
+        />
+      </BlogPostContent>
     </>
   );
 }
