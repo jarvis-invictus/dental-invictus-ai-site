@@ -236,6 +236,18 @@ export default function RootLayout({
           gtag('config', 'G-CH59NRB8ZZ');
         `}
       </Script>
+      {/* Microsoft Clarity Tracking */}
+      {process.env.NEXT_PUBLIC_CLARITY_ID && (
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");
+          `}
+        </Script>
+      )}
       <body className={clsx(inter.variable, handwriting.variable, "bg-white text-bond-navy antialiased font-sans min-h-screen flex flex-col")}>
         {/* Permanent 3px bond-lime top accent bar */}
         <div className="fixed top-0 left-0 right-0 h-[3px] bg-bond-lime z-[9999] pointer-events-none" />
