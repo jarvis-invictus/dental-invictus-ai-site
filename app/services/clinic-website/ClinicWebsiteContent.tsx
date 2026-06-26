@@ -82,11 +82,11 @@ export default function ClinicWebsiteContent() {
             transition={{ delay: 0.3 }}
             className="flex flex-col sm:flex-row justify-center gap-4"
           >
-            <Link href="/#kit-builder">
+            <a href="https://wa.me/919699577641?text=Hi,%20I'm%20interested%20in%20getting%20a%20website%20for%20my%20dental%20clinic." target="_blank" rel="noopener noreferrer">
               <Button variant="lime" size="lg" className="w-full sm:w-auto hover:-translate-y-1 transition-transform border-2 border-bond-navy shadow-[4px_4px_0px_0px_#0f172a] text-bond-navy font-black text-lg">
-                Build Your Growth Kit
+                WhatsApp Us
               </Button>
-            </Link>
+            </a>
           </motion.div>
         </div>
       </section>
@@ -202,11 +202,11 @@ export default function ClinicWebsiteContent() {
                 </li>
               </ul>
 
-              <Link href="/#kit-builder" className="w-full mt-auto">
+              <a href="https://wa.me/919699577641?text=Hi,%20I'm%20interested%20in%20the%20Standard%20Website%20package." target="_blank" rel="noopener noreferrer" className="w-full mt-auto">
                 <Button variant="outline" size="lg" className="w-full text-lg font-black h-14 border-2 border-bond-navy text-bond-navy hover:bg-slate-100 transition-all shadow-[4px_4px_0px_0px_#0f172a]">
                   Select Standard
                 </Button>
-              </Link>
+              </a>
             </motion.div>
 
             {/* Premium Package */}
@@ -254,11 +254,11 @@ export default function ClinicWebsiteContent() {
                 </li>
               </ul>
 
-              <Link href="/#kit-builder" className="w-full mt-auto">
+              <a href="https://wa.me/919699577641?text=Hi,%20I'm%20interested%20in%20the%20Premium%20Website%20package." target="_blank" rel="noopener noreferrer" className="w-full mt-auto">
                 <Button variant="lime" size="lg" className="w-full text-lg font-black h-14 hover:-translate-y-1 transition-transform border-2 border-white shadow-[4px_4px_0px_0px_#ffffff]">
                   Select Premium
                 </Button>
-              </Link>
+              </a>
             </motion.div>
 
           </div>

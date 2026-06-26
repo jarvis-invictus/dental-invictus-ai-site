@@ -44,7 +44,7 @@ export default function Navbar() {
     }, []);
 
     useEffect(() => {
-        const sections = ["services", "how-it-works", "results"];
+        const sections = ["services", "templates", "how-it-works", "results"];
         const observerOptions = {
             root: null,
             rootMargin: "-25% 0px -55% 0px",
@@ -81,6 +81,7 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
+        { name: "Templates", href: "/#templates", id: "templates" },
         { name: "How It Works", href: "/#how-it-works", id: "how-it-works" },
         { name: "Results", href: "/case-studies", id: "results" },
         { name: "Blog", href: "/blog", id: "blog" },
@@ -152,7 +153,7 @@ export default function Navbar() {
 
                     {navLinks.map((link) => {
                         const isActive = 
-                          (link.id === "how-it-works" || link.id === "services") 
+                          (link.id === "how-it-works" || link.id === "services" || link.id === "templates") 
                             ? (pathname === "/" && activeSection === link.id)
                             : pathname.startsWith(link.href);
                             
@@ -209,7 +210,7 @@ export default function Navbar() {
                     <div className="border-t border-slate-100 my-2" />
                     {navLinks.map((link) => {
                         const isActive = 
-                          (link.id === "how-it-works" || link.id === "services") 
+                          (link.id === "how-it-works" || link.id === "services" || link.id === "templates") 
                             ? (pathname === "/" && activeSection === link.id)
                             : pathname.startsWith(link.href);
                             

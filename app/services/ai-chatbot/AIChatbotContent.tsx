@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Bot, Clock, CalendarCheck, HeartHandshake, Zap, ArrowRight, ArrowLeft } from "lucide-react";
+import dynamic from 'next/dynamic';
+
+const MockReceptionist = dynamic(() => import('@/components/MockReceptionist'), { ssr: false });
 
 export default function AIChatbotContent() {
   const schema = {
@@ -76,12 +79,29 @@ export default function AIChatbotContent() {
             transition={{ delay: 0.3 }}
             className="flex flex-col sm:flex-row justify-center gap-4"
           >
-            <Link href="/#kit-builder">
+            <a href="https://wa.me/919699577641?text=Hi,%20I'm%20interested%20in%20your%20AI%20Chatbot%20service." target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="lg" className="w-full sm:w-auto hover:-translate-y-1 transition-transform border-2 border-bond-navy bg-bond-purple hover:bg-purple-500 text-white shadow-[4px_4px_0px_0px_#0f172a] font-black text-lg">
-                Build Your Growth Kit
+                WhatsApp Us
               </Button>
-            </Link>
+            </a>
           </motion.div>
+        </div>
+      </section>
+
+      {/* 1.5. Interactive Demo Section */}
+      <section className="py-16 px-6 relative z-20 -mt-16 mb-8">
+        <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-12">
+          <div className="flex-1 text-center md:text-left">
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-bond-navy">
+              See it in <span className="text-bond-purple underline decoration-wavy decoration-bond-lime underline-offset-8">action</span>
+            </h2>
+            <p className="text-bond-gray text-lg font-bold mb-6">
+              Watch the interactive prototype of our virtual receptionist handle a real emergency booking query flawlessly. Scroll to trigger the live conversation.
+            </p>
+          </div>
+          <div className="flex-1 flex justify-center w-full scale-100 md:scale-110 origin-center">
+            <MockReceptionist />
+          </div>
         </div>
       </section>
 
@@ -158,11 +178,11 @@ export default function AIChatbotContent() {
               <span className="text-bond-gray text-lg mb-2 font-black">/mo</span>
             </div>
 
-            <Link href="/#kit-builder" className="inline-block w-full">
+            <a href="https://wa.me/919699577641?text=Hi,%20I'm%20interested%20in%20your%20AI%20Chatbot%20service." target="_blank" rel="noopener noreferrer" className="inline-block w-full">
               <Button variant="outline" size="lg" className="w-full text-lg h-16 bg-bond-purple text-white hover:bg-purple-500 border-2 border-bond-navy shadow-[4px_4px_0px_0px_#0f172a] hover:shadow-[6px_6px_0px_0px_#0f172a] hover:-translate-y-1 transition-all font-black">
-                Add to My Kit <ArrowRight className="ml-2 w-5 h-5" />
+                WhatsApp Us <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>

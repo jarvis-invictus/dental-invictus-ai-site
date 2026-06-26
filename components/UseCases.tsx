@@ -54,7 +54,7 @@ const useCases = [
         ],
         stats: [
             { value: "200%", label: "Average conversion lift from redesign" },
-            { value: "100:1", label: "Return on every $1 invested in UX" },
+            { value: "100:1", label: "Return on every ₹1 invested in UX" },
             { value: "70%", label: "More mobile conversions with mobile-first" }
         ],
         accent: "border-l-blue-400",
@@ -78,7 +78,7 @@ const useCases = [
         stats: [
             { value: "80%", label: "Routine inquiries handled without humans" },
             { value: "391%", label: "More conversions when you respond in under 5 min" },
-            { value: "$0.50", label: "Per interaction vs. $6+ for human agents" }
+            { value: "₹40", label: "Per interaction vs. ₹500+ for human agents" }
         ],
         accent: "border-l-violet-400",
         tagBg: "bg-violet-50",
@@ -100,7 +100,7 @@ const useCases = [
         ],
         stats: [
             { value: "30%", label: "Of inbound calls missed by avg. business" },
-            { value: "$1K+", label: "Revenue lost per missed call in high-value industries" },
+            { value: "₹80K+", label: "Revenue lost per missed call in high-value industries" },
             { value: "60%", label: "Drop in call abandonment with Voice AI" }
         ],
         accent: "border-l-orange-400",
@@ -145,7 +145,7 @@ const useCases = [
             "Free your team to focus on work that actually matters"
         ],
         stats: [
-            { value: "5.4x", label: "Return for every $1 spent on automation" },
+            { value: "5.4x", label: "Return for every ₹1 spent on automation" },
             { value: "90%", label: "Reduction in manual data entry errors" },
             { value: "50%", label: "Operational cost savings with workflow automation" }
         ],
@@ -168,7 +168,7 @@ const useCases = [
             "Budget optimization — cut what doesn't work, double down on what does"
         ],
         stats: [
-            { value: "200%", label: "Avg. ROI on Google Ads ($2 for every $1)" },
+            { value: "200%", label: "Avg. ROI on Google Ads (₹2 for every ₹1)" },
             { value: "5.3x", label: "ROI from SEO compared to paid ads over 3 years" },
             { value: "6x", label: "More likely to be profitable with data-driven marketing" }
         ],

@@ -198,6 +198,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://dental-premium-site-1.vercel.app" crossOrigin="anonymous" />
       </head>
       {/* LocalBusiness Structured Data */}
       <Script
@@ -224,6 +225,16 @@ export default function RootLayout({
 				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 				})(window,document,'script','dataLayer','GTM-TB9SQLN2');`}
+      </Script>
+      {/* Google Analytics 4 */}
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-CH59NRB8ZZ" strategy="afterInteractive" />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-CH59NRB8ZZ');
+        `}
       </Script>
       <body className={clsx(inter.variable, handwriting.variable, "bg-white text-bond-navy antialiased font-sans min-h-screen flex flex-col")}>
         {/* Permanent 3px bond-lime top accent bar */}

@@ -54,6 +54,10 @@ export default function AboutContent() {
         "@type": "Person",
         "name": "Sahil Bagul",
         "jobTitle": "Founder & Growth Strategist",
+        "sameAs": [
+          "https://www.linkedin.com/in/sahilbagul",
+          "https://twitter.com/sahilbagul"
+        ]
       },
       "areaServed": "India",
       "serviceType": "Dental Clinic Digital Marketing",
