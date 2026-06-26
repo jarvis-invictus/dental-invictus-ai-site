@@ -5,9 +5,10 @@ import Navbar from "@/components/Navbar";
 import HomeLowerSections from "@/components/HomeLowerSections";
 
 
+
 import { Button } from "@/components/ui/Button";
 import { ArrowRight, TrendingUp, EyeOff, Clock, Bot } from "lucide-react";
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, useMotionTemplate } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 // Count-up animation component for the dashboard card
@@ -32,204 +33,6 @@ function CountUpNumber({ from, to, delay, className }: { from: number; to: numbe
 }
 
 
-
-
-function HeroDashboardCard() {
-  // 3D Parallax Mouse Values
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Smooth Springs
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [12, -12]), { stiffness: 150, damping: 20 });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-12, 12]), { stiffness: 150, damping: 20 });
-  const glareX = useSpring(useTransform(mouseX, [-0.5, 0.5], [100, -100]), { stiffness: 150, damping: 20 });
-  const glareY = useSpring(useTransform(mouseY, [-0.5, 0.5], [100, -100]), { stiffness: 150, damping: 20 });
-  
-  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.1) 0%, transparent 50%)`;
-
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const xPct = (e.clientX - rect.left) / width - 0.5;
-    const yPct = (e.clientY - rect.top) / height - 0.5;
-    mouseX.set(xPct);
-    mouseY.set(yPct);
-  }
-
-  function handleMouseLeave() {
-    mouseX.set(0);
-    mouseY.set(0);
-  }
-
-  // Live Stream Events
-  const streamEvents = [
-    { time: "Just now", action: "Lead Captured", detail: "Meta Ads" },
-    { time: "4m ago", action: "Appt Booked", detail: "SEO Traffic" },
-    { time: "12m ago", action: "5-Star Review", detail: "Google" },
-  ];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 48, y: 12 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-      className="hidden lg:block relative perspective-[1200px]"
-    >
-      <div className="absolute -inset-6 bg-gradient-to-br from-bond-lime/25 via-bond-cyan/10 to-bond-purple/20 rounded-[3rem] blur-3xl animate-glow-pulse -z-10" />
-
-      {/* Tilt Wrapper */}
-      <motion.div
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="relative w-full h-full cursor-pointer animate-float"
-      >
-        {/* Decorative orbit ring - translated back in 3D */}
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          style={{ translateZ: -20 }}
-          className="absolute -inset-3 rounded-[2.5rem] border border-dashed border-bond-lime/20 pointer-events-none"
-        />
-
-        {/* Main Card Base */}
-        <div 
-          className="relative bg-bond-navy rounded-3xl p-8 border border-white/10 overflow-hidden shadow-2xl"
-          style={{ transform: "translateZ(0)" }} // Force new stacking context
-        >
-          {/* Glare effect matching mouse */}
-          <motion.div 
-            className="absolute inset-0 z-10 pointer-events-none" 
-            style={{ background: glareBackground }} 
-          />
-
-          {/* Background internal glows */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-bond-lime/10 rounded-full blur-2xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-bond-cyan/8 rounded-full blur-2xl pointer-events-none" />
-
-          {/* Header */}
-          <div className="flex items-center justify-between mb-6 relative z-20">
-            <div>
-              <p className="text-bond-lime text-[11px] font-black uppercase tracking-widest mb-1">Patient Growth</p>
-              <p className="text-white text-xl font-black">This Month</p>
-            </div>
-            <div className="flex gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            </div>
-          </div>
-
-          {/* Content Wrapper */}
-          <div className="relative z-20">
-            {/* Count-up big number */}
-            <div className="mb-7">
-              <CountUpNumber from={0} to={16} delay={0.9} className="text-7xl font-black text-white leading-none mb-2" />
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.1 }}
-                className="text-slate-400 text-sm font-medium"
-              >New patient enquiries</motion.p>
-              <motion.div
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.2 }}
-                className="flex items-center gap-2 mt-1.5"
-              >
-                <span className="text-emerald-400 text-sm font-bold">↑ 8%</span>
-                 <span className="text-slate-500 text-xs">This month</span>
-              </motion.div>
-            </div>
-
-            {/* Animated bar chart */}
-            <div className="mb-7">
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.0 }}
-                className="text-slate-500 text-[11px] font-bold uppercase tracking-widest mb-3"
-              >Weekly breakdown</motion.p>
-              <div className="flex items-end gap-1.5 h-14">
-                {[5, 8, 6, 11, 9, 13, 10].map((h, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ scaleY: 0, opacity: 0 }}
-                    animate={{ scaleY: 1, opacity: 1 }}
-                    transition={{ delay: 1.05 + i * 0.07, duration: 0.45, ease: [0.34, 1.56, 0.64, 1] }}
-                    style={{
-                      height: `${(h / 13) * 100}%`,
-                      transformOrigin: "bottom",
-                      background: i === 5
-                        ? "linear-gradient(to top, #ccff00, #e6ff80)"
-                        : "rgba(255,255,255,0.08)",
-                    }}
-                    className={`flex-1 rounded-t-md ${i === 5 ? "animate-bar-pulse" : ""}`}
-                    whileHover={{ scaleX: 1.15, transition: { duration: 0.15 } }}
-                  />
-                ))}
-              </div>
-              <div className="flex justify-between mt-1.5">
-                {["M","T","W","T","F","S","S"].map((d, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.5 + i * 0.04 }}
-                    className={`flex-1 text-center text-[10px] font-medium ${
-                      i === 5 ? "text-bond-lime" : "text-slate-600"
-                    }`}
-                  >{d}</motion.span>
-                ))}
-              </div>
-            </div>
-
-            {/* 3 stat pills — spring pop */}
-            <div className="grid grid-cols-3 gap-2">
-              {[
-                { label: "Google Rating", value: "4.8★", color: "text-bond-lime", bg: "bg-bond-lime/8" },
-                { label: "Ads Active", value: "3", color: "text-sky-400", bg: "bg-sky-400/8" },
-                { label: "New Reviews", value: "+22", color: "text-purple-400", bg: "bg-purple-400/8" },
-              ].map((s, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.6, y: 12 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ delay: 1.5 + i * 0.12, type: "spring", stiffness: 300, damping: 18 }}
-                  whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                  className={`${s.bg} border border-white/8 rounded-xl p-3 text-center cursor-default`}
-                >
-                  <p className={`text-base font-black ${s.color}`}>{s.value}</p>
-                  <p className="text-[10px] text-slate-500 mt-0.5 font-medium leading-tight">{s.label}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Footer with blinking cursor */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.9 }}
-            className="mt-6 pt-5 border-t border-white/8 flex items-center justify-between relative z-20"
-          >
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-bond-lime flex items-center justify-center shrink-0">
-                <span className="text-bond-navy text-[10px] font-black">AI</span>
-              </div>
-              <span className="text-slate-400 text-xs font-medium">Powered by Invictus AI</span>
-            </div>
-            <span className="text-slate-600 text-[10px] flex items-center gap-0.5">
-              Updated just now
-              <span className="animate-blink text-bond-lime font-black">_</span>
-            </span>
-          </motion.div>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}
 
 
 export default function Home() {
@@ -387,7 +190,152 @@ export default function Home() {
           </div>
 
           {/* ── RIGHT: Premium Dashboard Card — animated ── */}
-          <HeroDashboardCard />
+          <motion.div
+            initial={{ opacity: 0, x: 48, y: 12 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden lg:block"
+          >
+            {/* Float wrapper */}
+            <div className="animate-float">
+              <div className="relative">
+
+                {/* Animated glow halo */}
+                <div className="absolute -inset-6 bg-gradient-to-br from-bond-lime/25 via-bond-cyan/10 to-bond-purple/20 rounded-[3rem] blur-3xl animate-glow-pulse" />
+
+                {/* Decorative orbit ring */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="absolute -inset-3 rounded-[2.5rem] border border-dashed border-bond-lime/10 pointer-events-none"
+                />
+
+                {/* Main card */}
+                <div className="relative bg-bond-navy rounded-3xl p-8 border border-white/10 overflow-hidden animate-glow-pulse">
+
+                  {/* Top-right corner accent glow */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-bond-lime/10 rounded-full blur-2xl pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-bond-cyan/8 rounded-full blur-2xl pointer-events-none" />
+
+                  {/* Card header */}
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="flex items-center justify-between mb-7"
+                  >
+                    <div>
+                      <p className="text-bond-lime text-[11px] font-black uppercase tracking-widest mb-1">Patient Growth</p>
+                      <p className="text-white text-xl font-black">This Month</p>
+                    </div>
+
+                  </motion.div>
+
+                  {/* Count-up big number */}
+                  <div className="mb-7">
+                    <CountUpNumber from={0} to={16} delay={0.9} className="text-7xl font-black text-white leading-none mb-2" />
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.1 }}
+                      className="text-slate-400 text-sm font-medium"
+                    >New patient enquiries</motion.p>
+                    <motion.div
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.2 }}
+                      className="flex items-center gap-2 mt-1.5"
+                    >
+                      <span className="text-emerald-400 text-sm font-bold">↑ 8%</span>
+                       <span className="text-slate-500 text-xs">This month</span>
+                    </motion.div>
+                  </div>
+
+                  {/* Animated bar chart */}
+                  <div className="mb-7">
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.0 }}
+                      className="text-slate-500 text-[11px] font-bold uppercase tracking-widest mb-3"
+                    >Weekly breakdown</motion.p>
+                    <div className="flex items-end gap-1.5 h-14">
+                      {[5, 8, 6, 11, 9, 13, 10].map((h, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ scaleY: 0, opacity: 0 }}
+                          animate={{ scaleY: 1, opacity: 1 }}
+                          transition={{ delay: 1.05 + i * 0.07, duration: 0.45, ease: [0.34, 1.56, 0.64, 1] }}
+                          style={{
+                            height: `${(h / 13) * 100}%`,
+                            transformOrigin: "bottom",
+                            background: i === 5
+                              ? "linear-gradient(to top, #ccff00, #e6ff80)"
+                              : "rgba(255,255,255,0.08)",
+                          }}
+                          className={`flex-1 rounded-t-md ${i === 5 ? "animate-bar-pulse" : ""}`}
+                          whileHover={{ scaleX: 1.15, transition: { duration: 0.15 } }}
+                        />
+                      ))}
+                    </div>
+                    <div className="flex justify-between mt-1.5">
+                      {["M","T","W","T","F","S","S"].map((d, i) => (
+                        <motion.span
+                          key={i}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 1.5 + i * 0.04 }}
+                          className={`flex-1 text-center text-[10px] font-medium ${
+                            i === 5 ? "text-bond-lime" : "text-slate-600"
+                          }`}
+                        >{d}</motion.span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 3 stat pills — spring pop */}
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { label: "Google Rating", value: "4.8★", color: "text-bond-lime", bg: "bg-bond-lime/8" },
+                      { label: "Ads Active", value: "3", color: "text-sky-400", bg: "bg-sky-400/8" },
+                      { label: "New Reviews", value: "+22", color: "text-purple-400", bg: "bg-purple-400/8" },
+                    ].map((s, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, scale: 0.6, y: 12 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ delay: 1.5 + i * 0.12, type: "spring", stiffness: 300, damping: 18 }}
+                        whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                        className={`${s.bg} border border-white/8 rounded-xl p-3 text-center cursor-default`}
+                      >
+                        <p className={`text-base font-black ${s.color}`}>{s.value}</p>
+                        <p className="text-[10px] text-slate-500 mt-0.5 font-medium leading-tight">{s.label}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Footer with blinking cursor */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.9 }}
+                    className="mt-6 pt-5 border-t border-white/8 flex items-center justify-between"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-bond-lime flex items-center justify-center shrink-0">
+                        <span className="text-bond-navy text-[10px] font-black">AI</span>
+                      </div>
+                      <span className="text-slate-400 text-xs font-medium">Powered by Invictus AI</span>
+                    </div>
+                    <span className="text-slate-600 text-[10px] flex items-center gap-0.5">
+                      Updated just now
+                      <span className="animate-blink text-bond-lime font-black">_</span>
+                    </span>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
         </div>
       </section>
@@ -650,6 +598,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Subtle Separator */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
       {/* ── Sections 4-7 + Footer (extracted to avoid Turbopack panic) ── */}
       <HomeLowerSections showBackToTop={showBackToTop} />

@@ -29,5 +29,35 @@ export default function BlogPage() {
   const posts = getAllPosts();
   const tags = getAllTags();
 
-  return <BlogIndexContent posts={posts} tags={tags} />;
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Invictus AI Dental Marketing Blog",
+    "description": "Expert dental marketing insights, patient growth strategies, and actionable guides for dental clinic owners in India.",
+    "url": "https://invictus-ai.in/blog",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Invictus AI",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://invictus-ai.in/icon.png"
+      }
+    },
+    "blogPost": posts.map(post => ({
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "datePublished": post.date,
+      "url": `https://invictus-ai.in/blog/${post.slug}`
+    }))
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
+      <BlogIndexContent posts={posts} tags={tags} />
+    </>
+  );
 }
