@@ -8,8 +8,8 @@ type PostType = 'hook' | 'content' | 'cta' | 'stat';
 
 export default function SocialPostGenerator() {
   const [postType, setPostType] = useState<PostType>('hook');
-  const [heading, setHeading] = useState('5 Reasons Your Dental Clinic ISN\\'T Getting Patients');
-  const [highlightWord, setHighlightWord] = useState("ISN\\'T");
+  const [heading, setHeading] = useState("5 Reasons Your Dental Clinic ISN'T Getting Patients");
+  const [highlightWord, setHighlightWord] = useState("ISN'T");
   const [body, setBody] = useState('72% of dental clinics have missing hours, wrong phone numbers, or zero photos on their Google profile.');
   const [slideNumber, setSlideNumber] = useState('1');
   const [statValue, setStatValue] = useState('₹5,000');
