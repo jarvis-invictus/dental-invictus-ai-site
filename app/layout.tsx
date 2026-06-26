@@ -246,6 +246,21 @@ export default function RootLayout({
           })(window, document, "clarity", "script", "xczzb11mqw");
         `}
       </Script>
+      {/* Meta Pixel Code */}
+      <Script id="meta-pixel" strategy="afterInteractive">
+        {`
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '2293579754508573');
+          fbq('track', 'PageView');
+        `}
+      </Script>
       <body className={clsx(inter.variable, handwriting.variable, "bg-white text-bond-navy antialiased font-sans min-h-screen flex flex-col")}>
         {/* Permanent 3px bond-lime top accent bar */}
         <div className="fixed top-0 left-0 right-0 h-[3px] bg-bond-lime z-[9999] pointer-events-none" />
@@ -258,6 +273,16 @@ export default function RootLayout({
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+        {/* Meta Pixel (noscript) */}
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=2293579754508573&ev=PageView&noscript=1"
+            alt=""
           />
         </noscript>
         {children}
