@@ -12,7 +12,7 @@ export default function WhatsAppBridge() {
     // 2. Redirect to WhatsApp after a short delay
     const timer = setTimeout(() => {
       const message = encodeURIComponent(
-        "Hi Sahil, maine Meta pe aapka ad dekha. Mera dental clinic hai aur mujhe ek professional website chahiye. Kya aap help kar sakte hain?"
+        "Hi Sahil, I saw your ad on Meta. I own a dental clinic and I need a professional website. Can you help me?"
       );
       window.location.href = `https://wa.me/919699577641?text=${message}`;
     }, 800);
