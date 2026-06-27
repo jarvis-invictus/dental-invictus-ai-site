@@ -49,8 +49,8 @@ export default function WhatsAppBridge() {
 
         {/* Header */}
         <div className="bg-[#075e54] text-white px-4 py-3 flex items-center gap-3 relative z-10">
-          <div className="w-10 h-10 bg-[#cfd8dc] rounded-full flex items-center justify-center font-bold text-[#075e54] text-lg shrink-0">
-            IA
+          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shrink-0 overflow-hidden shadow-sm">
+            <img src="/logo.png" alt="Invictus AI" className="w-full h-full object-contain p-1" />
           </div>
           <div className="flex flex-col justify-center">
             <h1 className="font-semibold text-[15px] leading-tight text-white">Invictus AI</h1>
