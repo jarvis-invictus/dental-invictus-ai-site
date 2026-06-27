@@ -7,7 +7,7 @@ export default function WhatsAppBridge() {
   const [showFallback, setShowFallback] = useState(false);
   
   const whatsappUrl = `https://wa.me/919699577641?text=${encodeURIComponent(
-    "Hi! I saw your Meta ad and I'm interested in upgrading my dental clinic's website."
+    "Hey, I saw your Meta ad and I'm interested."
   )}`;
 
   useEffect(() => {
