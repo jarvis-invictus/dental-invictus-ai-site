@@ -1,9 +1,15 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function WhatsAppBridge() {
+  const [showFallback, setShowFallback] = useState(false);
+  
+  const whatsappUrl = `https://wa.me/919699577641?text=${encodeURIComponent(
+    "Hi Sahil, I saw your ad on Meta. I own a dental clinic and I need a professional website. Can you help me?"
+  )}`;
+
   useEffect(() => {
     // 1. Fire the Meta Pixel 'Lead' Event if it exists
     if (typeof window !== 'undefined' && (window as any).fbq) {
@@ -11,99 +17,126 @@ export default function WhatsAppBridge() {
     }
 
     // 2. Redirect to WhatsApp after delay to allow animations to play
-    // Changed to 2500ms so the user can see the animated chat bubbles
     const timer = setTimeout(() => {
-      const message = encodeURIComponent(
-        "Hi Sahil, I saw your ad on Meta. I own a dental clinic and I need a professional website. Can you help me?"
-      );
-      window.location.href = `https://wa.me/919699577641?text=${message}`;
+      window.location.href = whatsappUrl;
     }, 2500);
+    
+    // 3. Show fallback button if it takes too long
+    const fallbackTimer = setTimeout(() => {
+      setShowFallback(true);
+    }, 3500);
 
-    return () => clearTimeout(timer);
-  }, []);
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(fallbackTimer);
+    };
+  }, [whatsappUrl]);
 
   return (
-    <div className="min-h-screen bg-[#efe7dd] flex flex-col font-sans relative overflow-hidden">
-      {/* Background Doodles Pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.06] pointer-events-none" 
-        style={{ 
-          backgroundImage: 'url("https://w0.peakpx.com/wallpaper/818/148/HD-wallpaper-whatsapp-background-cool-dark-green-new-theme-whatsapp.jpg")', 
-          backgroundSize: '300px' 
-        }} 
-      />
-
-      {/* Header */}
-      <div className="bg-[#075e54] text-white p-4 shadow-md flex items-center gap-3 relative z-10">
-        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center font-bold text-[#075e54] text-xl">
-          IA
-        </div>
-        <div>
-          <h1 className="font-semibold text-lg leading-tight">Invictus AI</h1>
-          <p className="text-xs text-white/80">Premium Patient Growth</p>
-        </div>
-      </div>
-
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col items-center justify-center p-6 relative z-10 w-full max-w-md mx-auto">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4 font-sans">
+      
+      {/* Mobile-Sized Card Container */}
+      <div className="w-full max-w-[360px] bg-[#efe7dd] rounded-2xl shadow-2xl overflow-hidden relative flex flex-col h-[650px] max-h-[90vh]">
         
-        {/* Pulsing WhatsApp Logo */}
-        <div className="relative mb-10 mt-4">
-          <motion.div 
-              animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-              className="absolute inset-0 bg-[#25D366] rounded-full blur-xl"
-          />
-          <div className="relative w-20 h-20 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-xl">
-            <svg className="w-10 h-10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.489-1.761-1.663-2.06-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-            </svg>
+        {/* Background Doodles Pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.06] pointer-events-none" 
+          style={{ 
+            backgroundImage: 'url("https://w0.peakpx.com/wallpaper/818/148/HD-wallpaper-whatsapp-background-cool-dark-green-new-theme-whatsapp.jpg")', 
+            backgroundSize: '300px' 
+          }} 
+        />
+
+        {/* Header */}
+        <div className="bg-[#075e54] text-white px-4 py-3 flex items-center gap-3 relative z-10">
+          <div className="w-10 h-10 bg-[#cfd8dc] rounded-full flex items-center justify-center font-bold text-[#075e54] text-lg shrink-0">
+            IA
+          </div>
+          <div className="flex flex-col justify-center">
+            <h1 className="font-semibold text-[15px] leading-tight text-white">Invictus AI</h1>
+            <p className="text-[11px] text-white/80 leading-tight">Premium Patient Growth</p>
           </div>
         </div>
 
-        {/* Chat Bubbles */}
-        <div className="w-full flex flex-col gap-4">
-          {/* Bubble 1 (System) */}
-          <motion.div 
-              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-              className="bg-white p-3 rounded-tr-xl rounded-b-xl rounded-tl-sm shadow-sm text-sm text-[#303030] text-left relative max-w-[85%]"
-          >
-              <span className="absolute top-0 -left-2 w-0 h-0 border-[6px] border-transparent border-t-white border-r-white"></span>
-              Connecting to secure server...
-          </motion.div>
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col items-center px-4 pt-10 pb-6 relative z-10">
+          
+          {/* Pulsing WhatsApp Logo */}
+          <div className="relative mb-12">
+            <motion.div 
+                animate={{ scale: [1, 1.25, 1], opacity: [0.4, 0, 0.4] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+                className="absolute inset-0 bg-[#25D366] rounded-full blur-md"
+            />
+            <div className="relative w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-lg">
+              <svg className="w-8 h-8 ml-0.5 mt-0.5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.489-1.761-1.663-2.06-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+              </svg>
+            </div>
+          </div>
 
-          {/* Bubble 2 (Outgoing) */}
-          <motion.div 
-              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
-              className="bg-[#dcf8c6] p-3 rounded-bl-xl rounded-t-xl rounded-br-sm shadow-sm text-sm text-[#303030] text-right self-end ml-auto relative max-w-[85%]"
-          >
-              <span className="absolute top-0 -right-2 w-0 h-0 border-[6px] border-transparent border-t-[#dcf8c6] border-l-[#dcf8c6]"></span>
-              Preparing your WhatsApp invitation link...
-          </motion.div>
+          {/* Chat Bubbles */}
+          <div className="w-full flex flex-col gap-3">
+            {/* Bubble 1 (System) */}
+            <motion.div 
+                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+                className="bg-white px-3 py-2 rounded-2xl rounded-tl-sm shadow-sm text-[13px] text-[#303030] text-left relative max-w-[85%]"
+            >
+                <span className="absolute top-0 -left-2 w-0 h-0 border-[6px] border-transparent border-t-white border-r-white"></span>
+                Opening secure connection...
+            </motion.div>
 
-          {/* Bubble 3 with typing dots */}
-          <motion.div 
-              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1 }}
-              className="bg-white p-3 rounded-tr-xl rounded-b-xl rounded-tl-sm shadow-sm text-sm text-[#303030] text-left relative flex items-center justify-between gap-4 self-start"
-          >
-              <span className="absolute top-0 -left-2 w-0 h-0 border-[6px] border-transparent border-t-white border-r-white"></span>
-              <span>Redirecting to WhatsApp</span>
-              <div className="flex gap-1.5 mt-1">
-                  <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, delay: 0 }} className="w-1.5 h-1.5 bg-[#075e54] rounded-full" />
-                  <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, delay: 0.15 }} className="w-1.5 h-1.5 bg-[#075e54] rounded-full" />
-                  <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, delay: 0.3 }} className="w-1.5 h-1.5 bg-[#075e54] rounded-full" />
-              </div>
-          </motion.div>
+            {/* Bubble 2 (Outgoing) */}
+            <motion.div 
+                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
+                className="bg-[#dcf8c6] px-3 py-2 rounded-2xl rounded-tr-sm shadow-sm text-[13px] text-[#303030] text-right self-end ml-auto relative max-w-[85%]"
+            >
+                <span className="absolute top-0 -right-2 w-0 h-0 border-[6px] border-transparent border-t-[#dcf8c6] border-l-[#dcf8c6]"></span>
+                Preparing invitation link...
+            </motion.div>
+
+            {/* Bubble 3 with typing dots */}
+            <motion.div 
+                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1 }}
+                className="bg-white px-3 py-2 rounded-2xl rounded-tl-sm shadow-sm text-[13px] text-[#303030] text-left relative flex items-center gap-3 self-start"
+            >
+                <span className="absolute top-0 -left-2 w-0 h-0 border-[6px] border-transparent border-t-white border-r-white"></span>
+                <span>Redirecting to WhatsApp</span>
+                <div className="flex gap-1 mt-0.5">
+                    <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, delay: 0 }} className="w-1.5 h-1.5 bg-[#075e54] rounded-full opacity-60" />
+                    <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, delay: 0.15 }} className="w-1.5 h-1.5 bg-[#075e54] rounded-full opacity-60" />
+                    <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, delay: 0.3 }} className="w-1.5 h-1.5 bg-[#075e54] rounded-full opacity-60" />
+                </div>
+            </motion.div>
+          </div>
+
+          {/* Fallback Button */}
+          <div className="mt-auto mb-8 w-full flex flex-col items-center">
+            {showFallback && (
+              <motion.div 
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                className="flex flex-col items-center w-full"
+              >
+                <p className="text-[#8e8e8e] text-[11px] mb-2 text-center">If you are not redirected automatically:</p>
+                <a 
+                  href={whatsappUrl}
+                  className="bg-[#25D366] text-white font-bold py-2.5 px-6 rounded-full shadow-md text-sm hover:bg-[#128C7E] transition-colors w-[80%] text-center"
+                >
+                  Continue to Chat
+                </a>
+              </motion.div>
+            )}
+          </div>
+
         </div>
 
-      </div>
-
-      {/* Footer Encryption Notice */}
-      <div className="absolute bottom-6 left-0 right-0 flex items-center justify-center gap-1.5 text-[#8e8e8e] text-xs font-medium z-10">
-        <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/>
-        </svg>
-        End-to-end encrypted
+        {/* Footer Encryption Notice */}
+        <div className="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-1 text-[#8e8e8e] text-[10px] font-medium z-10 pb-2">
+          <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/>
+          </svg>
+          End-to-end encrypted
+        </div>
       </div>
     </div>
   );
