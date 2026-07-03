@@ -16,15 +16,16 @@ export default function WhatsAppBridge() {
       (window as any).fbq('track', 'Lead');
     }
 
-    // 2. Redirect to WhatsApp after delay to allow animations to play
+    // 2. Redirect to WhatsApp at 1200ms — fast enough to feel instant,
+    //    just enough time to show brand + fire pixel
     const timer = setTimeout(() => {
       window.location.href = whatsappUrl;
-    }, 2500);
+    }, 1200);
     
-    // 3. Show fallback button if it takes too long
+    // 3. Show fallback button at 1800ms in case device blocks the redirect
     const fallbackTimer = setTimeout(() => {
       setShowFallback(true);
-    }, 3500);
+    }, 1800);
 
     return () => {
       clearTimeout(timer);
@@ -38,12 +39,12 @@ export default function WhatsAppBridge() {
       {/* Mobile-Sized Card Container */}
       <div className="w-full max-w-[360px] bg-[#efe7dd] rounded-2xl shadow-2xl overflow-hidden relative flex flex-col h-[650px] max-h-[90vh]">
         
-        {/* Background Doodles Pattern */}
+        {/* Background Dot Pattern — CSS only, no external request */}
         <div 
-          className="absolute inset-0 opacity-[0.06] pointer-events-none" 
+          className="absolute inset-0 opacity-[0.08] pointer-events-none" 
           style={{ 
-            backgroundImage: 'url("https://w0.peakpx.com/wallpaper/818/148/HD-wallpaper-whatsapp-background-cool-dark-green-new-theme-whatsapp.jpg")', 
-            backgroundSize: '300px' 
+            backgroundImage: 'radial-gradient(circle, #075e54 1px, transparent 1px)',
+            backgroundSize: '20px 20px'
           }} 
         />
 
@@ -62,10 +63,10 @@ export default function WhatsAppBridge() {
         <div className="flex-1 flex flex-col items-center px-4 pt-10 pb-6 relative z-10">
           
           {/* Pulsing WhatsApp Logo */}
-          <div className="relative mb-12">
+          <div className="relative mb-10">
             <motion.div 
                 animate={{ scale: [1, 1.25, 1], opacity: [0.4, 0, 0.4] }}
-                transition={{ repeat: Infinity, duration: 2 }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
                 className="absolute inset-0 bg-[#25D366] rounded-full blur-md"
             />
             <div className="relative w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-lg">
@@ -75,54 +76,54 @@ export default function WhatsAppBridge() {
             </div>
           </div>
 
-          {/* Chat Bubbles */}
+          {/* Chat Bubbles — all 3 fully visible within 600ms */}
           <div className="w-full flex flex-col gap-3">
-            {/* Bubble 1 (System) */}
+            {/* Bubble 1 */}
             <motion.div 
-                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05, duration: 0.2 }}
                 className="bg-white px-3 py-2 rounded-2xl rounded-tl-sm shadow-sm text-[13px] text-[#303030] text-left relative max-w-[85%]"
             >
                 <span className="absolute top-0 -left-2 w-0 h-0 border-[6px] border-transparent border-t-white border-r-white"></span>
                 Opening secure connection...
             </motion.div>
 
-            {/* Bubble 2 (Outgoing) */}
+            {/* Bubble 2 */}
             <motion.div 
-                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
+                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.2 }}
                 className="bg-[#dcf8c6] px-3 py-2 rounded-2xl rounded-tr-sm shadow-sm text-[13px] text-[#303030] text-right self-end ml-auto relative max-w-[85%]"
             >
                 <span className="absolute top-0 -right-2 w-0 h-0 border-[6px] border-transparent border-t-[#dcf8c6] border-l-[#dcf8c6]"></span>
-                Preparing invitation link...
+                Preparing your link...
             </motion.div>
 
             {/* Bubble 3 with typing dots */}
             <motion.div 
-                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1 }}
+                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, duration: 0.2 }}
                 className="bg-white px-3 py-2 rounded-2xl rounded-tl-sm shadow-sm text-[13px] text-[#303030] text-left relative flex items-center gap-3 self-start"
             >
                 <span className="absolute top-0 -left-2 w-0 h-0 border-[6px] border-transparent border-t-white border-r-white"></span>
-                <span>Redirecting to WhatsApp</span>
+                <span>Opening WhatsApp</span>
                 <div className="flex gap-1 mt-0.5">
-                    <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, delay: 0 }} className="w-1.5 h-1.5 bg-[#075e54] rounded-full opacity-60" />
-                    <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, delay: 0.15 }} className="w-1.5 h-1.5 bg-[#075e54] rounded-full opacity-60" />
-                    <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, delay: 0.3 }} className="w-1.5 h-1.5 bg-[#075e54] rounded-full opacity-60" />
+                    <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0 }} className="w-1.5 h-1.5 bg-[#075e54] rounded-full opacity-60" />
+                    <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.15 }} className="w-1.5 h-1.5 bg-[#075e54] rounded-full opacity-60" />
+                    <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.3 }} className="w-1.5 h-1.5 bg-[#075e54] rounded-full opacity-60" />
                 </div>
             </motion.div>
           </div>
 
-          {/* Fallback Button */}
+          {/* Fallback Button — shows at 1800ms if redirect is blocked by device */}
           <div className="mt-auto mb-8 w-full flex flex-col items-center">
             {showFallback && (
               <motion.div 
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}
                 className="flex flex-col items-center w-full"
               >
-                <p className="text-[#8e8e8e] text-[11px] mb-2 text-center">If you are not redirected automatically:</p>
+                <p className="text-[#8e8e8e] text-[11px] mb-3 text-center">Tap below if WhatsApp didn&apos;t open:</p>
                 <a 
                   href={whatsappUrl}
-                  className="bg-[#25D366] text-white font-bold py-2.5 px-6 rounded-full shadow-md text-sm hover:bg-[#128C7E] transition-colors w-[80%] text-center"
+                  className="bg-[#25D366] text-white font-bold py-3 px-6 rounded-full shadow-md text-sm hover:bg-[#128C7E] transition-colors w-[80%] text-center"
                 >
-                  Continue to Chat
+                  Open WhatsApp Chat
                 </a>
               </motion.div>
             )}
