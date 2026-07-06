@@ -45,7 +45,7 @@
     
     <div class="max-w-6xl mx-auto px-4 py-8">
         
-        <header class="text-center mb-12 avoid-break">
+        <header class="text-center mb-10 avoid-break">
             <div class="flex justify-center mb-4">
                 <img src="/logo.png" alt="Invictus AI" class="h-8 w-auto object-contain">
             </div>
@@ -58,15 +58,80 @@
             </p>
         </header>
 
+        <!-- Template Gallery Previews -->
+        <div class="mb-10 avoid-break">
+            <h3 class="text-lg font-black mb-4 text-center text-bond-navy">Select a Template Design</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                
+                <!-- Standard Site 1 Preview -->
+                <div class="rounded-xl overflow-hidden shadow-sm border border-slate-200 aspect-video bg-slate-50 flex flex-col items-center justify-center relative group">
+                    <img src="/proposals/standard-1.jpg" alt="Standard Site 1" class="absolute inset-0 w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <!-- Placeholder -->
+                    <div style="display: none;" class="flex-col items-center justify-center text-center px-2 w-full h-full bg-slate-100/50">
+                        <span class="text-slate-400 font-bold tracking-widest uppercase text-[9px]">Standard 1</span>
+                    </div>
+                    <!-- Mock Browser Top Bar -->
+                    <div class="absolute top-0 left-0 right-0 h-4 bg-slate-800/80 backdrop-blur-sm flex items-center px-1.5 space-x-1 pointer-events-none">
+                        <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+                    </div>
+                </div>
+
+                <!-- Standard Site 2 Preview -->
+                <div class="rounded-xl overflow-hidden shadow-sm border border-slate-200 aspect-video bg-slate-50 flex flex-col items-center justify-center relative group">
+                    <img src="/proposals/standard-2.jpg" alt="Standard Site 2" class="absolute inset-0 w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <!-- Placeholder -->
+                    <div style="display: none;" class="flex-col items-center justify-center text-center px-2 w-full h-full bg-slate-100/50">
+                        <span class="text-slate-400 font-bold tracking-widest uppercase text-[9px]">Standard 2</span>
+                    </div>
+                    <div class="absolute top-0 left-0 right-0 h-4 bg-slate-800/80 backdrop-blur-sm flex items-center px-1.5 space-x-1 pointer-events-none">
+                        <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+                    </div>
+                </div>
+
+                <!-- Premium Site 1 Preview -->
+                <div class="rounded-xl overflow-hidden shadow-sm border-2 border-bond-lime aspect-video bg-slate-50 flex flex-col items-center justify-center relative group">
+                    <img src="/proposals/premium-1.jpg" alt="Premium Site 1" class="absolute inset-0 w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <!-- Placeholder -->
+                    <div style="display: none;" class="flex-col items-center justify-center text-center px-2 w-full h-full bg-slate-100/50">
+                        <span class="text-bond-navy font-bold tracking-widest uppercase text-[9px]">Premium 1</span>
+                    </div>
+                    <div class="absolute top-0 left-0 right-0 h-4 bg-slate-800/80 backdrop-blur-sm flex items-center px-1.5 space-x-1 pointer-events-none">
+                        <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+                    </div>
+                </div>
+
+                <!-- Premium Site 2 Preview -->
+                <div class="rounded-xl overflow-hidden shadow-sm border-2 border-bond-lime aspect-video bg-slate-50 flex flex-col items-center justify-center relative group">
+                    <img src="/proposals/premium-2.jpg" alt="Premium Site 2" class="absolute inset-0 w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <!-- Placeholder -->
+                    <div style="display: none;" class="flex-col items-center justify-center text-center px-2 w-full h-full bg-slate-100/50">
+                        <span class="text-bond-navy font-bold tracking-widest uppercase text-[9px]">Premium 2</span>
+                    </div>
+                    <div class="absolute top-0 left-0 right-0 h-4 bg-slate-800/80 backdrop-blur-sm flex items-center px-1.5 space-x-1 pointer-events-none">
+                        <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <!-- Side-by-Side Packages -->
-        <div class="grid md:grid-cols-2 gap-6 mb-12">
+        <div class="grid md:grid-cols-2 gap-6 mb-8 avoid-break">
             
             <!-- Standard Package -->
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sticker hover:shadow-sticker-hover transition-all duration-300 avoid-break h-full flex flex-col">
-                <div class="flex justify-between items-start mb-6 border-b border-slate-100 pb-6">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sticker hover:shadow-sticker-hover transition-all duration-300 h-full flex flex-col">
+                <div class="flex justify-between items-start mb-5 border-b border-slate-100 pb-4">
                     <div>
                         <h2 class="text-2xl font-black mb-1">Standard Package</h2>
-                        <p class="text-bond-gray font-medium text-xs">The perfect mobile foundation.</p>
+                        <p class="text-bond-gray font-medium text-[11px]">The perfect mobile foundation.</p>
                     </div>
                     <div class="text-right">
                         <div class="text-2xl font-black text-bond-navy">₹7,000</div>
@@ -74,60 +139,56 @@
                     </div>
                 </div>
 
-                <div class="space-y-5 mb-8 flex-grow">
+                <div class="space-y-4 mb-6 flex-grow">
                     <div class="flex items-start">
-                        <div class="w-8 h-8 shrink-0 bg-bond-cyan/10 rounded-lg flex items-center justify-center mr-4 mt-1">
-                            <span class="text-bond-cyan font-black text-sm">✓</span>
+                        <div class="w-6 h-6 shrink-0 bg-bond-cyan/10 rounded-md flex items-center justify-center mr-3 mt-0.5">
+                            <span class="text-bond-cyan font-black text-xs">✓</span>
                         </div>
                         <div>
-                            <h4 class="text-base font-black mb-1">The Mobile-First Foundation</h4>
-                            <p class="text-bond-gray font-medium leading-relaxed text-xs">Over 70% of patients search on phones. We build a blazing-fast, single-page site that loads under 3 seconds.</p>
+                            <h4 class="text-sm font-black mb-0.5">The Mobile-First Foundation</h4>
+                            <p class="text-bond-gray font-medium leading-snug text-xs">Over 70% of patients search on phones. We build a blazing-fast, single-page site that loads under 3 seconds.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="w-8 h-8 shrink-0 bg-bond-cyan/10 rounded-lg flex items-center justify-center mr-4 mt-1">
-                            <span class="text-bond-cyan font-black text-sm">✓</span>
+                        <div class="w-6 h-6 shrink-0 bg-bond-cyan/10 rounded-md flex items-center justify-center mr-3 mt-0.5">
+                            <span class="text-bond-cyan font-black text-xs">✓</span>
                         </div>
                         <div>
-                            <h4 class="text-base font-black mb-1">Frictionless WhatsApp Booking</h4>
-                            <p class="text-bond-gray font-medium leading-relaxed text-xs">Patients hate calling. We integrate direct WhatsApp booking so they can instantly message your clinic 24/7.</p>
+                            <h4 class="text-sm font-black mb-0.5">Frictionless WhatsApp Booking</h4>
+                            <p class="text-bond-gray font-medium leading-snug text-xs">Patients hate calling. We integrate direct WhatsApp booking so they can instantly message your clinic 24/7.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="w-8 h-8 shrink-0 bg-bond-cyan/10 rounded-lg flex items-center justify-center mr-4 mt-1">
-                            <span class="text-bond-cyan font-black text-sm">✓</span>
+                        <div class="w-6 h-6 shrink-0 bg-bond-cyan/10 rounded-md flex items-center justify-center mr-3 mt-0.5">
+                            <span class="text-bond-cyan font-black text-xs">✓</span>
                         </div>
                         <div>
-                            <h4 class="text-base font-black mb-1">The Clinic Showcase</h4>
-                            <p class="text-bond-gray font-medium leading-relaxed text-xs">A beautifully designed overview of your services, doctor bios, and facility photos to build immediate familiarity.</p>
+                            <h4 class="text-sm font-black mb-0.5">The Clinic Showcase</h4>
+                            <p class="text-bond-gray font-medium leading-snug text-xs">A beautifully designed overview of your services, doctor bios, and facility photos to build immediate familiarity.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="w-8 h-8 shrink-0 bg-bond-cyan/10 rounded-lg flex items-center justify-center mr-4 mt-1">
-                            <span class="text-bond-cyan font-black text-sm">✓</span>
+                        <div class="w-6 h-6 shrink-0 bg-bond-cyan/10 rounded-md flex items-center justify-center mr-3 mt-0.5">
+                            <span class="text-bond-cyan font-black text-xs">✓</span>
                         </div>
                         <div>
-                            <h4 class="text-base font-black mb-1">Done-For-You Content</h4>
-                            <p class="text-bond-gray font-medium leading-relaxed text-xs">Fill out a 5-minute form, and we write all the professional, patient-centric copy for your clinic.</p>
+                            <h4 class="text-sm font-black mb-0.5">Done-For-You Content</h4>
+                            <p class="text-bond-gray font-medium leading-snug text-xs">Fill out a 5-minute form, and we write all the professional, patient-centric copy for your clinic.</p>
                         </div>
                     </div>
                 </div>
-
-                <a href="https://s1.invictus-ai.in" target="_blank" class="mt-auto flex items-center justify-center bg-white text-bond-navy border-2 border-slate-200 hover:border-bond-navy h-10 px-6 text-sm rounded-lg font-bold transition-all duration-300 w-full no-print">
-                    View Standard Demo
-                </a>
             </div>
 
             <!-- Premium Package -->
-            <div class="bg-white border-2 border-bond-lime rounded-2xl p-6 md:p-8 shadow-sticker-lime transition-all duration-300 relative avoid-break h-full flex flex-col">
+            <div class="bg-white border-2 border-bond-lime rounded-2xl p-6 shadow-sticker-lime transition-all duration-300 relative h-full flex flex-col">
                 <div class="absolute -top-3 right-6 bg-bond-lime text-bond-navy px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase shadow-sm">
                     Best Value
                 </div>
                 
-                <div class="flex justify-between items-start mb-6 border-b border-slate-100 pb-6">
+                <div class="flex justify-between items-start mb-5 border-b border-slate-100 pb-4">
                     <div>
                         <h2 class="text-2xl font-black mb-1">Premium Package</h2>
-                        <p class="text-bond-gray font-medium text-xs">Capture high-intent local searches.</p>
+                        <p class="text-bond-gray font-medium text-[11px]">Capture high-intent local searches.</p>
                     </div>
                     <div class="text-right">
                         <div class="text-2xl font-black text-bond-navy">₹13,000</div>
@@ -135,83 +196,65 @@
                     </div>
                 </div>
 
-                <div class="space-y-5 mb-8 flex-grow">
+                <div class="space-y-4 mb-6 flex-grow">
                     <div class="flex items-start">
-                        <div class="w-8 h-8 shrink-0 bg-bond-lime/20 rounded-lg flex items-center justify-center mr-4 mt-1">
-                            <span class="text-bond-navy font-black text-sm">✓</span>
+                        <div class="w-6 h-6 shrink-0 bg-bond-lime/20 rounded-md flex items-center justify-center mr-3 mt-0.5">
+                            <span class="text-bond-navy font-black text-xs">✓</span>
                         </div>
                         <div>
-                            <h4 class="text-base font-black mb-1">Advanced Patient Trust System</h4>
-                            <p class="text-bond-gray font-medium leading-relaxed text-xs">We integrate prominent patient testimonials, live reviews, and deep credentials to convince patients instantly.</p>
+                            <h4 class="text-sm font-black mb-0.5">Advanced Patient Trust System</h4>
+                            <p class="text-bond-gray font-medium leading-snug text-xs">We integrate prominent patient testimonials, live reviews, and deep credentials to convince patients instantly.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="w-8 h-8 shrink-0 bg-bond-lime/20 rounded-lg flex items-center justify-center mr-4 mt-1">
-                            <span class="text-bond-navy font-black text-sm">✓</span>
+                        <div class="w-6 h-6 shrink-0 bg-bond-lime/20 rounded-md flex items-center justify-center mr-3 mt-0.5">
+                            <span class="text-bond-navy font-black text-xs">✓</span>
                         </div>
                         <div>
-                            <h4 class="text-base font-black mb-1">Treatment Funnels (Up to 10 Pages)</h4>
-                            <p class="text-bond-gray font-medium leading-relaxed text-xs">Deep, dedicated pages for high-ticket treatments (Implants, Invisalign) to capture high-intent Google searches.</p>
+                            <h4 class="text-sm font-black mb-0.5">Treatment Funnels (Up to 10 Pages)</h4>
+                            <p class="text-bond-gray font-medium leading-snug text-xs">Deep, dedicated pages for high-ticket treatments (Implants, Invisalign) to capture high-intent Google searches.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="w-8 h-8 shrink-0 bg-bond-lime/20 rounded-lg flex items-center justify-center mr-4 mt-1">
-                            <span class="text-bond-navy font-black text-sm">✓</span>
+                        <div class="w-6 h-6 shrink-0 bg-bond-lime/20 rounded-md flex items-center justify-center mr-3 mt-0.5">
+                            <span class="text-bond-navy font-black text-xs">✓</span>
                         </div>
                         <div>
-                            <h4 class="text-base font-black mb-1">Automated 24/7 Scheduling</h4>
-                            <p class="text-bond-gray font-medium leading-relaxed text-xs">We integrate systems like Cal.com so patients can see your calendar and book directly at 2 AM.</p>
+                            <h4 class="text-sm font-black mb-0.5">Automated 24/7 Scheduling</h4>
+                            <p class="text-bond-gray font-medium leading-snug text-xs">We integrate systems like Cal.com so patients can see your calendar and book directly at 2 AM.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="w-8 h-8 shrink-0 bg-bond-lime/20 rounded-lg flex items-center justify-center mr-4 mt-1">
-                            <span class="text-bond-navy font-black text-sm">✓</span>
+                        <div class="w-6 h-6 shrink-0 bg-bond-lime/20 rounded-md flex items-center justify-center mr-3 mt-0.5">
+                            <span class="text-bond-navy font-black text-xs">✓</span>
                         </div>
                         <div>
-                            <h4 class="text-base font-black mb-1">The Google Advantage</h4>
-                            <p class="text-bond-gray font-medium leading-relaxed text-xs">We perfectly sync your site with your Google Business Profile to dominate local map searches.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="w-8 h-8 shrink-0 bg-bond-lime/20 rounded-lg flex items-center justify-center mr-4 mt-1">
-                            <span class="text-bond-navy font-black text-sm">+</span>
-                        </div>
-                        <div>
-                            <p class="text-bond-navy font-bold leading-relaxed text-sm mt-1">Everything in the Standard Package</p>
+                            <h4 class="text-sm font-black mb-0.5">The Google Advantage</h4>
+                            <p class="text-bond-gray font-medium leading-snug text-xs">We perfectly sync your site with your Google Business Profile to dominate local map searches.</p>
                         </div>
                     </div>
                 </div>
-
-                <a href="https://p1.invictus-ai.in" target="_blank" class="mt-auto flex items-center justify-center bg-bond-lime text-bond-navy h-10 px-6 text-sm rounded-lg font-bold shadow-sticker hover:bg-[#b3e600] transition-all duration-300 w-full no-print">
-                    View Premium Demo
-                </a>
             </div>
-
         </div>
 
-        <!-- The Process (Forces page break if printing) -->
-        <div class="bg-bond-navy text-white rounded-2xl p-8 md:p-10 shadow-sticker avoid-break relative overflow-hidden page-break">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-bond-cyan opacity-20 blur-[80px]"></div>
+        <!-- How It Works Ribbon -->
+        <div class="bg-bond-navy text-white rounded-2xl px-6 py-4 shadow-sm avoid-break relative overflow-hidden flex flex-col md:flex-row items-center justify-between">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-24 bg-bond-cyan opacity-20 blur-[40px]"></div>
             
-            <div class="relative z-10 text-center">
-                <h2 class="text-2xl font-black mb-8">How It Works</h2>
-                
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div>
-                        <div class="w-12 h-12 mx-auto bg-bond-lime/10 border border-bond-lime/20 rounded-xl flex items-center justify-center text-bond-lime font-black text-lg mb-4">1</div>
-                        <h4 class="font-bold text-base mb-2">Choose & Secure</h4>
-                        <p class="text-slate-400 font-medium text-xs leading-relaxed">Select your package and pay the 50% deposit.</p>
-                    </div>
-                    <div>
-                        <div class="w-12 h-12 mx-auto bg-bond-lime/10 border border-bond-lime/20 rounded-xl flex items-center justify-center text-bond-lime font-black text-lg mb-4">2</div>
-                        <h4 class="font-bold text-base mb-2">5-Minute Details</h4>
-                        <p class="text-slate-400 font-medium text-xs leading-relaxed">Fill out a simple form with your clinic name and photos.</p>
-                    </div>
-                    <div>
-                        <div class="w-12 h-12 mx-auto bg-bond-lime/10 border border-bond-lime/20 rounded-xl flex items-center justify-center text-bond-lime font-black text-lg mb-4">3</div>
-                        <h4 class="font-bold text-base mb-2">We Launch</h4>
-                        <p class="text-slate-400 font-medium text-xs leading-relaxed">We write the content, build the site, and launch it live.</p>
-                    </div>
+            <h2 class="text-sm font-black mb-3 md:mb-0 relative z-10 w-full md:w-auto text-center md:text-left border-b md:border-b-0 md:border-r border-white/10 pb-2 md:pb-0 md:pr-6">How It Works</h2>
+            
+            <div class="flex flex-col md:flex-row gap-4 relative z-10 w-full md:w-auto justify-around flex-grow md:pl-6">
+                <div class="flex items-center">
+                    <div class="w-6 h-6 shrink-0 bg-bond-cyan/10 border border-bond-cyan/20 rounded-md flex items-center justify-center text-bond-cyan font-black text-xs mr-3">1</div>
+                    <h4 class="font-bold text-[11px] uppercase tracking-wide">Choose & Secure</h4>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-6 h-6 shrink-0 bg-bond-cyan/10 border border-bond-cyan/20 rounded-md flex items-center justify-center text-bond-cyan font-black text-xs mr-3">2</div>
+                    <h4 class="font-bold text-[11px] uppercase tracking-wide">Fill 5-Min Form</h4>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-6 h-6 shrink-0 bg-bond-cyan/10 border border-bond-cyan/20 rounded-md flex items-center justify-center text-bond-cyan font-black text-xs mr-3">3</div>
+                    <h4 class="font-bold text-[11px] uppercase tracking-wide">We Launch Live</h4>
                 </div>
             </div>
         </div>
