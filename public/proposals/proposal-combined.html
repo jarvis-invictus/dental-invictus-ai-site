@@ -32,12 +32,20 @@
             background-image: linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
             background-size: 20px 20px;
         }
+
+        /* Sleek custom scrollbar for the site previews */
+        .preview-scroll::-webkit-scrollbar { width: 6px; }
+        .preview-scroll::-webkit-scrollbar-track { background: #f8fafc; }
+        .preview-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .preview-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
         @media print {
             body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .no-print { display: none; }
             .page-break { page-break-before: always; }
             .avoid-break { page-break-inside: avoid; }
             .shadow-sticker, .shadow-sticker-lime { box-shadow: 2px 2px 0px 0px black !important; }
+            .preview-panel { height: auto !important; max-height: 500px; overflow: hidden !important; }
         }
     </style>
 </head>
@@ -58,65 +66,72 @@
             </p>
         </header>
 
-        <!-- Template Gallery Previews -->
+        <!-- Template Scrolling Gallery -->
         <div class="mb-10 avoid-break">
-            <h3 class="text-lg font-black mb-4 text-center text-bond-navy">Select a Template Design</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <h3 class="text-lg font-black mb-4 text-center text-bond-navy">Scroll to View Full Templates</h3>
+            <div class="grid md:grid-cols-4 gap-4">
                 
                 <!-- Standard Site 1 Preview -->
-                <div class="rounded-xl overflow-hidden shadow-sm border border-slate-200 aspect-video bg-slate-50 flex flex-col items-center justify-center relative group">
-                    <img src="/proposals/standard-1.jpg" alt="Standard Site 1" class="absolute inset-0 w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <!-- Placeholder -->
-                    <div style="display: none;" class="flex-col items-center justify-center text-center px-2 w-full h-full bg-slate-100/50">
-                        <span class="text-slate-400 font-bold tracking-widest uppercase text-[9px]">Standard 1</span>
-                    </div>
-                    <!-- Mock Browser Top Bar -->
-                    <div class="absolute top-0 left-0 right-0 h-4 bg-slate-800/80 backdrop-blur-sm flex items-center px-1.5 space-x-1 pointer-events-none">
+                <div class="preview-panel rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white flex flex-col relative h-[400px]">
+                    <div class="h-6 bg-slate-800 flex items-center px-2 space-x-1.5 shrink-0 z-10 sticky top-0 w-full">
                         <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
                         <div class="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
                         <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+                        <div class="ml-2 text-[8px] text-slate-400 font-mono tracking-widest uppercase">Standard_1</div>
+                    </div>
+                    <div class="flex-grow overflow-y-auto w-full relative preview-scroll bg-slate-50">
+                        <img src="/proposals/standard-1-full.jpg" alt="Standard Site 1 Full View" class="w-full h-auto block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display: none;" class="flex-col items-center justify-center text-center p-4 w-full h-full min-h-[300px]">
+                            <span class="text-slate-400 font-bold uppercase text-[9px] tracking-widest">Awaiting standard-1-full.jpg</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Standard Site 2 Preview -->
-                <div class="rounded-xl overflow-hidden shadow-sm border border-slate-200 aspect-video bg-slate-50 flex flex-col items-center justify-center relative group">
-                    <img src="/proposals/standard-2.jpg" alt="Standard Site 2" class="absolute inset-0 w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <!-- Placeholder -->
-                    <div style="display: none;" class="flex-col items-center justify-center text-center px-2 w-full h-full bg-slate-100/50">
-                        <span class="text-slate-400 font-bold tracking-widest uppercase text-[9px]">Standard 2</span>
-                    </div>
-                    <div class="absolute top-0 left-0 right-0 h-4 bg-slate-800/80 backdrop-blur-sm flex items-center px-1.5 space-x-1 pointer-events-none">
+                <div class="preview-panel rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white flex flex-col relative h-[400px]">
+                    <div class="h-6 bg-slate-800 flex items-center px-2 space-x-1.5 shrink-0 z-10 sticky top-0 w-full">
                         <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
                         <div class="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
                         <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+                        <div class="ml-2 text-[8px] text-slate-400 font-mono tracking-widest uppercase">Standard_2</div>
+                    </div>
+                    <div class="flex-grow overflow-y-auto w-full relative preview-scroll bg-slate-50">
+                        <img src="/proposals/standard-2-full.jpg" alt="Standard Site 2 Full View" class="w-full h-auto block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display: none;" class="flex-col items-center justify-center text-center p-4 w-full h-full min-h-[300px]">
+                            <span class="text-slate-400 font-bold uppercase text-[9px] tracking-widest">Awaiting standard-2-full.jpg</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Premium Site 1 Preview -->
-                <div class="rounded-xl overflow-hidden shadow-sm border-2 border-bond-lime aspect-video bg-slate-50 flex flex-col items-center justify-center relative group">
-                    <img src="/proposals/premium-1.jpg" alt="Premium Site 1" class="absolute inset-0 w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <!-- Placeholder -->
-                    <div style="display: none;" class="flex-col items-center justify-center text-center px-2 w-full h-full bg-slate-100/50">
-                        <span class="text-bond-navy font-bold tracking-widest uppercase text-[9px]">Premium 1</span>
-                    </div>
-                    <div class="absolute top-0 left-0 right-0 h-4 bg-slate-800/80 backdrop-blur-sm flex items-center px-1.5 space-x-1 pointer-events-none">
+                <div class="preview-panel rounded-xl overflow-hidden shadow-sm border-2 border-bond-lime bg-white flex flex-col relative h-[400px]">
+                    <div class="h-6 bg-slate-800 flex items-center px-2 space-x-1.5 shrink-0 z-10 sticky top-0 w-full">
                         <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
                         <div class="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
                         <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+                        <div class="ml-2 text-[8px] text-slate-400 font-mono tracking-widest uppercase">Premium_1</div>
+                    </div>
+                    <div class="flex-grow overflow-y-auto w-full relative preview-scroll bg-slate-50">
+                        <img src="/proposals/premium-1-full.jpg" alt="Premium Site 1 Full View" class="w-full h-auto block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display: none;" class="flex-col items-center justify-center text-center p-4 w-full h-full min-h-[300px]">
+                            <span class="text-slate-400 font-bold uppercase text-[9px] tracking-widest">Awaiting premium-1-full.jpg</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Premium Site 2 Preview -->
-                <div class="rounded-xl overflow-hidden shadow-sm border-2 border-bond-lime aspect-video bg-slate-50 flex flex-col items-center justify-center relative group">
-                    <img src="/proposals/premium-2.jpg" alt="Premium Site 2" class="absolute inset-0 w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <!-- Placeholder -->
-                    <div style="display: none;" class="flex-col items-center justify-center text-center px-2 w-full h-full bg-slate-100/50">
-                        <span class="text-bond-navy font-bold tracking-widest uppercase text-[9px]">Premium 2</span>
-                    </div>
-                    <div class="absolute top-0 left-0 right-0 h-4 bg-slate-800/80 backdrop-blur-sm flex items-center px-1.5 space-x-1 pointer-events-none">
+                <div class="preview-panel rounded-xl overflow-hidden shadow-sm border-2 border-bond-lime bg-white flex flex-col relative h-[400px]">
+                    <div class="h-6 bg-slate-800 flex items-center px-2 space-x-1.5 shrink-0 z-10 sticky top-0 w-full">
                         <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
                         <div class="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
                         <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+                        <div class="ml-2 text-[8px] text-slate-400 font-mono tracking-widest uppercase">Premium_2</div>
+                    </div>
+                    <div class="flex-grow overflow-y-auto w-full relative preview-scroll bg-slate-50">
+                        <img src="/proposals/premium-2-full.jpg" alt="Premium Site 2 Full View" class="w-full h-auto block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display: none;" class="flex-col items-center justify-center text-center p-4 w-full h-full min-h-[300px]">
+                            <span class="text-slate-400 font-bold uppercase text-[9px] tracking-widest">Awaiting premium-2-full.jpg</span>
+                        </div>
                     </div>
                 </div>
 
