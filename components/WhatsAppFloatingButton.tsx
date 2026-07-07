@@ -55,7 +55,7 @@ export default function WhatsAppFloatingButton() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           // bottom-24 on mobile avoids Safari tab bar & mobile sticky elements, bottom-6 on desktop.
           // pb-[env(safe-area-inset-bottom)] ensures iPhone home bar clearance.
-          className="fixed bottom-24 md:bottom-8 right-4 md:right-8 z-[999] flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-2xl transition-colors group cursor-pointer border-2 border-white/20 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-4 px-4 md:pb-4"
+          className="print:hidden fixed bottom-24 md:bottom-8 right-4 md:right-8 z-[999] flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-2xl transition-colors group cursor-pointer border-2 border-white/20 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-4 px-4 md:pb-4"
         >
           {/* Notification Badge */}
           <span className="absolute -top-1 -right-1 flex h-4 w-4">
